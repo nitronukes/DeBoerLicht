@@ -19,8 +19,8 @@
             <div><center><h2>Inloggen</h2></center></div>
             <div><input class="InlogInput" type="tekst" placeholder="E-mail" name="Email" required></div>
             <div><input class="InlogInput" type="password" placeholder="Wachtwoord" name="Wachtwoord" required></div>
-            <div><button name="AccountAanmaken" onclick="window.location.href='Index.php'" type="submit" class="AccountAanmakenButton">Account aanmaken</button></div>
-            <div><button name="Login" onclick="window.location.href='Index.php'" type="submit" class="LoginButton">Log in</button></div>
+            <div></div>
+            <div><center><button name="Login" onclick="window.location.href='Index.php'" type="submit" class="LoginButton">Log in</button></center></div>
         </div>
 
     </div>
