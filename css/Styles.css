@@ -69,6 +69,10 @@
           ". . ."
           ". . .";
         height: 100%;
+        text-align: center;
+    }
+    .InlogGrid div button{
+      height: 100%;      
     }
 
     .InlogBlokLinks {
@@ -85,11 +89,22 @@
       }
 
     
-      .LoginButton{
-          
+      .InlogButton{
+        background-color: #ffbf81;  
+        text-decoration: none;
+        border: none;
+        width: 50%;
+        height: 100%;
+        border-radius: 20px;
       }
 
       .InlogInput {
-          width: 100%;
+          width: 50%;
           height: 100%;
+          border-radius: 5px  ;
+          
+          
+      }
+      .InlogInputDiv {
+        justify-items: middle;
       }
