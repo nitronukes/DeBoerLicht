@@ -63,7 +63,7 @@ if(isset($_POST['registreer'])){
    <title>register form</title>
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="style/login.css">
+   <link rel="stylesheet" href="css/Product.css">
 
 </head>
 <body>
