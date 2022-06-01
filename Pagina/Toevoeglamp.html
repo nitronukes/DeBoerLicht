@@ -8,9 +8,24 @@
     <title>DeBoerLichtenToevoegen</title>
 </head>
 <body>
-    <div class="boem">
-        <p>kapot</p>
-        <button class="knopje">heelmooi</button>
+    <div class="Toevoegmodal" id="modal">
+        <div class="Toevoegmodal-header">
+            <div class="Modaltitel">Lamp toevoegen</div>
+            <button class="modalsluiten">&times;</button>
+        </div>
+        <div class="Toevoegmodal-body">
+         <div>   <input type="text" class="ProductnaamToevoeg" placeholder="Productnaam"> </div>
+          <div>  <input type="number" class="PrijsToevoeg" placeholder="Prijs" min="1"> </div>
+<div>            <input type="number" class="KortingToevoeg" placeholder="Korting" min="0" max="100"> </div>
+<div>            <select class="CategorieToevoeg" name="categorie" id="categorie">
+                <option class="HanglampenToevoeg" value="HanglampenToevoeg">Hanglampen</option>
+                <option class="staandeLampenToevoeg" value="staandeLampenToevoeg">Staande Lampen</option>
+            </select> </div>
+  <div>          <input type="text" class="BeschrijvingToevoeg" placeholder="Beschrijving"> </div>
+<div>            <input type="number" class="VoorraadToevoeg" placeholder="Voorraad" min="0"> </div>
+<div>            <input type="file" and accept="image/*" class="BestandToevoeg" placeholder="Foto Toevoegen"> </div>
+<div>            <button class="knoptoevoegmodal">Product toevoegen</button> </div>
+        </div>
     </div>
 </body>
 </html>

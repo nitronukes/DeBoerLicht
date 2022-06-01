@@ -2,6 +2,7 @@
     background-color: #ffffff;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
   .Boem{
     color: aqua;
@@ -90,3 +91,51 @@
         border: none;
         
       }
+.Toevoegmodal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 200ms ease-in-out;
+  border: 2px solid black;
+  z-index: 10;
+  width: 500px;
+  max-width: 80%;
+}
+
+.Toevoegmodal-header{
+padding: 10px 15px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 2px solid black;
+}
+.Toevoegmodal-header .Modaltitel{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.Toevoegmodal-header .modalsluiten{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.Toevoegmodal-body{
+  padding: 10px;
+}
+.knoptoevoegmodal{
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #FFBF81;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 10px 40px;
+}
+.knoptoevoegmodal:hover{
+  background-color: #df8b37;
+  transition: 0.5s;
+}
