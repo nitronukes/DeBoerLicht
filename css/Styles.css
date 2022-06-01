@@ -128,19 +128,19 @@
       .InlogInputDiv {
         justify-items: middle;
       }
-      header ul {
+      .header ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
-        background-color: #333;
+        background-color: #fff;
       }
       
-      header li {
+      .header li {
         float: left;
       }
       
-     header li a {
+     .header li a {
         display: block;
         color: white;
         text-align: center;
@@ -148,6 +148,6 @@
         text-decoration: none;
       }
       
-      header li a:hover {
+      .header li a:hover {
         background-color: #111;
       }
