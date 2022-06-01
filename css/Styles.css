@@ -1,5 +1,4 @@
 *{
-    background-color: #ffffff;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -21,17 +20,25 @@
     transition: 2s;
   }
   .InlogPaginaGrid {
-      display: grid;
-      grid-template-columns: 2fr 2fr 2fr;
-      grid-template-rows: 2fr 5fr 2fr;
-      grid-auto-columns: 1fr 1fr 1fr;
-      gap: 10px 0px;
-      grid-auto-flow: row;
-      grid-template-areas:
-        ". . ."
-        ". . ."
-        ". . .";
-      height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-template-rows: 2fr 5fr 2fr;
+    grid-auto-columns: 1fr 1fr 1fr;
+    gap: 10px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    ". . ."
+    ". . ."
+    ". . .";
+    height: 100vh;
+    background-color: #e1e1d0;
+  }
+  
+  .InlogPaginaGrid form{
+    
+    background-color: white;
+    border-radius: 20px;
+
   }
 
   .InlogPaginaBlokLinks {
@@ -61,15 +68,22 @@
   .InlogGrid {
         display: grid;
         grid-template-columns: 1fr 10fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 2fr 1fr;
         grid-auto-columns: 1fr 1fr 1fr;
-        gap: 10px 0px;
+        gap: 0px 0px;
         grid-auto-flow: row;
         grid-template-areas:
-          ". . ."
-          ". . ."
-          ". . .";
+        ". . ."
+        ". . ."
+        ". . .";
         height: 100%;
+        text-align: center;
+        width: 100%;
+        border-radius: 50px;
+        background-color: white;
+    }
+    .InlogGrid div button{
+      height: 100%;      
     }
 
     .InlogBlokLinks {
@@ -85,10 +99,32 @@
         grid-row-end: 6;
       }
 
-      .AccountAanmakenButton {
-        width: 100%;
-        height: 100%;
+    
+      .InlogButton{
+        background-color: #ffbf81;  
+        text-decoration: none;
         border: none;
+        width: 70%;
+        height: 70%;
+        border-radius: 20px;
+      }
+
+      .InlogInput {
+          width: 100%;
+          height: 50%;
+          border-radius: 5px  ;
+          
+          
+        }
+        .InlogInputDiv {
+          justify-items: middle;
+          width: 70%;
+          height: 30%;
+          border-radius: 20px;
+          text-align: center;
+          text-decoration: none;
+          border-radius: 10px;
+        
         
       }
 .Toevoegmodal{
@@ -139,3 +175,29 @@ border-bottom: 2px solid black;
   background-color: #df8b37;
   transition: 0.5s;
 }
+      .InlogInputDiv {
+        justify-items: middle;
+      }
+      .header ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #fff;
+      }
+      
+      .header li {
+        float: left;
+      }
+      
+     .header li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      
+      .header li a:hover {
+        background-color: #111;
+      }
