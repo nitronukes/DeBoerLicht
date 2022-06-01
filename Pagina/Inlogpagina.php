@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,50 +11,58 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="InlogPaginaGrid">
-        <div class="InlogPaginaBlokLinks"></div>
-        <div class="InlogPaginaBlokRechts"></div>
-        <div class="InlogPaginaBlokTop"></div>
-        <div class="InlogPaginaBlokBottom"></div>
-        <div class="InlogGrid">
-            <div class="InlogBlokLinks"></div>
-            <div class="InlogBlokRechts"></div> 
-            <div><h2>Inloggen</h2></div>
-            <form method="POST" action="#">
-            <div class="InlogInputDiv"><input class="InlogInput" type="tekst" placeholder="E-mail" name="Email" required></div>
-            <div class="InlogInputDiv"><input class="InlogInput" type="password" placeholder="Wachtwoord" name="Wachtwoord" required></div>
-            <div></div>
-            <div><center><button name="Login" onclick="window.location.href='Bestellingenoverzicht.php'" type="submit" class="InlogButton">Log in</button></center></div>
-            
-        </div></form>
-
+ <center>
+ <div class="InlogPaginaGrid">
+   <div class="InlogPaginaBlokLinks"></div>
+   <div class="InlogPaginaBlokRechts"></div>
+   <div class="InlogPaginaBlokTop"></div>
+   <div class="InlogPaginaBlokBottom"></div>
+   <form method="post" action="">
+   <div class="InlogGrid">
+     <div class="InlogBlokLinks"></div>
+     <div class="InlogBlokRechts"></div> 
+        <h1>Inloggen</h1>
+          <div class=""><input class="InlogInputDiv" type="text" name="Email" class="text" autocomplete="off" required placeholder="E-mail">
+          <input class="InlogInputDiv" type="password" name="Wachtwoord" class="text" required placeholder="Wachtwoord"></div>
+          <div class=""><input class="InlogButton" type="submit" name="submit" id="sub"> </div>
     </div>
+      </form>
+        
 
-
+   </div>
+    </center>
+    </div>
 </body>
 </html>
 
 <?php
-session_start();
-include("Connection.php");
-include("Functions.php");
 
-//$username = check_login($conn);
+include 'Connection.php';
+if (isset($_POST['submit'])) {
+    $email=$_POST['Email'];
+    $wachtwoord=$_POST['Wachtwoord'];
 
-if(isset($_POST['Email']))
+
+
+
+        $sql = "SELECT * FROM `users` WHERE `email` = '".$email."' AND `password` = '".$wachtwoord."'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $_SESSION['email'] = $email;
+            header("location:Bestellingenoverzicht.php");
+            exit();
+          }
+    else
     {
-        $mail = $_POST['Email'];
-        $wachtwoord = $_POST['Wachtwoord'];
-
-        $sql = "select * from users where email = '".$mail."'AND password = '".$wachtwoord."' limit 1";
-
-        $result = mysqli_query($conn, $sql);
-
-        if(mysqli_num_rows($result) == 1)
-        {
-          echo "You logged in";
-        }
-        else {
-          echo "You have entered incorrect email or username";
-        }
+        echo  "<script>alert('Het e-mail adres of wachtwoord in incorrect')</script>";
     }
+
+}
+
+
+       $conn->close();
+?>
+
+
+ 
