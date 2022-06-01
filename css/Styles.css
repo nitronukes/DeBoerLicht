@@ -1,13 +1,12 @@
 *{
   margin: 0;
   padding: 0;
-  background-color: #e1e1d0;
-
-  }
-  .Boem{
-    color: aqua;
-  }
-  .knopje{
+  
+}
+.Boem{
+  color: aqua;
+}
+.knopje{
     background-color: aqua;
     margin: 50px 100px;
     padding: 5px 10px;
@@ -32,11 +31,14 @@
     ". . ."
     ". . .";
     height: 100vh;
+    background-color: #e1e1d0;
   }
-
+  
   .InlogPaginaGrid form{
+    
+    background-color: white;
+    border-radius: 20px;
 
-  background-color: white;
   }
 
   .InlogPaginaBlokLinks {
