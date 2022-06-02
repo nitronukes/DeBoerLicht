@@ -25,6 +25,7 @@
           <div class=""><input class="InlogInputDiv" type="text" name="Email" class="text" autocomplete="off" required placeholder="E-mail">
           <input class="InlogInputDiv" type="password" name="Wachtwoord" class="text" required placeholder="Wachtwoord"></div>
           <div class=""><input class="InlogButton" type="submit" name="submit" id="sub"> </div>
+          
     </div>
       </form>
         
