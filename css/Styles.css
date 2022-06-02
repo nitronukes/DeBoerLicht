@@ -178,26 +178,34 @@ border-bottom: 2px solid black;
       .InlogInputDiv {
         justify-items: middle;
       }
-      .header ul {
+      .menu ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
-        background-color: #fff;
+        background-color: white ;
+        border-bottom:solid 10px #ffbf81;
       }
       
-      .header li {
-        float: left;
+      .menu li {
+        float: right;
+
       }
       
-     .header li a {
+     .menu li a {
         display: block;
-        color: white;
+        color: black ;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
       }
       
-      .header li a:hover {
-        background-color: #111;
+      .menu li a:hover {
+        background-color: #D0D0D0 ;
+      }
+      .logo{
+        width: 100px;
+        height: 100px;
+      top:100px;
+
       }
