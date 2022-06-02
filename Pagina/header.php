@@ -15,7 +15,7 @@
          <ul>
              <img class="logo" src="../Fotos/logo_timothy.png"/>
             <li><a href="Inlogpagina.php">login</a></li>
-            <li><a href="Besteloverzicht.php">Besteloverzicht</a></li>
+            <li><a href="Bestellingenoverzicht.php">Besteloverzicht</a></li>
             <!--<li><a href=""></a></li>-->
             <li><a href=""><i class="fa-solid fa-cart-shopping" style="background-color:black; height: 50px; width: 50px;"></i></a></li>
         </ul>

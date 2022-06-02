@@ -1,10 +1,6 @@
 <?php
 
-function check_login($conn)
+function Lampenoverzicht()
 {
-    if(isset($_POST['email']))
-    {
-        $mail = $_POST['email'];
-        $wachtwoord = $_POST['wachtwoord'];
-    }
+  
 }
