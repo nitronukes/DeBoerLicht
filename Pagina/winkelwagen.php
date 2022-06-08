@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,28 +7,18 @@
     <link rel="stylesheet" href="../css/Styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>  
-    <header>
 
-    <div class="menu">
-         <ul>
+<body>
+<div class="wrapper">
+    <h1>winkelwagen</h1>
+    <div class = "project">
+    <div class = "shop">
+    <div class = "box">
 
-             <img class="logo" src="../Fotos/logo_timothy.png"/>
-             <li><a class="fa fa-shopping-cart" style="font-size:24px"></a></li>
-            <li><a href="Inlogpagina.php">login</a></li>
-            <li><a href="Bestellingenoverzicht.php">Besteloverzicht</a></li>
-
-
-
-
-        </ul>
-
-
-    </div>
-
-
-
-    </header>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
 
