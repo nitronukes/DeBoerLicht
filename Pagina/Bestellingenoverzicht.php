@@ -1,96 +1,109 @@
 <?php
-
-include 'Connection.php';
-
-if(isset($_POST['registreer'])){
-
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = md5($_POST['password']);
-   $cpass = md5($_POST['cpassword']);
-   $user_type = 'user';
-
-   $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
-
-   $result = mysqli_query($conn, $select);
-
-   if(mysqli_num_rows($result) > 0){
-
-      $error[] = 'user bestaat al!';
-
-   }else{
-
-      if($pass != $cpass){
-         $error[] = 'De wachtwoorden komen niet overeen!';
-      }else{
- 
-         $sql = "INSERT INTO bestellingen(name, email, password, user_type, bevestig) VALUES('$name', '$email', '$pass','$user_type', 'false')";
-         $insert = $conn->query($sql);
-
-         if ($insert)
-
-         
-         //mail versturen met de mail van de gebruiker en die het invuld
-         $receiver = array($email);
-         $subject="Bevestig registratie";
-         $body = "Beste $name,
-         
-         Om uw account aan te maken moet u eerst bevestigen.
-         Bevestig: https://p31t2.lesonline.nu/bevestig.php?id=$conn->insert_id 
-        
-         
-         Met vriendelijke groet,
-         click collect snack";
-         //hier kijk die of de mail  verstuurt kan worden zo ja  zegt die de eerste optie zo niet zegt die de tweede optie 
-          
-            
-          }
-          if(mail(implode(',',$receiver), $subject, $body)){
-
-            echo "<script>alert('Kijk uw mail voor bevestiging')</script>";
-                     
-         }}}
-
-
+include 'connection.php';
+include 'header.php';
+//
+$sql=" SELECT * FROM bestelling";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>register form</title>
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/Product.css">
-
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <link rel="stylesheet" href="style/adminoverzicht.css">
+  <title>Adminoverzicht</title>
 </head>
-<body>
-   
-<div class="form-containerr">
 
-   <form action="" method="post">
-      <h3>Voer je gegevens in</h3>
-      <?php
-      if(isset($error)){
-         foreach($error as $error){
-            echo '<span class="error-msg">'.$error.'</span>';
-         };
-      };
-      ?>
-      <input type="text" name="name" required placeholder="Voornaam">
-      <input type="email" name="achternaam" required placeholder="Achternaam">
-      <input type="password" name="email" required placeholder="Email">
-      <input type="password" name="telefoonnummer" required placeholder="Telefoonnummer">
-      <input type="password" name="huisnummer" required placeholder="Huisnummer">
-      <input type="password" name="straatnaam" required placeholder="Straatnaam">
-      <input type="password" name="postcode" required placeholder="Postcode">
+
+  
+</style>
+<header>
+<form method='POST' action=""> 
+</form> 
+    
+
+
+<body>
+<br><br><br><br>
+
+        <tr>
+        <div class='table-wrapper'>
+         <table class='fl-table'>
+        <thead>
+            <th>Naam</th>
+            <th>datum</th>
+            <th>tijd</th>
+            <th>prijs</th>
+            <th>info</th>
+            </tr>  
+        </thead>
+        <tbody>
+<?php
+if(isset($_POST['loguit'])){
+  session_destroy();
+  header('Location: ');
+}
+error_reporting(0);
+if(isset($_SESSION['admin_name'])){
+$query= "SELECT * FROM bestelling";
+} elseif (isset($_SESSION['user_name'])){
+  $naam=$_SESSION['user_name'];
+$query= "SELECT * FROM bestelling WHERE `naam`='$naam'";}
+$data = mysqli_query($conn,$query);
+$total = mysqli_num_rows($data);
+if($total!=0){
+  while($result=mysqli_fetch_assoc($data)){
+      echo "
+      <tr>
       
-      <input type="submit" name="registreer" value="registreer nu" class="form-btn">
-   </form>
+      <td>".$result['naam']."</td>
+      <td>".$result['datum']."</td>
+      <td>".$result['tijd']."</td>
+      <td>".'€'.$result['totaal']."</td>
+      <td><a style='color: black;' class='fas fa-info' href='?id=" . $result['id'] . "#myForm'></a></td>
+      <tbody>
+      ";
+  }
+    }else{
+      echo "
+      <tr>
+      <th colspan='2'>Er is geen data gevonden!!!</th>
+      </tr>
+      ";
+  } ?>
+ 
+  </table>
+
+  <div class='form-popup' id='myForm'>
+
+<?php
+ $id= $_GET['id'];
+$sql= "SELECT * FROM bestelling where id=$id";
+$res = $conn->query($sql);
+if ($res) {
+  foreach ($res as $result) {
+echo"
+<p class='naam'>".$result['naam']."</p>
+<p class='tijd'>afhaaltijdstip: ".$result['tijd']."</p>
+<br>
+<p class='datum'>".$result['datum']."</p>
+<br>
+<p>".$result['name']."</p>
+<br><br><br>
+<p>".'€'.$result['totaal']."</p>
+
+
+";}} ?>
+      
+
+    <a type='button' class='sluitknop' href='/adminoverzicht.php#'>&times;</a>
 
 </div>
-
+  
 </body>
+
 </html>
