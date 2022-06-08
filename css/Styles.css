@@ -137,6 +137,7 @@
   z-index: 10;
   width: 500px;
   max-width: 80%;
+  border-radius: 50px;
 }
 
 .Toevoegmodal-header{
@@ -144,11 +145,11 @@ padding: 10px 15px;
 display: flex;
 justify-content: space-between;
 align-items: center;
-border-bottom: 2px solid black;
 }
 .Toevoegmodal-header .Modaltitel{
   font-size: 1.5rem;
   font-weight: bold;
+  padding-left: 110px;
 }
 .Toevoegmodal-header .modalsluiten{
   cursor: pointer;
@@ -159,8 +160,103 @@ border-bottom: 2px solid black;
   font-weight: bold;
 }
 .Toevoegmodal-body{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px 0px;
+  grid-auto-flow: row;
   padding: 10px;
+  padding-left: 50px;
 }
+
+.Toevoegmodallinks{
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        grid-row-end: 10;
+}
+
+.Toevoegmodalrechts {
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 10;
+}
+.ProductnaamToevoeg{
+  padding: 10px 5px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+.ProductnaamToevoeg:hover{
+  background-color: #D0D0D0;
+  transition: .4s;
+}
+
+.PrijsToevoeg{
+  padding: 10px 5px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+.PrijsToevoeg:hover{
+  background-color: #D0D0D0;
+  transition: .4s;
+}
+
+.KortingToevoeg{
+  padding: 10px 5px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+.KortingToevoeg:hover{
+  background-color: #D0D0D0;
+  transition: .4s;
+}
+
+.CategorieToevoeg{
+  padding: 10px 5px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1.5px solid;
+}
+
+.CategorieToevoeg:hover{
+  background-color: #D0D0D0;
+  transition: .4s;
+}
+
+.BeschrijvingToevoeg{
+  padding: 10px 5px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+.BeschrijvingToevoeg:hover{
+  background-color: #D0D0D0;
+  transition: .4s;
+}
+
+.VoorraadToevoeg{
+  padding: 10px 5px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+.VoorraadToevoeg:hover{
+  background-color: #D0D0D0;
+  transition: .4s;
+}
+
+.BestandToevoeg{
+  padding: 10px 5px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+
+
 .knoptoevoegmodal{
   cursor: pointer;
   color: #ffffff;
