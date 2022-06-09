@@ -10,25 +10,14 @@
 </head>
 <body>  
     <header>
-
     <div class="menu">
          <ul>
-
-             <img class="logo" src="../Fotos/logo_timothy.png"/>
-             <li><a class="fa fa-shopping-cart" style="font-size:24px"></a></li>
+            <img class="logo" src="../Fotos/logo_timothy.png"/>
+            <li><a class="fa fa-shopping-cart" style="font-size:24px"></a></li>
             <li><a href="Inlogpagina.php">login</a></li>
             <li><a href="Bestellingenoverzicht.php">Besteloverzicht</a></li>
-
-
-
-
         </ul>
-
-
     </div>
-
-
-
     </header>
 </body>
 </html>
