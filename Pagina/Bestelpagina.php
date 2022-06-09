@@ -1,26 +1,57 @@
 <?php
 
+@include 'connection.php';
+
+if(isset($_POST['submit'])){
+
+   $name = mysqli_real_escape_string($conn, $_POST['name']);
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $pass = md5($_POST['password']);
+   $cpass = md5($_POST['cpassword']);
+   $user_type = $_POST['user_type'];
+
+   $select = " SELECT * FROM bestellingen WHERE email = '$email' && password = '$pass' ";
+
+   $result = mysqli_query($conn, $select);
+
+   if(mysqli_num_rows($result) > 0){
+
+      $error[] = 'user already exist!';
+
+   }else{
+
+      if($pass != $cpass){
+         $error[] = 'password not matched!';
+      }else{
+         $insert = "INSERT INTO bestellingen(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
+         mysqli_query($conn, $insert);
+         header('location:login_form.php');
+      }
+   }
+
+};
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Bestelling form</title>
+   <title>register form</title>
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/Styles.css">
+   <link rel="stylesheet" href="Pagina/Style.css">
 
 </head>
 <body>
    
-<div class="form-containerr">
+<div class="form-container">
 
    <form action="" method="post">
-      <h3>Voer je gegevens in</h3>
+      <h3>register now</h3>
       <?php
       if(isset($error)){
          foreach($error as $error){
@@ -35,7 +66,7 @@
       <input type="huisnummer" name="huisnummer" required placeholder="Huisnummer">
       <input type="straatnaam" name="straatnaam" required placeholder="Straatnaam">
       <input type="postcode" name="postcode" required placeholder="Postcode">
-      
+
       <input type="submit" name="registreer" value="stuur" class="form-btn">
    </form>
 
