@@ -22,15 +22,39 @@ function Lampenoverzicht($conn, $categorie)
     }   
 }
 
-function Filteren($conn) 
+function Filteren($conn, $categorie) 
 {
     $stmt = $conn->prepare("SELECT Categorie FROM categorieen");
     $stmt->execute();
     $sql = $stmt->get_result();
 
     foreach ($sql as $row) {
-        echo"
+        
+        if ($categorie == $row['Categorie']) {
+            echo"
+                <option value='Lampenoverzicht.php?filter=" . $row['Categorie'] . "' selected> $row[Categorie] </option>
+            ";
+        }
+        else {
+            echo"
             <option value='Lampenoverzicht.php?filter=" . $row['Categorie'] . "'> $row[Categorie] </option>
         ";
+        }
     }
+}
+
+function Inloggen($conn, $email, $wachtwoord)
+{
+    $sql = "SELECT * FROM `users` WHERE `email` = '".$email."' AND `password` = '".$wachtwoord."'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $_SESSION['email'] = $email;
+            header("location:Bestellingenoverzicht.php");
+            exit();
+          }
+    else
+    {
+        echo  "<script>alert('Het e-mail adres of wachtwoord in incorrect')</script>";
+    }
+    $conn->close();
 }
