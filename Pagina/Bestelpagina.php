@@ -1,35 +1,18 @@
 <?php
 
-@include 'connection.php';
+include 'connection.php';
 
 if(isset($_POST['submit'])){
 
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = md5($_POST['password']);
-   $cpass = md5($_POST['cpassword']);
-   $user_type = $_POST['user_type'];
-
-   $select = " SELECT * FROM bestellingen WHERE email = '$email' && password = '$pass' ";
-
-   $result = mysqli_query($conn, $select);
-
-   if(mysqli_num_rows($result) > 0){
-
-      $error[] = 'user already exist!';
-
-   }else{
-
-      if($pass != $cpass){
-         $error[] = 'password not matched!';
-      }else{
-         $insert = "INSERT INTO bestellingen(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
+   
+   
+      
+         $insert = "INSERT INTO bestellingen(voornaam, achternaam, email, ) VALUES('$voornaam','$achternaam','$email','$telefoonnummer')";
          mysqli_query($conn, $insert);
-         header('location:login_form.php');
-      }
-   }
+         
+     
 
-};
+
 
 
 ?>
