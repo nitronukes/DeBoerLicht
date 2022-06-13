@@ -1,10 +1,11 @@
 
 <?php
-include 'connection.php';
+include 'Connection.php';
 include 'header.php';
-//
+
 $sql=" SELECT * FROM winkelwagen";
 $result = $conn->query($sql);
+
 ?>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -19,11 +20,20 @@ $result = $conn->query($sql);
 
 <body>
 <?php
-echo("winkelawagen");
+$sql = "SELECT * FROM winkelwagen;";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
 
-
-
+if($resultCheck > 0){
+    while($row = mysqli_fetch_assoc($result)){
+        echo
+        $row['naam'];
+        $row['prijs'];
+    }
 }
+
+
+
 
 
 
