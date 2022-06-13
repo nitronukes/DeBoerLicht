@@ -19,11 +19,21 @@ $categorie = $_GET['filter'];
     <div class="Lampenoverzichtpaginalinks"></div>
     <div class="Lampenoverzichtpaginarechts"></div>
     <div class="Lampenoverzichtfilteren">
+        <h2>Filteren</h2>
         <select onchange="location = this.value; value=' <?php $categorie ?>'">
             <?php
-                Filteren($conn);
-                ?>
-                <option value='Lampenoverzicht.php?filter=Geencategorie'>Geen categorie</option>
+                if ($categorie == 'Geencategorie') {
+                    echo"
+                    <option value='Lampenoverzicht.php?filter=Geencategorie' selected>Geen categorie</option>
+                    ";
+                }
+                else {
+                    echo"
+                    <option value='Lampenoverzicht.php?filter=Geencategorie'>Geen categorie</option>
+                    ";
+                }
+                Filteren($conn, $categorie);
+            ?>
 
         </select>
     </div>
