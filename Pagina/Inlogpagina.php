@@ -39,30 +39,12 @@
 <?php
 
 include 'Connection.php';
+include 'Functions.php';
 if (isset($_POST['submit'])) {
     $email=$_POST['Email'];
     $wachtwoord=$_POST['Wachtwoord'];
-
-
-
-
-        $sql = "SELECT * FROM `users` WHERE `email` = '".$email."' AND `password` = '".$wachtwoord."'";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            $_SESSION['email'] = $email;
-            header("location:Bestellingenoverzicht.php");
-            exit();
-          }
-    else
-    {
-        echo  "<script>alert('Het e-mail adres of wachtwoord in incorrect')</script>";
-    }
-
+  Inloggen($conn, $email, $wachtwoord);
 }
-
-
-       $conn->close();
 ?>
 
 
