@@ -22,7 +22,7 @@ $result = $conn->query($sql);
 echo("winkelawagen");
 
 
-    
+
 }
 
 
