@@ -376,3 +376,27 @@ align-items: center;
 .Lampenoverzichtfilteren select{
   color:red
 }
+.homebodylichaam{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr 1fr;
+  grid-template-rows: 1fr 2fr 1fr 2fr 1fr;
+  gap: 10px 0px;
+  grid-auto-flow: row;
+  padding: 10px;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+.homepaginaLinks{
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 6;
+}
+
+.homepaginaRechts {
+grid-column-start: 7;
+grid-column-end: 7;
+grid-row-start: 1;
+grid-row-end: 6;
+}
