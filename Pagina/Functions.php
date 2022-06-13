@@ -58,3 +58,16 @@ function Inloggen($conn, $email, $wachtwoord)
     }
     $conn->close();
 }
+
+function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $beschrijving, $voorraad, $foto)
+{
+    $CategorieID = $conn->prepare("SELECT CategorieID FROM `categorieen` WHERE 'Categorie' = ?");
+    $CategorieID->bind_param('s', $categorie);
+    
+    $stmt2 = "INSERT INTO `producten` (`Categorie_ID`, `ProductNaam`, `Prijs`, `Korting`, `Beschikbaar`, `Tekst`) VALUES (?,?,?,?,?,?)";
+    $stmt2 = mysqli_prepare($conn, $stmt2);
+    mysqli_stmt_bind_param($stmt2, 'isiiis', $CategorieID, $Productnaam, $Prijs, $korting, $voorraad, $beschrijving); //Bind param
+    mysqli_stmt_execute($stmt2); //Uitvoeren
+
+
+}

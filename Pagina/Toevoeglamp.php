@@ -26,7 +26,7 @@
             </select> </div>
   <div>          <input type="text" name="Beschrijving" class="BeschrijvingToevoeg" placeholder="Beschrijving" required> </div>
 <div>            <input type="number" name="Voorraad" class="VoorraadToevoeg" placeholder="Voorraad" min="0" required> </div>
-<div>            <input type="file" and accept="image/*" name="foto" class="BestandToevoeg" placeholder="Foto Toevoegen" required> </div>
+<div>            <input type="file" and accept="image/*" name="foto" class="BestandToevoeg" placeholder="Foto Toevoegen" required multiple> </div>
 <div>            <button type="submit" name="submit" class="knoptoevoegmodal">Product toevoegen</button> </div>
         </div>
     </div>
@@ -34,24 +34,28 @@
 </html>
 <?php
 include 'Connection.php';
-if(isset($_POST['submit']))
-{
-    $ProductNaam = $_POST['ProductNaam'];
-    $Prijs = $_POST['Prijs'];
-    $Korting = $_POST['KortingToevoeg'];
-    $CategorieID = $_POST['categorie'];
-    $Tekst = $_POST['Beschrijving'];
-    $Beschikbaar = $_POST['Voorraad'];
-    $Foto = $_POST['foto'];
-
-    $sql = "INSERT INTO producten (ProductNaam,Prijs,Kortingtoevoeg,categorie,Beschrijving,Voorraad,Foto)
-     VALUES ('$ProductNaam', '$Prijs', '$Korting', '$CategorieID', '$Tekst', '$Beschikbaar', '$Foto')";
-     if (mysqli_query($conn, $sql)){
-         echo"jemoeder";
-     } else {
-         echo "Fout: " . $sql . "
-         " . mysqli_error($conn);
-     }
-     mysqli_close($conn);
+include 'Functions.php';
+if (isset($_POST['submit'])) {
+Producttoevoegen($conn, $_POST['ProductNaam'], $_POST['Prijs'], $_POST['KortingToevoeg'], $_POST['categorie'], $_POST['Beschrijving'], $_POST['Voorraad'], $_POST['foto']);
 }
+// if(isset($_POST['submit']))
+// {
+//     $ProductNaam = $_POST['ProductNaam'];
+//     $Prijs = $_POST['Prijs'];
+//     $Korting = $_POST['KortingToevoeg'];
+//     $CategorieID = $_POST['categorie'];
+//     $Tekst = $_POST['Beschrijving'];
+//     $Beschikbaar = $_POST['Voorraad'];
+//     $Foto = $_POST['foto'];
+
+//     $sql = "INSERT INTO producten (ProductNaam,Prijs,Kortingtoevoeg,categorie,Beschrijving,Voorraad,Foto)
+//      VALUES ('$ProductNaam', '$Prijs', '$Korting', '$CategorieID', '$Tekst', '$Beschikbaar', '$Foto')";
+//      if (mysqli_query($conn, $sql)){
+//          echo"jemoeder";
+//      } else {
+//          echo "Fout: " . $sql . "
+//          " . mysqli_error($conn);
+//      }
+//      mysqli_close($conn);
+// }
 ?>
