@@ -44,8 +44,8 @@ if(isset($_POST['submit']))
     $Beschikbaar = $_POST['Voorraad'];
     $Foto = $_POST['foto'];
 
-    $sql = "INSERT INTO producten (ProductNaam,Prijs,Kortingtoevoeg,categorie,Beschrijving,Voorraad,Foto)
-     VALUES ('$ProductNaam', '$Prijs', '$Korting', '$CategorieID', '$Tekst', '$Beschikbaar', '$Foto')";
+    $sql = "INSERT INTO `producten` (`ProductNaam`,`Prijs`,`Kortingtoevoeg`,`categorie`,`Beschrijving`,`Voorraad`,`Foto`)
+     VALUES ($ProductNaam, $Prijs, $Korting, $CategorieID, $Tekst, $Beschikbaar, $Foto)";
      if (mysqli_query($conn, $sql)){
          echo"jemoeder";
      } else {
