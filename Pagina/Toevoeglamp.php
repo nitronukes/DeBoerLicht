@@ -17,16 +17,16 @@
         <div class="Toevoegmodal-body">
             <div class="Toevoegmodallinks"></div>
             <div class="Toevoegmodalrechts"></div>
-         <div>   <input type="text" class="ProductnaamToevoeg" placeholder="Productnaam" required> </div>
-          <div>  <input type="number" class="PrijsToevoeg" placeholder="Prijs" min="1" required> </div>
-<div>            <input type="number" class="KortingToevoeg" placeholder="Korting" min="0" max="100" required> </div>
+         <div>   <input type="text" name="ProductNaam" class="ProductnaamToevoeg" placeholder="Productnaam" required> </div>
+          <div>  <input type="number" name="Prijs" class="PrijsToevoeg" placeholder="Prijs" min="1" required> </div>
+<div>            <input type="number" name="KortingToevoeg" class="KortingToevoeg" placeholder="Korting" min="0" max="100" required> </div>
 <div>            <select class="CategorieToevoeg" name="categorie" id="categorie" required>
                 <option class="HanglampenToevoeg" value="HanglampenToevoeg">Hanglampen</option>
                 <option class="staandeLampenToevoeg" value="staandeLampenToevoeg">Staande Lampen</option>
             </select> </div>
-  <div>          <input type="text" class="BeschrijvingToevoeg" placeholder="Beschrijving" required> </div>
-<div>            <input type="number" class="VoorraadToevoeg" placeholder="Voorraad" min="0" required> </div>
-<div>            <input type="file" and accept="image/*" class="BestandToevoeg" placeholder="Foto Toevoegen" required> </div>
+  <div>          <input type="text" name="Beschrijving" class="BeschrijvingToevoeg" placeholder="Beschrijving" required> </div>
+<div>            <input type="number" name="Voorraad" class="VoorraadToevoeg" placeholder="Voorraad" min="0" required> </div>
+<div>            <input type="file" and accept="image/*" name="foto" class="BestandToevoeg" placeholder="Foto Toevoegen" required> </div>
 <div>            <button type="submit" name="submit" class="knoptoevoegmodal">Product toevoegen</button> </div>
         </div>
     </div>
@@ -34,5 +34,24 @@
 </html>
 <?php
 include 'Connection.php';
+if(isset($_POST['submit']))
+{
+    $ProductNaam = $_POST['ProductNaam'];
+    $Prijs = $_POST['Prijs'];
+    $Korting = $_POST['KortingToevoeg'];
+    $CategorieID = $_POST['categorie'];
+    $Tekst = $_POST['Beschrijving'];
+    $Beschikbaar = $_POST['Voorraad'];
+    $Foto = $_POST['foto'];
 
+    $sql = "INSERT INTO producten (ProductNaam,Prijs,Kortingtoevoeg,categorie,Beschrijving,Voorraad,Foto)
+     VALUES ('$ProductNaam', '$Prijs', '$Korting', '$CategorieID', '$Tekst', '$Beschikbaar', '$Foto')";
+     if (mysqli_query($conn, $sql)){
+         echo"jemoeder";
+     } else {
+         echo "Fout: " . $sql . "
+         " . mysqli_error($conn);
+     }
+     mysqli_close($conn);
+}
 ?>

@@ -1,5 +1,8 @@
 <?php 
 require_once('header.php');
+include('Functions.php');
+include('Connection.php');
+$categorie = $_GET['filter'];
 
 ?>
 <!DOCTYPE html>
@@ -15,17 +18,19 @@ require_once('header.php');
     <div class="Lampenoverzichtpaginatop"></div>
     <div class="Lampenoverzichtpaginalinks"></div>
     <div class="Lampenoverzichtpaginarechts"></div>
-    <div class="Lampenoverzichtfilteren"></div>
+    <div class="Lampenoverzichtfilteren">
+        <select onchange="location = this.value; value=' <?php $categorie ?>'">
+            <?php
+                Filteren($conn);
+                ?>
+                <option value='Lampenoverzicht.php?filter=Geencategorie'>Geen categorie</option>
+
+        </select>
+    </div>
     <div class="Lampenoverzichtgrid">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>
+        <?php 
+            Lampenoverzicht($conn, $categorie);
+        ?>
     </div>
     </div>
 </body>
