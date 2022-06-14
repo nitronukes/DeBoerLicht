@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Styles.css">
-    <title>DeBoerLichtenToevoegen</title>
+    <title>LichtenToevoegen</title>
 </head>
 <body>
+    <form action="#">
     <div class="Toevoegmodal" id="modal">
-        
         <div class="Toevoegmodal-header">
             <div class="Modaltitel">Lamp toevoegen</div>
             <button class="modalsluiten">&times;</button>
@@ -17,19 +17,20 @@
         <div class="Toevoegmodal-body">
             <div class="Toevoegmodallinks"></div>
             <div class="Toevoegmodalrechts"></div>
-         <div>   <input type="text" name="ProductNaam" class="ProductnaamToevoeg" placeholder="Productnaam" required> </div>
-          <div>  <input type="number" name="Prijs" class="PrijsToevoeg" placeholder="Prijs" min="1" required> </div>
-<div>            <input type="number" name="KortingToevoeg" class="KortingToevoeg" placeholder="Korting" min="0" max="100" required> </div>
-<div>            <select class="CategorieToevoeg" name="categorie" id="categorie" required>
-                <option class="HanglampenToevoeg" value="HanglampenToevoeg">Hanglampen</option>
-                <option class="staandeLampenToevoeg" value="staandeLampenToevoeg">Staande Lampen</option>
-            </select> </div>
-  <div>          <input type="text" name="Beschrijving" class="BeschrijvingToevoeg" placeholder="Beschrijving" required> </div>
-<div>            <input type="number" name="Voorraad" class="VoorraadToevoeg" placeholder="Voorraad" min="0" required> </div>
-<div>            <input type="file" and accept="image/*" name="foto" class="BestandToevoeg" placeholder="Foto Toevoegen" required multiple> </div>
-<div>            <button type="submit" name="submit" class="knoptoevoegmodal">Product toevoegen</button> </div>
+            <div><input type="text" name="ProductNaam" class="ProductnaamToevoeg" placeholder="Productnaam" required> </div>
+            <div><input type="number" name="Prijs" class="PrijsToevoeg" placeholder="Prijs" min="1" required> </div>
+            <div><input type="number" name="KortingToevoeg" class="KortingToevoeg" placeholder="Korting" min="0" max="100" required> </div>
+            <div><select class="CategorieToevoeg" name="categorie" id="categorie" required>
+                 <option class="HanglampenToevoeg" value="HanglampenToevoeg">Hanglampen</option>
+                 <option class="staandeLampenToevoeg" value="staandeLampenToevoeg">Staande Lampen</option>
+                 </select> </div>
+            <div><input type="text" name="Beschrijving" class="BeschrijvingToevoeg" placeholder="Beschrijving" required> </div>
+            <div><input type="number" name="Voorraad" class="VoorraadToevoeg" placeholder="Voorraad" min="0" required> </div>
+            <div><input type="file" and accept="image/*" name="foto" class="BestandToevoeg" placeholder="Foto Toevoegen" required multiple> </div>
+            <div><button type="submit" name="submit" class="knoptoevoegmodal">Product toevoegen</button> </div>
         </div>
     </div>
+</form>
 </body>
 </html>
 <?php
