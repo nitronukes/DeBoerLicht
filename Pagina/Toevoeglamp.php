@@ -1,3 +1,8 @@
+<?php
+include("Functions.php");
+include("Connection.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +13,7 @@
     <title>LichtenToevoegen</title>
 </head>
 <body>
-    <form action="#">
+    <form action="../Handlers/Lamptoevoeg.php" method="post" enctype="multipart/form-data">
     <div class="Toevoegmodal" id="modal">
         <div class="Toevoegmodal-header">
             <div class="Modaltitel">Lamp toevoegen</div>
@@ -21,12 +26,14 @@
             <div><input type="number" name="Prijs" class="PrijsToevoeg" placeholder="Prijs" min="1" required> </div>
             <div><input type="number" name="KortingToevoeg" class="KortingToevoeg" placeholder="Korting" min="0" max="100" required> </div>
             <div><select class="CategorieToevoeg" name="categorie" id="categorie" required>
-                 <option class="HanglampenToevoeg" value="HanglampenToevoeg">Hanglampen</option>
-                 <option class="staandeLampenToevoeg" value="staandeLampenToevoeg">Staande Lampen</option>
+            <?php
+                
+                CategorieToevoeg($conn);
+                ?>
                  </select> </div>
             <div><input type="text" name="Beschrijving" class="BeschrijvingToevoeg" placeholder="Beschrijving" required> </div>
             <div><input type="number" name="Voorraad" class="VoorraadToevoeg" placeholder="Voorraad" min="0" required> </div>
-            <div><input type="file" and accept="image/*" name="foto" class="BestandToevoeg" placeholder="Foto Toevoegen" required multiple> </div>
+            <div><input type="file" and accept="image/*" name="fileToUpload" class="BestandToevoeg" placeholder="Foto Toevoegen" id="fileToUpload" required multiple> </div>
             <div><button type="submit" name="submit" class="knoptoevoegmodal">Product toevoegen</button> </div>
         </div>
     </div>
@@ -34,11 +41,7 @@
 </body>
 </html>
 <?php
-include 'Connection.php';
-include 'Functions.php';
-if (isset($_POST['submit'])) {
-Producttoevoegen($conn, $_POST['ProductNaam'], $_POST['Prijs'], $_POST['KortingToevoeg'], $_POST['categorie'], $_POST['Beschrijving'], $_POST['Voorraad'], $_POST['foto']);
-}
+
 // if(isset($_POST['submit']))
 // {
 //     $ProductNaam = $_POST['ProductNaam'];

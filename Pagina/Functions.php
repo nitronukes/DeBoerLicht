@@ -20,7 +20,7 @@ function Lampenoverzicht($conn, $categorie)
              
              </div>";
     }   
-}
+} 
 
 function Filteren($conn, $categorie) 
 {
@@ -59,15 +59,54 @@ function Inloggen($conn, $email, $wachtwoord)
     $conn->close();
 }
 
-function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $beschrijving, $voorraad, $foto)
+function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $beschrijving, $voorraad, $files)
 {
-    $CategorieID = $conn->prepare("SELECT CategorieID FROM `categorieen` WHERE 'Categorie' = ?");
-    $CategorieID->bind_param('s', $categorie);
-    
     $stmt2 = "INSERT INTO `producten` (`Categorie_ID`, `ProductNaam`, `Prijs`, `Korting`, `Beschikbaar`, `Tekst`) VALUES (?,?,?,?,?,?)";
     $stmt2 = mysqli_prepare($conn, $stmt2);
-    mysqli_stmt_bind_param($stmt2, 'isiiis', $CategorieID, $Productnaam, $Prijs, $korting, $voorraad, $beschrijving); //Bind param
-    mysqli_stmt_execute($stmt2); //Uitvoeren
+    $stmt2->bind_param('dsiiis', $CategorieID, $Productnaam, $Prijs, $korting, $voorraad, $beschrijving);
+    $stmt2->execute();
+    var_dump($files);
+    $target_dir = "Fotos/";
+    $target_file = $target_dir . basename($files["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    if(isset($_POST["submit"])) {
+        $check = getimagesize($files["fileToUpload"]["tmp_name"]);
+        if($check !== false) {
+          echo "File is an image - " . $check["mime"] . ".";
+          $uploadOk = 1;
+        } else {
+          echo "File is not an image.";
+          $uploadOk = 0;
+        }
+      }
+    if($imageFileType != "png") {
+        echo "Je kan alleen png files gebruiken";
+        $uploadOk = 0;
+    }
 
+    if ($uploadOk == 0) {
+        echo "Sorry, je foto is niet geüpload";
+      } else {
+        if (move_uploaded_file($files["fileToUpload"]["tmp_name"], $target_file)) {
+          echo "The file ". htmlspecialchars( basename( $files["fileToUpload"]["name"])). " has been uploaded.";
+        } else {
+          echo "Sorry, there was an error uploading your file.";
+        }
+      }
 
+}
+
+function CategorieToevoeg($conn)
+{
+    $stmt = $conn->prepare("SELECT Categorie FROM categorieen");
+    $stmt->execute();
+    $sql = $stmt->get_result();
+
+    foreach ($sql as $row) {
+        echo"
+            <option value=' $row[CategorieID]' selected> $row[Categorie] </option>
+        ";
+        
+    }
 }
