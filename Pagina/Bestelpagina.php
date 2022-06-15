@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Registration Page</title>
+    <title>Vul gegevens in</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
   </head>
   <body>
