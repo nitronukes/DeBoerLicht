@@ -3,23 +3,28 @@
 function Lampenoverzicht($conn, $categorie)
 {
     //$stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID /*INNER JOIN productfoto ON producten.ID = productfoto.ProductID*/ WHERE categorieen.Categorie = ?");
-    $stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID");
+    $stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID INNER JOIN productfoto ON producten.ID = productfoto.ProductID");
 
-     if ($categorie != 'Geencategorie' ) {
-        $stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID WHERE categorieen.Categorie = ?");
+     if (!$categorie = 'Geencategorie' ) {
+        $stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE categorieen.Categorie = ? AND productfoto");
         $stmt->bind_param('s', $categorie);
      }
 
     $stmt->execute();
     $sql = $stmt->get_result();
+    $sql = $sql->fetch_all();
+
+
 
     foreach ($sql as $row) {
          echo "
              <div>
-             $row[ProductNaam]
-             
-             </div>";
-    }   
+             <form method='post' action='Productpagina.php?lamp=" . $row[4] . "'>
+             <img class='Lampenoverzichtfotos' src='$row[11]' alt='$row[4]'>
+                <input type='submit' value='$row[4]' class='Lampenoverzichtbutton'/>
+            </form>
+            </div>";
+    }  
 } 
 
 function Filteren($conn, $categorie) 
@@ -124,12 +129,7 @@ function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $be
 
     foreach ($filenamesToSave as $filename) {
 
-        $sql = 'INSERT INTO productfoto (
-                            ProductID,
-                            Foto
-                            ) VALUES (
-                            ?, ?
-                            )';
+        $sql = 'INSERT INTO productfoto (ProductID,Foto) VALUES (?, ?)';
 
         $statement = $conn->prepare($sql);
 

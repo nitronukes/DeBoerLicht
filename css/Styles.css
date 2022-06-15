@@ -395,7 +395,6 @@ align-items: center;
 .homepaginaRechts {
 grid-area: 1/ 5 / 5 / 5;
 }
-/*<<<<<<< Updated upstream
 /*adminoverzicht*/
 *{
   box-sizing: border-box;
@@ -533,4 +532,17 @@ color: #ff5f43;
   width: 80px;
   border: solid black;
 
+}
+
+.Lampenoverzichtfotos{
+width: 100%;
+height: 90%;
+}
+
+.Lampenoverzichtbutton{
+  height: 10%;
+  width: 100%;
+  border: none;
+  border-radius: 0 0 10px 10px;
+  background-color: #FFBF81;
 }
