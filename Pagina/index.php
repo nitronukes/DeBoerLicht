@@ -42,20 +42,3 @@ echo "
     
 </body>
 </html>
-<?php 
-// Connectding 
-require_once 'Connection.php'; 
- 
-// Foto uit database selecteren 
-$result = $db->query("SELECT foto FROM productfoto ORDER BY ID DESC"); 
-?>
-
-<?php if($result->num_rows > 0){ ?> 
-    <div class="gallery"> 
-        <?php while($row = $result->fetch_assoc()){ ?> 
-            <img src="data:image/jpg;charset=utf8;base64, <?php echo base64_encode($row['foto']); ?>" /> 
-        <?php } ?> 
-    </div> 
-<?php } else { ?> 
-    <p class="status error">er is geen foto aap</p> 
-<?php } ?>
