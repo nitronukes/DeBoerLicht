@@ -30,7 +30,6 @@
   <head>
     <title>Registration Page</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
-    <link rel="stylesheet" href="../css/Styles.css">
   </head>
   <body>
     <div class="container">
