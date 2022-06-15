@@ -24,7 +24,8 @@ $result = $conn->query($sql);
     <div></div>
     <div></div>
     <div></div>
-    <div class="winkelwagen">
+    <div class="Winkelmandje-center">
+        <div class="winkelwagen">
 
 <?php
 $sql = "SELECT * FROM winkelwagen;";
@@ -45,6 +46,6 @@ if($resultCheck > 0){
 
 
 
-?>
+?></div>
     </div>
 </div>
