@@ -1,6 +1,6 @@
 <?php
 include 'connection.php';
-//include 'header.php';
+include 'header.php';
 //
 $sql=" SELECT * FROM bestelling";
 $result = $conn->query($sql);
@@ -14,8 +14,8 @@ $result = $conn->query($sql);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/adminoverzicht.css">
-  <title>Adminoverzicht</title>
+  <link rel="stylesheet" href="../css/Styles.css">
+  <title>Bestellingenoverzicht</title>
 </head>
 
 
@@ -38,7 +38,8 @@ $result = $conn->query($sql);
             <th>datum</th>
             <th>tijd</th>
             <th>prijs</th>
-            <th>info</th>
+            <th>accepteer</th>
+            <th>weiger</th>
             </tr>  
         </thead>
         <tbody>

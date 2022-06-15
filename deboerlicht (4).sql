@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 08 jun 2022 om 10:41
+-- Gegenereerd op: 15 jun 2022 om 09:12
 -- Serverversie: 10.4.20-MariaDB
 -- PHP-versie: 8.0.9
 
@@ -48,9 +48,8 @@ INSERT INTO `categorieen` (`CategorieID`, `Categorie`) VALUES
 
 CREATE TABLE `producten` (
   `ID` int(11) NOT NULL,
-  `CategorieID` int(11) NOT NULL,
+  `Categorie_ID` int(11) NOT NULL,
   `ProductNaam` varchar(100) NOT NULL,
-  `Foto` int(11) NOT NULL,
   `Prijs` int(11) NOT NULL,
   `Korting` int(11) NOT NULL,
   `Beschikbaar` int(11) NOT NULL,
@@ -61,11 +60,8 @@ CREATE TABLE `producten` (
 -- Gegevens worden geëxporteerd voor tabel `producten`
 --
 
-INSERT INTO `producten` (`ID`, `CategorieID`, `ProductNaam`, `Foto`, `Prijs`, `Korting`, `Beschikbaar`, `Tekst`) VALUES
-(1, 1, 'Lamp1', 1, 5, 20, 23, 'Lamppppp'),
-(2, 1, 'Lamp2', 2, 7, 0, 72, 'Stalamppp'),
-(3, 2, 'Lamp3', 3, 6, 15, 11, 'Nog een lamp'),
-(4, 2, 'Lamp4', 4, 6, 15, 11, 'Nog een lampp');
+INSERT INTO `producten` (`ID`, `Categorie_ID`, `ProductNaam`, `Prijs`, `Korting`, `Beschikbaar`, `Tekst`) VALUES
+(26, 2, 'Lamp1', 2, 5, 9, 'Dit is de eerste lamp');
 
 -- --------------------------------------------------------
 
@@ -76,8 +72,16 @@ INSERT INTO `producten` (`ID`, `CategorieID`, `ProductNaam`, `Foto`, `Prijs`, `K
 CREATE TABLE `productfoto` (
   `ID` int(11) NOT NULL,
   `ProductID` int(11) NOT NULL,
-  `Foto` blob NOT NULL
+  `Foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `productfoto`
+--
+
+INSERT INTO `productfoto` (`ID`, `ProductID`, `Foto`) VALUES
+(11, 26, '../Fotos/Lamp1.png'),
+(12, 26, '../Fotos/Lamp2.png');
 
 -- --------------------------------------------------------
 
@@ -114,12 +118,13 @@ ALTER TABLE `categorieen`
 --
 ALTER TABLE `producten`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `Categorieen` (`CategorieID`);
+  ADD KEY `Categorieen` (`Categorie_ID`);
 
 --
 -- Indexen voor tabel `productfoto`
 --
 ALTER TABLE `productfoto`
+  ADD PRIMARY KEY (`ID`),
   ADD KEY `Foto` (`ProductID`);
 
 --
@@ -142,7 +147,13 @@ ALTER TABLE `categorieen`
 -- AUTO_INCREMENT voor een tabel `producten`
 --
 ALTER TABLE `producten`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT voor een tabel `productfoto`
+--
+ALTER TABLE `productfoto`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
@@ -158,7 +169,7 @@ ALTER TABLE `users`
 -- Beperkingen voor tabel `producten`
 --
 ALTER TABLE `producten`
-  ADD CONSTRAINT `Categorieen` FOREIGN KEY (`CategorieID`) REFERENCES `categorieen` (`CategorieID`);
+  ADD CONSTRAINT `Categorieen` FOREIGN KEY (`Categorie_ID`) REFERENCES `categorieen` (`CategorieID`);
 
 --
 -- Beperkingen voor tabel `productfoto`

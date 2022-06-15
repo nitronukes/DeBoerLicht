@@ -1,3 +1,30 @@
+<?php
+	$voornaam = $_POST['voornaam'];
+	$achternaam = $_POST['achternaam'];
+	$email = $_POST['email'];
+	$telefoonnummer = $_POST['telefoonnummer'];
+	$straatnaam = $_POST['straatnaam'];
+	$huisnummer = $_POST['huisnummer'];
+   $postcode = $_POST['postcode'];
+   
+
+	// Database connectie
+	$conn = new mysqli('localhost','root','','deboerlicht');
+	if($conn->connect_error){
+		echo "$conn->connect_error";
+		die("Connection Failed : ". $conn->connect_error);
+	} else {
+		$stmt = $conn->prepare("insert into bestellingen(voornaam, achternaam, email, telefoonnummer, straatnaam, huisnummer, postcode) values(?, ?, ?, ?, ?, ?)");
+		$stmt->bind_param("sssssss", $voornaam, $achternaam, $email, $telefoonnummer, $straatnaam, $huisnummer, $postcode);
+		$execval = $stmt->execute();
+		echo $execval;
+		echo "klaar...";
+		$stmt->close();
+		$conn->close();
+	}
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,59 +36,30 @@
       <div class="row col-md-6 col-md-offset-3">
         <div class="panel panel-primary">
           <div class="panel-heading text-center">
-            <h1>Registration Form</h1>
+            <h1>Bestelformulier</h1>
           </div>
           <div class="panel-body">
             <form action="connect.php" method="post">
               <div class="form-group">
-                <label for="firstName">First Name</label>
+                <label for="voornaam">voornaam</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="firstName"
-                  name="firstName"
+                  id="voornaam"
+                  name="voornaam"
                 />
               </div>
               <div class="form-group">
-                <label for="lastName">Last Name</label>
+                <label for="achternaam">achternaam</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="lastName"
-                  name="lastName"
+                  id="achternaam"
+                  name="achternaam"
                 />
               </div>
               <div class="form-group">
-                <label for="gender">Gender</label>
-                <div>
-                  <label for="male" class="radio-inline"
-                    ><input
-                      type="radio"
-                      name="gender"
-                      value="m"
-                      id="male"
-                    />Male</label
-                  >
-                  <label for="female" class="radio-inline"
-                    ><input
-                      type="radio"
-                      name="gender"
-                      value="f"
-                      id="female"
-                    />Female</label
-                  >
-                  <label for="others" class="radio-inline"
-                    ><input
-                      type="radio"
-                      name="gender"
-                      value="o"
-                      id="others"
-                    />Others</label
-                  >
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">email</label>
                 <input
                   type="text"
                   class="form-control"
@@ -70,44 +68,58 @@
                 />
               </div>
               <div class="form-group">
-                <label for="password">Password</label>
+                <label for="Telefoonnummer">Telefoonnummer</label>
                 <input
-                  type="password"
+                  type="text"
                   class="form-control"
-                  id="password"
-                  name="password"
+                  id="Telefoonnummer"
+                  name="Telefoonnummer"
+                />
+              </div>
+                 
+                
+              
+              <div class="form-group">
+                <label for="Straatnaam">Straatnaam</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Straatnaam"
+                  name="Straatnaam"
                 />
               </div>
               <div class="form-group">
-                <label for="number">Phone Number</label>
+                <label for="huisnummer">huisnummer</label>
                 <input
-                  type="number"
                   class="form-control"
-                  id="number"
-                  name="number"
+                  id="huisnummer"
+                  name="huisnummer"
+                />
+              </div>
+              <div class="form-group">
+                <label for="postcode">postcode</label>
+                <input
+                  class="form-control"
+                  id="postcode"
+                  name="postcode"
                 />
               </div>
               <input type="submit" class="btn btn-primary" />
             </form>
           </div>
           <div class="panel-footer text-right">
-            <small>&copy; Technical Babaji</small>
+            <small>&copy; Made by Christian</small>
           </div>
         </div>
       </div>
     </div>
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
-    <img src="..." class="rounded mr-2" alt="...">
-    <strong class="mr-auto">Bootstrap</strong>
-    <small>11 mins ago</small>
     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="toast-body">
-    Hello, world! This is a toast message.
-  </div>
+  
 </div>
   </body>
 </html>

@@ -19,6 +19,13 @@ $result = $conn->query($sql);
 </head>
 
 <body>
+<div class="Winkelmandje">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="winkelwagen">
+
 <?php
 $sql = "SELECT * FROM winkelwagen;";
 $result = mysqli_query($conn, $sql);
@@ -39,16 +46,5 @@ if($resultCheck > 0){
 
 
 ?>
-<div class="right-bar"></div>
-            <p><span>Subtotaal</span> <span>120euro</span> </p>
-    <hr>
-            <p><span>Tax (5%)</span>  <span>6euro</span></p>
-    <hr>
-            <p><span>shipping</span>  <span>15euro</span></p>
-    <hr>
-            <p><span>Totaal</span>  <span>141euro</span></p>
+    </div>
 </div>
-</div>
-</body>
-</html>
-
