@@ -1,4 +1,7 @@
 <?php
+include "Connection.php";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$voornaam = $_POST['voornaam'];
 	$achternaam = $_POST['achternaam'];
 	$email = $_POST['email'];
@@ -6,22 +9,20 @@
 	$straatnaam = $_POST['straatnaam'];
 	$huisnummer = $_POST['huisnummer'];
    $postcode = $_POST['postcode'];
-   
+}
 
 	// Database connectie
-	$conn = new mysqli('localhost','root','','deboerlicht');
-	if($conn->connect_error){
-		echo "$conn->connect_error";
-		die("Connection Failed : ". $conn->connect_error);
-	} else {
-		$stmt = $conn->prepare("insert into bestellingen(voornaam, achternaam, email, telefoonnummer, straatnaam, huisnummer, postcode) values(?, ?, ?, ?, ?, ?)");
+	// $conn = new mysqli('localhost','root','','deboerlicht');
+	// if($conn->connect_error){
+	// 	echo "$conn->connect_error";
+	// 	die("Connection Failed : ". $conn->connect_error);
+	// } else {
+		$stmt = $conn->prepare("INSERT INTO `bestellingen` (`voornaam`, `achternaam`, `email`, `telefoonnummer`, `straatnaam`, `huisnummer`, `postcode`) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		$stmt->bind_param("sssssss", $voornaam, $achternaam, $email, $telefoonnummer, $straatnaam, $huisnummer, $postcode);
-		$execval = $stmt->execute();
-		echo $execval;
-		echo "klaar...";
+		$stmt->execute();
 		$stmt->close();
 		$conn->close();
-	}
+	//}
 ?>
 
 
