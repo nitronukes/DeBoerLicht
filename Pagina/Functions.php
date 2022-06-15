@@ -43,10 +43,14 @@ function Filteren($conn, $categorie)
     }
 }
 
-function Inloggen($conn, $email, $wachtwoord)
+function 
+
+Inloggen($conn, $email, $wachtwoord)
 {
-    $sql = "SELECT * FROM `users` WHERE `email` = '".$email."' AND `password` = '".$wachtwoord."'";
-        $result = $conn->query($sql);
+    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `email` = ? AND `password` = ?");
+    $stmt->bind_param('ss', $email, $wachtwoord);
+
+    $result = $conn->query($stmt);
         if ($result->num_rows > 0) {
             $_SESSION['email'] = $email;
             header("location:Bestellingenoverzicht.php");
@@ -61,39 +65,82 @@ function Inloggen($conn, $email, $wachtwoord)
 
 function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $beschrijving, $voorraad, $files)
 {
-    $stmt2 = "INSERT INTO `producten` (`Categorie_ID`, `ProductNaam`, `Prijs`, `Korting`, `Beschikbaar`, `Tekst`) VALUES (?,?,?,?,?,?)";
-    $stmt2 = mysqli_prepare($conn, $stmt2);
-    $stmt2->bind_param('dsiiis', $CategorieID, $Productnaam, $Prijs, $korting, $voorraad, $beschrijving);
-    $stmt2->execute();
-    var_dump($files);
-    $target_dir = "Fotos/";
-    $target_file = $target_dir . basename($files["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    if(isset($_POST["submit"])) {
-        $check = getimagesize($files["fileToUpload"]["tmp_name"]);
-        if($check !== false) {
-          echo "File is an image - " . $check["mime"] . ".";
-          $uploadOk = 1;
-        } else {
-          echo "File is not an image.";
-          $uploadOk = 0;
-        }
-      }
-    if($imageFileType != "png") {
-        echo "Je kan alleen png files gebruiken";
-        $uploadOk = 0;
+
+    $_FILES = $files;
+
+    if (!is_dir('../Fotos')) {
+        mkdir('../Fotos', 0777, true);
     }
 
-    if ($uploadOk == 0) {
-        echo "Sorry, je foto is niet geüpload";
-      } else {
-        if (move_uploaded_file($files["fileToUpload"]["tmp_name"], $target_file)) {
-          echo "The file ". htmlspecialchars( basename( $files["fileToUpload"]["name"])). " has been uploaded.";
-        } else {
-          echo "Sorry, there was an error uploading your file.";
+    $filenamesToSave = [];
+
+    $allowedMimeTypes = explode(',', "image/png, image/jpg, image/jpeg");
+
+    if (!empty($_FILES)) {
+        if (isset($_FILES['file']['error'])) {
+            foreach ($_FILES['file']['error'] as $uploadedFileKey => $uploadedFileError) {
+                if ($uploadedFileError === UPLOAD_ERR_NO_FILE) {
+                    $errors[] = 'Er is geen foto meegegeven';
+                } elseif ($uploadedFileError === UPLOAD_ERR_OK) {
+                    $uploadedFileName = basename($_FILES['file']['name'][$uploadedFileKey]);
+
+                    if ($_FILES['file']['size'][$uploadedFileKey] <= 50000000000) {
+                        $uploadedFileType = $_FILES['file']['type'][$uploadedFileKey];
+                        $uploadedFileTempName = $_FILES['file']['tmp_name'][$uploadedFileKey];
+
+                        $uploadedFilePath = rtrim('../Fotos', '/') . '/' . $uploadedFileName;
+
+                        if (in_array($uploadedFileType, $allowedMimeTypes)) {
+                            if (!move_uploaded_file($uploadedFileTempName, $uploadedFilePath)) {
+                                $errors[] = 'Het bestand "' . $uploadedFileName . '" kon niet worden geupload';
+                            } else {
+                                $filenamesToSave[] = $uploadedFilePath;
+                            }
+                        } else {
+                            $errors[] = 'Ongeldig bestandstype "' . $uploadedFileName . '" . Wel geldig: JPG, JPEG, PNG, or GIF.';
+                        }
+                    } else {
+                        $errors[] = 'Het bestand van "' . $uploadedFileName . '" moet maximaal zijn: ' . (5000000000 / 1024) . ' KB';
+                    }
+                }
+            }
         }
-      }
+    }
+    $categorie = 2;
+    
+
+    $stmt2 = $conn->prepare("INSERT INTO `producten` (`Categorie_ID`, `ProductNaam`, `Prijs`, `Korting`, `Beschikbaar`, `Tekst`) VALUES (?,?,?,?,?,?)");
+    $stmt2->bind_param('isiiis', $categorie, $Productnaam, $Prijs, $korting, $voorraad, $beschrijving);
+    $stmt2->execute();
+
+    $lastInsertId = $conn->insert_id;
+
+    $stmt2->close();
+
+    if (isset($errors)) {
+        var_dump($errors);
+        exit();
+    }
+
+    foreach ($filenamesToSave as $filename) {
+
+        $sql = 'INSERT INTO productfoto (
+                            ProductID,
+                            Foto
+                            ) VALUES (
+                            ?, ?
+                            )';
+
+        $statement = $conn->prepare($sql);
+
+        $statement->bind_param('is', $lastInsertId, $filename);
+
+        $statement->execute();
+
+        $statement->close();
+    }
+
+    $conn->close();
 
 }
 

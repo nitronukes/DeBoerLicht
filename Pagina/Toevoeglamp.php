@@ -33,7 +33,7 @@ include("Connection.php");
                  </select> </div>
             <div><input type="text" name="Beschrijving" class="BeschrijvingToevoeg" placeholder="Beschrijving" required> </div>
             <div><input type="number" name="Voorraad" class="VoorraadToevoeg" placeholder="Voorraad" min="0" required> </div>
-            <div><input type="file" and accept="image/*" name="fileToUpload" class="BestandToevoeg" placeholder="Foto Toevoegen" id="fileToUpload" required multiple> </div>
+            <div><input type="file" and accept="image/*" name="file[]" class="BestandToevoeg" placeholder="Foto Toevoegen" id="fileToUpload" required multiple> </div>
             <div><button type="submit" name="submit" class="knoptoevoegmodal">Product toevoegen</button> </div>
         </div>
     </div>
