@@ -515,8 +515,11 @@ color: #ff5f43;
   color: rgb(255, 102, 0);
   margin: 0% 30%;
 }
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 .Winkelmandje {
   display: grid;
   grid-template-columns: 1fr 20fr 1fr;
@@ -531,12 +534,15 @@ color: #ff5f43;
   height:80px;
   width: 80px;
   border: solid black;
+<<<<<<< Updated upstream
 
 }
 
 .Lampenoverzichtfotos{
 width: 100%;
 height: 90%;
+=======
+>>>>>>> Stashed changes
 }
 
 .Lampenoverzichtbutton{

@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="../css/Styles.css">
     <title>Homepagina</title>
 </head>
-<body>
+<body><?php
+include "header.php";
+?>
     <div class="homebodylichaam">
         <div class="homepaginaLinks"></div>
         <div class="homepaginaRechts"></div>
@@ -16,13 +18,14 @@
 // Connectding 
 require_once 'Connection.php'; 
 
+
 $sql="SELECT * FROM productfoto";
 $result = mysqli_query($conn,$sql);
 
 while($row = mysqli_fetch_array($result)){
 echo "
 ";
-echo "<img src='images/'".$row['Foto']."'>";
+echo "<img src='image/'".$row['Foto']."'>";
 "
 
 ";
@@ -39,6 +42,5 @@ echo "
         <div></div>
         <div></div>
     </div>
-    
 </body>
 </html>
