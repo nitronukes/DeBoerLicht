@@ -48,9 +48,7 @@ function Filteren($conn, $categorie)
     }
 }
 
-function 
-
-Inloggen($conn, $email, $wachtwoord)
+function Inloggen($conn, $email, $wachtwoord)
 {
     $sql = "SELECT * FROM `users` WHERE `email` = '".$email."' AND `password` = '".$wachtwoord."'";
     $result = $conn->query($sql);
@@ -63,6 +61,7 @@ Inloggen($conn, $email, $wachtwoord)
     else
     {
         echo  "<script>alert('Het e-mail adres of wachtwoord in incorrect')</script>";
+
     }
     $conn->close();
 }
