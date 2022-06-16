@@ -431,7 +431,6 @@ h2{
   max-width: 100%;
   white-space: nowrap;
   background: white;
-
 }
 
 .fl-table td, .fl-table th {
@@ -510,16 +509,11 @@ color: #ff5f43;
     float: right;
     padding-right: 5%;
 }
-.datum {
-  border-bottom: solid 1px rgb(255, 102, 0);
+.datum{
+  border-bottom: solid 1px rgb(255, 102, 0) ;
   color: rgb(255, 102, 0);
   margin: 0% 30%;
 }
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
 .Winkelmandje {
   display: grid;
   grid-template-columns: 1fr 20fr 1fr;
@@ -529,26 +523,11 @@ color: #ff5f43;
   grid-auto-flow: row;
   height: 80vh;
 }
-
 .winkelwagen{
   height:80px;
   width: 80px;
+  position: absolute;
+  right: 0;
+  text-align: right;
   border: solid black;
-<<<<<<< Updated upstream
-
-}
-
-.Lampenoverzichtfotos{
-width: 100%;
-height: 90%;
-=======
->>>>>>> Stashed changes
-}
-
-.Lampenoverzichtbutton{
-  height: 10%;
-  width: 100%;
-  border: none;
-  border-radius: 0 0 10px 10px;
-  background-color: #FFBF81;
 }
