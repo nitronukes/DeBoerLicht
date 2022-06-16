@@ -1,3 +1,9 @@
+<?php
+include "header.php";
+include "Functions.php";
+include "Connection.php";
+$lamp = $_GET['lamp'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +13,10 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <?php 
+    echo "
+    $lamp
+    "
+    ?>
 </body>
 </html>

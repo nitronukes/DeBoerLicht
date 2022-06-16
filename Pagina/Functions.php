@@ -3,10 +3,10 @@
 function Lampenoverzicht($conn, $categorie)
 {
     //$stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID /*INNER JOIN productfoto ON producten.ID = productfoto.ProductID*/ WHERE categorieen.Categorie = ?");
-    $stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID INNER JOIN productfoto ON producten.ID = productfoto.ProductID");
+    $stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID INNER JOIN productfoto ON producten.ID = productfoto.ProductID GROUP BY productfoto.ProductID");
 
-     if (!$categorie = 'Geencategorie' ) {
-        $stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE categorieen.Categorie = ? AND productfoto");
+     if ($categorie != 'Geencategorie' ) {
+        $stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE categorieen.Categorie = ? GROUP BY productfoto.ProductID");
         $stmt->bind_param('s', $categorie);
      }
 
@@ -52,10 +52,9 @@ function
 
 Inloggen($conn, $email, $wachtwoord)
 {
-    $stmt = $conn->prepare("SELECT * FROM `users` WHERE `email` = ? AND `password` = ?");
-    $stmt->bind_param('ss', $email, $wachtwoord);
+    $sql = "SELECT * FROM `users` WHERE `email` = '".$email."' AND `password` = '".$wachtwoord."'";
+    $result = $conn->query($sql);
 
-    $result = $conn->query($stmt);
         if ($result->num_rows > 0) {
             $_SESSION['email'] = $email;
             header("location:Bestellingenoverzicht.php");
