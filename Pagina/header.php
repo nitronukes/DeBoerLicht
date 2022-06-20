@@ -2,6 +2,10 @@
 include("Connection.php");
 include("Functions.php");
 
+if (!isset($_SESSION)) {
+    session_start();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +17,7 @@ include("Functions.php");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
+
 <body>  
     <header>
     <div class="menu">
@@ -20,11 +25,15 @@ include("Functions.php");
             <img class="logo" src="../Fotos/logo_timothy.png"/>
             <li><a class="fa fa-shopping-cart" href="winkelwagenn.php" style="font-size:24px"></a></li>
             <li><a href="Inlogpagina.php">login</a></li>
+
             <li><a href="Bestellingenoverzicht.php">Besteloverzicht</a></li>
 <?php
             if(isset($_SESSION) && $_SESSION['email'] != ''){
-                echo 'paard';
+                echo '<li><a href="winkelwagenn.php">Besteloverzicht</a></li>
+                        <li><a href="Inlogpagina.php">login</a></li>';
+                echo 'kaas';
                 // ingelogd, toon geheime content
+                echo '<li><a href="loguit.php">loguit</a></li>';
 
             }else{
                 echo 'koe';

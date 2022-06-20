@@ -555,3 +555,10 @@ height: 90%;
   border-radius: 0 0 10px 10px;
   background-color: #FFBF81;
 }
+.products{
+  border: 1px solid #333;
+  background-color: #333;
+  border-radius: 5px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
