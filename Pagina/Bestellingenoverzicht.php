@@ -2,7 +2,7 @@
 include 'connection.php';
 include 'header.php';
 //
-$sql=" SELECT * FROM bestelling";
+$sql=" SELECT * FROM bestellingen";
 $result = $conn->query($sql);
 ?>
 
