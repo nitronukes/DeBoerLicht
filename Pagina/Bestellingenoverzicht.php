@@ -65,8 +65,6 @@ if($total!=0){
       <td>".$result['datum']."</td>
       <td>".$result['tijd']."</td>
       <td>".'€'.$result['totaal']."</td>
-      <td><a style='color: black;' class='fas fa-info' href='?id=" . $result['id'] . "#myForm'></a></td>
-      <tbody>
       ";
   }
     }else{
@@ -101,7 +99,7 @@ echo"
 ";}} ?>
       
 
-    <a type='button' class='sluitknop' href='/Bestellingenoverzicht.php#'>&times;</a>
+    <a type='button' class='sluitknop' href='/DeBoerLicht/pagina/Bestellingenoverzicht.php'>&times;</a>
 
 </div>
   
