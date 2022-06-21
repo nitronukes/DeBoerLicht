@@ -2,7 +2,7 @@
 include 'connection.php';
 include 'header.php';
 //
-$sql=" SELECT * FROM bestelling";
+$sql=" SELECT * FROM bestellingen";
 $result = $conn->query($sql);
 ?>
 
@@ -65,8 +65,6 @@ if($total!=0){
       <td>".$result['datum']."</td>
       <td>".$result['tijd']."</td>
       <td>".'€'.$result['totaal']."</td>
-      <td><a style='color: black;' class='fas fa-info' href='?id=" . $result['id'] . "#myForm'></a></td>
-      <tbody>
       ";
   }
     }else{
@@ -101,7 +99,7 @@ echo"
 ";}} ?>
       
 
-    <a type='button' class='sluitknop' href='/adminoverzicht.php#'>&times;</a>
+    <a type='button' class='sluitknop' href='/DeBoerLicht/pagina/Bestellingenoverzicht.php'>&times;</a>
 
 </div>
   

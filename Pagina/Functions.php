@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 function Lampenoverzicht($conn, $categorie)
 {
