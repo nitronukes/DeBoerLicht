@@ -22,7 +22,7 @@ function Lampenoverzicht($conn, $categorie)
     foreach ($sql as $row) {
          echo "
              <div>
-             <form method='post' action='Productpagina.php?lamp=" . $row[4] . "'>
+             <form method='post' action='Productpagina.php?lamp=" . $row[2] . "'>
              <img class='Lampenoverzichtfotos' src='$row[11]' alt='$row[4]'>
                 <input type='submit' value='$row[4]' class='Lampenoverzichtbutton'/>
             </form>
@@ -155,6 +155,69 @@ function CategorieToevoeg($conn)
         echo"
             <option value=' $row[CategorieID]' selected> $row[Categorie] </option>
         ";
+        
+    }
+}
+
+function Lamptonen($conn, $lamp)
+{   
+    $Currentforeach = 1;
+    //$stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.ProductNaam = ?");
+    $stmt = $conn->prepare("SELECT * FROM producten WHERE ID = ?");
+    $stmt->bind_param('i', $lamp);
+    $stmt->execute();
+    $sql = $stmt->get_result();
+    $sql = $sql->fetch_all();
+    $stmt->close();
+
+    $stmt = $conn->prepare("SELECT * FROM productfoto WHERE ProductID = ?");
+    $stmt->bind_param('i', $lamp);
+    $stmt->execute();
+    
+    $sql2 = $stmt->get_result();
+    $sql2 = $sql2->fetch_all();
+    $stmt->close();
+
+    //return $stmt;
+
+
+
+    foreach ($sql as $row) {
+
+    echo'
+        <div class="Productnaam">' . $row[2] . '</div>
+        <div class="producttekst">' . $row[6] . '</div>
+        <div class="productprijs"> € ' . $row[3] . '</div>
+        <div class="productvoorraad">' . $row[5] . ' exemplaren beschikbaar</div>
+        <div class="productAantal"> 1 </div>
+        <div class="productwinkelmandtoevoeg">  </div>
+        <div class="ProductSlideShow">
+        <div class="slideshow-container">
+        
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>';
+
+        foreach ($sql2 as $row2) {
+
+           echo' 
+            <div class="mySlides fade">
+            <img src="'.$row2[2].'" style="width: 80%">
+            </div>
+            ';
+          
+            
+        }
+        echo'<div class="dotalign">';
+        foreach ($sql2 as $row2){
+            echo'
+            
+            <span class="dot" onclick="currentSlide('.$Currentforeach.')"></span>
+            
+            ';
+            $Currentforeach++;
+        }
+
+       echo"</div> </div>";
         
     }
 }
