@@ -546,13 +546,47 @@ color: #ff5f43;
 }
 .productoverzicht{
   display: grid;
-  grid-template-columns: 1fr 5fr 2fr 1fr 2fr 1fr;
-  grid-template-rows: 1fr 1fr 5fr 2fr;
+  grid-template-columns: 1fr 4fr 2fr 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 5fr 1fr 2fr;
   grid-auto-columns: 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   height: 100%;
+  grid-area: 2 / 2 / 2 / 2;
 }
+
+.Productnaam{
+  grid-area: 2 / 2 / 2 / 2;
+  text-align: center;
+}
+
+.Productfoto{
+  grid-area: 3 / 2 / 6 / 2;
+}
+
+.ProductSlideShow {
+  grid-area: 3 / 3 / 6 / 3;
+}
+
+.producttekst {
+  grid-area: 4 / 4 / 4 / 6;
+}
+
+.productprijs {
+  grid-area: 3 / 4 / 3 / 4;
+}
+
+.productvoorraad {
+  grid-area: 3 / 5 / 3 / 5;
+}
+
+.productAantal {
+  grid-area: 5 / 4 / 5 / 4;
+}
+.productwinkelmandtoevoeg{
+  grid-area: 5 / 5 / 5 / 5;
+}
+
 
 
 

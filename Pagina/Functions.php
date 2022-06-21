@@ -19,7 +19,7 @@ function Lampenoverzicht($conn, $categorie)
     foreach ($sql as $row) {
          echo "
              <div>
-             <form method='post' action='Productpagina.php?lamp=" . $row[4] . "'>
+             <form method='post' action='Productpagina.php?lamp=" . $row[2] . "'>
              <img class='Lampenoverzichtfotos' src='$row[11]' alt='$row[4]'>
                 <input type='submit' value='$row[4]' class='Lampenoverzichtbutton'/>
             </form>
@@ -153,5 +153,31 @@ function CategorieToevoeg($conn)
             <option value=' $row[CategorieID]' selected> $row[Categorie] </option>
         ";
         
+    }
+}
+
+function Lamptonen($conn, $lamp)
+{
+    //$stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.ProductNaam = ?");
+    $stmt = $conn->prepare("SELECT * FROM producten WHERE ID = ?");
+    $stmt->bind_param('s', $lamp);
+    $stmt->execute();
+
+    //return $stmt;
+    $sql = $stmt->get_result();
+    $sql = $sql->fetch_all();
+
+    foreach ($sql as $row) {
+
+    echo'
+        <div class="Productnaam">' . $row[2] . '</div>
+        <div class="producttekst">' . $row[6] . '</div>
+        <div class="productprijs">' . $row[3] . '</div>
+        <div class="productvoorraad">' . $row[5] . '</div>
+        <div class="productAantal"> 1 </div>
+        <div class="productwinkelmandtoevoeg">  </div>
+        ';
+        //<div class="Productfoto"></div>
+        //<div class="ProductSlideShow"></div>
     }
 }

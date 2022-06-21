@@ -13,13 +13,12 @@ $lamp = $_GET['lamp'];
 <body>
     <div class="productoverzichtpagina">
         <div class="productoverzicht">
-    <?php 
-    echo "
-    $lamp
-    "
-    ?>
+            <?php
+                $Lampenfunctie = Lamptonen($conn, $lamp);
+            ?>
+            
 
         </div>
     </div>
-z</body>
+</body>
 </html>
