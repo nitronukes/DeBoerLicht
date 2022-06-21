@@ -23,21 +23,19 @@ if (!isset($_SESSION)) {
     <div class="menu">
          <ul>
             <img class="logo" src="../Fotos/logo_timothy.png"/>
-            <li><a class="fa fa-shopping-cart" href="winkelwagenn.php" style="font-size:24px"></a></li>
-            <li><a href="Inlogpagina.php">login</a></li>
+            <li><a class="fa fa-shopping-cart" href="winkelwagenn.php" style="font-size:16px"></a></li>
 
-            <li><a href="Bestellingenoverzicht.php">Besteloverzicht</a></li>
+
+
 <?php
-            if(isset($_SESSION) && $_SESSION['email'] != ''){
-                echo '<li><a href="winkelwagenn.php">Besteloverzicht</a></li>
-                        <li><a href="Inlogpagina.php">login</a></li>';
-                echo 'kaas';
+            if(isset($_SESSION) && isset($_SESSION['email']) != ''){
+                echo '<li><a href="winkelwagenn.php">Besteloverzicht</a></li>';
+
                 // ingelogd, toon geheime content
                 echo '<li><a href="loguit.php">loguit</a></li>';
 
             }else{
-                echo 'koe';
-                // niet ingelogd.
+                echo '<li><a href="Inlogpagina.php">login</a></li>';
             }
 ?>
         </ul>
