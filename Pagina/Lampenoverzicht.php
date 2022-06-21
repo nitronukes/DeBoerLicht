@@ -1,7 +1,5 @@
 <?php 
 require_once('header.php');
-include('Functions.php');
-include('Connection.php');
 $categorie = $_GET['filter'];
 
 ?>
