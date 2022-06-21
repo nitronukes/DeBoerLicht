@@ -373,9 +373,12 @@ align-items: center;
   background-color: white;
   border-radius: 50px;
 }
-/* .Lampenoverzichtfilteren select{
-  
-} */
+
+.Lampenoverzichtfotos{
+  width: 100%;
+  height: 100%;
+}
+
 .homebodylichaam{
   display: grid;
   grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
@@ -532,24 +535,24 @@ color: #ff5f43;
   border: solid black;
 }
 
-
-
-.Lampenoverzichtfotos{
-width: 100%;
-height: 90%;
+.productoverzichtpagina{
+  display: grid;
+  grid-template-columns: 1fr 20fr 1fr;
+  grid-template-rows: 1fr 20fr 1fr;
+  grid-auto-columns: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  height: 100vh;
+}
+.productoverzicht{
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr 5fr 2fr;
+  grid-auto-columns: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  height: 100%;
 }
 
-.Lampenoverzichtbutton{
-  height: 10%;
-  width: 100%;
-  border: none;
-  border-radius: 0 0 10px 10px;
-  background-color: #FFBF81;
-}
-.products{
-  border: 1px solid #333;
-  background-color: #333;
-  border-radius: 5px;
-  padding: 16px;
-  margin-bottom: 20px;
-}
+
+

@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Vul gegevens in</title>
+    <title>Bestelformulier</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
   </head>
   <body>
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h1>Bestelformulier</h1>
           </div>
           <div class="panel-body">
-            <form action="connect.php" method="post">
+            <form action="connection.php" method="post">
               <div class="form-group">
                 <label for="voornaam">voornaam</label>
                 <input
@@ -109,7 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
           </div>
           <div class="panel-footer text-right">
-            <small>&copy; Made by Christian</small>
           </div>
         </div>
       </div>

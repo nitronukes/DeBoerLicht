@@ -1,7 +1,5 @@
 <?php
 include "header.php";
-include "Functions.php";
-include "Connection.php";
 $lamp = $_GET['lamp'];
 ?>
 <!DOCTYPE html>
@@ -13,10 +11,15 @@ $lamp = $_GET['lamp'];
     <title>Document</title>
 </head>
 <body>
+    <div class="productoverzichtpagina">
+        <div class="productoverzicht">
     <?php 
     echo "
     $lamp
     "
     ?>
-</body>
+
+        </div>
+    </div>
+z</body>
 </html>
