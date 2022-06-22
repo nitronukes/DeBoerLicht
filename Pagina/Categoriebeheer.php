@@ -1,3 +1,7 @@
+<?php
+include('header.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +13,7 @@
 <body>
     <div class="Categoriebeheerpagina">
         <div class="Categoriebeheer">
-            
+
         </div> 
     </div>
     

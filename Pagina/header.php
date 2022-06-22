@@ -1,9 +1,6 @@
 <?php
 include("Connection.php");
-//include("Functions.php");
-
-
-
+include("Functions.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
