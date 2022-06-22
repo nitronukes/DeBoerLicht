@@ -128,12 +128,18 @@ function pre_r($array){
         </tr>
         <?php
         if(!empty($_SESSION['winkelwagen'])):
-          %total =0;
+
+
+        $total =0;
 
         foreach ($_SESSION['winkelwagen'] as $key => $product):
 
         ?>
-
+        <tr>
+            <td><?php echo $product['naam'] ?></td>
+            <td><?php echo $product['hoeveelheid']?></td>
+            <td><?php?></td>
+        </tr>
 
 
         <?php
