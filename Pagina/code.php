@@ -11,13 +11,13 @@ if(isset($_POST['delete_student']))
 
     if($query_run)
     {
-        $_SESSION['message'] = "Student verwijderd";
+        $_SESSION['message'] = "Bestelling verwijderd";
         header("Location: Bestellingenoverzicht.php");
         exit(0);
     }
     else
     {
-        $_SESSION['message'] = "Klant verwijderd";
+        $_SESSION['message'] = "Bestelling niet verwijderd";
         header("Location: Bestellingenoverzicht.php");
         exit(0);
     }
@@ -37,13 +37,13 @@ if(isset($_POST['update_student']))
 
     if($query_run)
     {
-        $_SESSION['message'] = "Klant succesvol geupdate";
+        $_SESSION['message'] = "Bestelling geupdate";
         header("Location: Bestellingenoverzicht.php");
         exit(0);
     }
     else
     {
-        $_SESSION['message'] = "Klant niet geupdate";
+        $_SESSION['message'] = "Bestelling niet geupdate";
         header("Location: Bestellingenoverzicht.php");
         exit(0);
     }
@@ -63,13 +63,13 @@ if(isset($_POST['save_student']))
     $query_run = mysqli_query($conn, $query);
     if($query_run)
     {
-        $_SESSION['message'] = "Student Created Successfully";
+        $_SESSION['message'] = "Bestelling aangemaakt";
         header("Location: Bestelpagina.php");
         exit(0);
     }
     else
     {
-        $_SESSION['message'] = "Student Not Created";
+        $_SESSION['message'] = "Bestelling niet aangemaakt";
         header("Location: Bestelpagina.php");
         exit(0);
     }

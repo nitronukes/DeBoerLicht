@@ -1,6 +1,7 @@
 <?php
     session_start();
     require 'Connection.php';
+    include 'header.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,7 +39,7 @@
                                     <th>Email</th>
                                     <th>Telefoonnummer</th>
                                     <th>Adress</th>
-                                    <th>Action</th>
+                                    <th>Actie</th>
                                 </tr>
                             </thead>
                             <tbody>
