@@ -221,3 +221,23 @@ function Lamptonen($conn, $lamp)
         
     }
 }
+function gridhomepaginatestphptesthome($conn)
+{
+$stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID GROUP BY productfoto.ProductID ORDER BY Korting DESC");
+
+$stmt->execute();
+$sql = $stmt->get_result();
+$sql = $sql->fetch_all();
+
+
+
+foreach ($sql as $row) {
+     echo "<div>
+     <form method='post' action='Productpagina.php?lamp=" . $row[0] . "'>
+     <img class='Lampenoverzichtfotos' src='$row[9]''>
+        <input type='submit' value='$row[4] euro korting' class='indexknop'/>
+    </form>
+    </div>";
+} 
+}
+
