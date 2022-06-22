@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 jun 2022 om 09:12
+-- Gegenereerd op: 22 jun 2022 om 08:36
 -- Serverversie: 10.4.20-MariaDB
 -- PHP-versie: 8.0.9
 
@@ -61,7 +61,10 @@ CREATE TABLE `producten` (
 --
 
 INSERT INTO `producten` (`ID`, `Categorie_ID`, `ProductNaam`, `Prijs`, `Korting`, `Beschikbaar`, `Tekst`) VALUES
-(26, 2, 'Lamp1', 2, 5, 9, 'Dit is de eerste lamp');
+(26, 1, 'Lamp1', 2, 5, 9, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venena'),
+(27, 1, 'Lamp2', 4, 10, 95, 'Dit is de tweede lamp'),
+(28, 2, 'Lamp3', 6, 0, 467, 'Dit is de derdelamp'),
+(29, 2, 'Lamp4', 65, 1, 4673, 'Dit is de vierde lamp');
 
 -- --------------------------------------------------------
 
@@ -81,7 +84,13 @@ CREATE TABLE `productfoto` (
 
 INSERT INTO `productfoto` (`ID`, `ProductID`, `Foto`) VALUES
 (11, 26, '../Fotos/Lamp1.png'),
-(12, 26, '../Fotos/Lamp2.png');
+(12, 26, '../Fotos/Lamp2.png'),
+(13, 27, '../Fotos/Lamp3.png'),
+(14, 27, '../Fotos/Lamp4.png'),
+(15, 28, '../Fotos/Lamp5.png'),
+(16, 28, '../Fotos/Lamp6.png'),
+(17, 29, '../Fotos/Lamp7.png'),
+(18, 29, '../Fotos/Lamp8.png');
 
 -- --------------------------------------------------------
 
@@ -147,13 +156,13 @@ ALTER TABLE `categorieen`
 -- AUTO_INCREMENT voor een tabel `producten`
 --
 ALTER TABLE `producten`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT voor een tabel `productfoto`
 --
 ALTER TABLE `productfoto`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
