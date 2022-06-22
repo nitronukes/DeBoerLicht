@@ -1,10 +1,8 @@
 <?php
 include("Connection.php");
-include("Functions.php");
+//include("Functions.php");
 
-if (!isset($_SESSION)) {
-    session_start();
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +40,7 @@ if (!isset($_SESSION)) {
                 echo '
                         <li><a class="fa fa-shopping-cart" href="winkelwagenn.php" style="font-size:16px"></a></li>
                         <li><a href="Inlogpagina.php">login</a></li>
-                        <li><a href="Lampenoverzicht.php">lampen</a></li>
+                        <li><a href="Lampenoverzicht.php?filter=Geencategorie">lampen</a></li>
                         <li><a href="index.php">home</a> </li>
                         
                         ';
