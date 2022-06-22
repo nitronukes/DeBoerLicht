@@ -1,127 +1,63 @@
 <?php
-include "Connection.php";
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$voornaam = $_POST['voornaam'];
-	$achternaam = $_POST['achternaam'];
-	$email = $_POST['email'];
-	$telefoonnummer = $_POST['telefoonnummer'];
-	$straatnaam = $_POST['straatnaam'];
-	$huisnummer = $_POST['huisnummer'];
-   $postcode = $_POST['postcode'];
-}
-
-echo $voornaam . $achternaam . $email . $telefoonnummer . $straatnaam . $huisnummer . $postcode;
-
-	// Database connectie
-	// $conn = new mysqli('localhost','root','','deboerlicht');
-	// if($conn->connect_error){
-	// 	echo "$conn->connect_error";
-	// 	die("Connection Failed : ". $conn->connect_error);
-	// } else {
-		$stmt = $conn->prepare("INSERT INTO `Bestellingen` (`Voornaam`, `Achternaam`, `Email`, `Telefoonnummer`, `Straatnaam`, `Huisnummer`, `Postcode`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-		$stmt->bind_param("sssssss", $voornaam, $achternaam, $email, $telefoonnummer, $straatnaam, $huisnummer, $postcode);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-	//}
+session_start();
 ?>
 
-
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <title>Bestelformulier</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="row col-md-6 col-md-offset-3">
-        <div class="panel panel-primary">
-          <div class="panel-heading text-center">
-            <h1>Bestelformulier</h1>
-          </div>
-          <div class="panel-body">
-            <form action="" method="post">
-              <div class="form-group">
-                <label for="voornaam">voornaam</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="voornaam"
-                  name="voornaam"
-                />
-              </div>
-              <div class="form-group">
-                <label for="achternaam">achternaam</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="achternaam"
-                  name="achternaam"
-                />
-              </div>
-              <div class="form-group">
-                <label for="email">email</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="email"
-                  name="email"
-                />
-              </div>
-              <div class="form-group">
-                <label for="Telefoonnummer">Telefoonnummer</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="Telefoonnummer"
-                  name="Telefoonnummer"
-                />
-              </div>
-                 
-                
-              
-              <div class="form-group">
-                <label for="Straatnaam">Straatnaam</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="Straatnaam"
-                  name="Straatnaam"
-                />
-              </div>
-              <div class="form-group">
-                <label for="huisnummer">huisnummer</label>
-                <input
-                  class="form-control"
-                  id="huisnummer"
-                  name="huisnummer"
-                />
-              </div>
-              <div class="form-group">
-                <label for="postcode">postcode</label>
-                <input
-                  class="form-control"
-                  id="postcode"
-                  name="postcode"
-                />
-              </div>
-              <input type="submit" class="btn btn-primary" />
-            </form>
-          </div>
-          <div class="panel-footer text-right">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="toast-header">
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+</head>
+<body>
   
-</div>
-  </body>
+    <div class="container mt-5">
+
+        <?php include('message.php'); ?>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Bestelformulier
+                            <a href="winkelwagenn.php" class="btn btn-danger float-end">Terug</a>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="code.php" method="POST">
+
+                            <div class="mb-3">
+                                <label>Volledige naam</label>
+                                <input type="text" name="name" class="form-control" required placeholder="voer je naam in">
+                            </div>
+                            <div class="mb-3">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control" required placeholder="Vul je email in">
+                            </div>
+                            <div class="mb-3">
+                                <label>Telefoonnummer</label>
+                                <input type="text" name="phone" class="form-control" required placeholder="Vul je telefoonnummer in">
+                            </div>
+                            <div class="mb-3">
+                                <label>Adress</label>
+                                <input type="text" name="adress" class="form-control" required placeholder="Vul je adress in">
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" name="save_student" class="btn btn-primary">Voeg bestelling toe</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
