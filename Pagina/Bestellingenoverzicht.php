@@ -2,7 +2,7 @@
 include 'connection.php';
 include 'header.php';
 //
-$sql=" SELECT * FROM bestellingen";
+$sql=" SELECT * FROM bestelling";
 $result = $conn->query($sql);
 ?>
 
@@ -44,18 +44,30 @@ $result = $conn->query($sql);
         </thead>
         <tbody>
 <?php
+$naam=$_SESSION['username'];
+echo $naam;
+
 if(isset($_POST['loguit'])){
   session_destroy();
   header('Location: ');
 }
 error_reporting(0);
 if(isset($_SESSION['admin_name'])){
+
 $query= "SELECT * FROM bestelling";
-} elseif (isset($_SESSION['user_name'])){
-  $naam=$_SESSION['user_name'];
-$query= "SELECT * FROM bestelling WHERE `naam`='$naam'";}
+
+ } elseif (isset($_SESSION['username'])){
+  $naam=$_SESSION['username'];
+
+  echo $naam;
+
+  $query= "SELECT * FROM `bestelling` WHERE `naam` = '.$naam.'";
+}
+
 $data = mysqli_query($conn,$query);
+
 $total = mysqli_num_rows($data);
+
 if($total!=0){
   while($result=mysqli_fetch_assoc($data)){
       echo "
@@ -65,19 +77,15 @@ if($total!=0){
       <td>".$result['datum']."</td>
       <td>".$result['tijd']."</td>
       <td>".'€'.$result['totaal']."</td>
-      ";
-  }
-    }else{
-      echo "
-      <tr>
-      <th colspan='2'>Er is geen data gevonden!!!</th>
+      <tbody>
       </tr>
       ";
-  } ?>
+  }
+    } ?>
  
   </table>
 
-  <div class='form-popup' id='myForm'>
+  
 
 <?php
  $id= $_GET['id'];
@@ -99,7 +107,7 @@ echo"
 ";}} ?>
       
 
-    <a type='button' class='sluitknop' href='/DeBoerLicht/pagina/Bestellingenoverzicht.php'>&times;</a>
+    <a type='button' class='sluitknop' href='/DeBoerLicht/Pagina/Bestellingenoverzicht.php'>&times;</a>
 
 </div>
   

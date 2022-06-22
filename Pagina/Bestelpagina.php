@@ -11,13 +11,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    $postcode = $_POST['postcode'];
 }
 
+echo $voornaam . $achternaam . $email . $telefoonnummer . $straatnaam . $huisnummer . $postcode;
+
 	// Database connectie
 	// $conn = new mysqli('localhost','root','','deboerlicht');
 	// if($conn->connect_error){
 	// 	echo "$conn->connect_error";
 	// 	die("Connection Failed : ". $conn->connect_error);
 	// } else {
-		$stmt = $conn->prepare("INSERT INTO `bestellingen` (`voornaam`, `achternaam`, `email`, `telefoonnummer`, `straatnaam`, `huisnummer`, `postcode`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		$stmt = $conn->prepare("INSERT INTO `Bestellingen` (`Voornaam`, `Achternaam`, `Email`, `Telefoonnummer`, `Straatnaam`, `Huisnummer`, `Postcode`) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		$stmt->bind_param("sssssss", $voornaam, $achternaam, $email, $telefoonnummer, $straatnaam, $huisnummer, $postcode);
 		$stmt->execute();
 		$stmt->close();
@@ -40,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h1>Bestelformulier</h1>
           </div>
           <div class="panel-body">
-            <form action="connection.php" method="post">
+            <form action="" method="post">
               <div class="form-group">
                 <label for="voornaam">voornaam</label>
                 <input
