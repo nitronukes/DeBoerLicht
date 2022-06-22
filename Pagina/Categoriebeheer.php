@@ -13,7 +13,11 @@ include('header.php');
 <body>
     <div class="Categoriebeheerpagina">
         <div class="Categoriebeheer">
-
+            <div></div>
+            <div>Categorieoverzicht</div>
+            <div></div>
+            <div><button>Categorietoevoegen</button></div>
+            <div></div>
         </div> 
     </div>
     
