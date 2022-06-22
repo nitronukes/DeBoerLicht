@@ -29,7 +29,7 @@ include("Connection.php");
             if(isset($_SESSION) && isset($_SESSION['email']) != ''){
                 echo '
                 <li><a href="loguit.php">loguit</a></li>
-                <li><a href="Lampenoverzicht.php">lampen</a></li>
+                <li><a href="Lampenoverzicht.php?filter=Geencategorie">lampen</a></li>
                 <li><a href="Bestellingenoverzicht.php">Besteloverzicht</a></li>
                 <li><a href="Productbeheer.php"></a></li>
                 <li><a href="Categoriebeheer.php"></a></li>
