@@ -12,14 +12,14 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
             $count = count($_SESSION['winkelwagen']);
 
         //maak een sequantial array om array keys aan products ids vast te maken
-            $product_ids = array_column($_SESSION['winkelwagen'], 'id');
+            $product_ids = array_column($_SESSION['winkelwagen'], 'ID');
 
-        if(!in_array(filter_input(INPUT_GET,'id' ), $product_ids)){
+        if(!in_array(filter_input(INPUT_GET,'ID' ), $product_ids)){
             $_SESSION['winkelwagen'][$count] = array
             (
-                'id' => filter_input(INPUT_GET, 'id'),
-                'naam' => filter_input(INPUT_POST,'naam'),
-                'prijs' => filter_input(INPUT_POST, 'prijs'),
+                'ID' => filter_input(INPUT_GET, 'ID'),
+                'ProductNaam' => filter_input(INPUT_POST,'ProductNaam'),
+                'Prijs' => filter_input(INPUT_POST, 'Prijs'),
                 'hoeveelheid' => filter_input(INPUT_POST, 'hoeveelheid'),
 
         );
@@ -28,7 +28,7 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
         else{
             //array key gelijk maken aan id van het product dat word toegevoegd aan de winkelwagen
             for($i = 0; $i < count($product_ids); $i++){
-                if($product_ids[$i] == filter_input(INPUT_GET, 'id')){
+                if($product_ids[$i] == filter_input(INPUT_GET, 'ID')){
                     //toevoegen hoeveelheid aan bestaand item in de array
                     $_SESSION['winkelwagen'][$i]['hoeveelheid'] += filter_input(INPUT_POST, '');
                 }
@@ -39,9 +39,9 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
         //array maken met toegevoegde data, start bij key 0 en vul het net variabelen
         $_SESSION['winkelwagen'][0] = array
         (
-              'id'=> filter_input(INPUT_GET, 'id'),
-              'naam'=> filter_input(INPUT_POST,'naam'),
-              'prijs'=> filter_input(INPUT_POST, 'prijs'),
+              'ID'=> filter_input(INPUT_GET, 'ID'),
+              'ProductNaa'=> filter_input(INPUT_POST,'PrductNaam'),
+              'Prijs'=> filter_input(INPUT_POST, 'Prijs'),
               'hoeveelheid'=> filter_input(INPUT_POST, 'hoeveelheid')
         );
     }
@@ -49,7 +49,7 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
     if(filter_input(INPUT_GET, 'action')== 'delete'){
         //loop door al de producten heen todat het gelijk is aan get id variabelen
         foreach ($_SESSION['winkelwagen'] as $key => $product){
-            if($product['id']== filter_input(INPUT_GET, 'id')){
+            if($product['ID']== filter_input(INPUT_GET, 'ID')){
                //verwijder product uit winkelwagen
                 unset($_SESSION['winkelwagen'][$key]);
             }
@@ -84,7 +84,7 @@ function pre_r($array){
         <?php
 
         $connect = mysqli_connect('localhost', 'root', '', 'deboerlicht');
-        $query = "SELECT * FROM winkelwagen order by id ASC;";
+        $query = "SELECT * FROM producten order by ID ASC;";
         $result = mysqli_query($connect, $query);
 
 
@@ -97,14 +97,14 @@ function pre_r($array){
 
                 <!--kleine productpagina om te testen of we winkelwagen werkt--->
             <div class="col-sm-4 col-md-3">
-                <form method="post" action="winkelwagenn.php?action=add&id=<?php echo $product['id']; ?>">
+                <form method="post" action="winkelwagenn.php?action=add&ID=<?php echo $product['ID']; ?>">
                 <div class="products">
                     <img src="../Fotos/Lamp5.png" class="img-responsive" alt="kaas"/>
-                    <h4 class="text-info"><?php echo $product['naam']; ?></h4>
-                    <h4>$ <?php echo $product['prijs'];?></h4>
+                    <h4 class="text-info"><?php echo $product['ProductNaam']; ?></h4>
+                    <h4>$ <?php echo $product['Prijs'];?></h4>
                     <input type="text" name="hoeveelheid" class="form-control" value="1"/>
-                    <input type="hidden" name="naam" value="<?php echo $product['naam']; ?>"/>
-                    <input type="hidden" name="prijs" value="<?php echo $product['prijs']; ?>"/>
+                    <input type="hidden" name="ProductNaam" value="<?php echo $product['ProductNaam']; ?>"/>
+                    <input type="hidden" name="Prijs" value="<?php echo $product['Prijs']; ?>"/>
                     <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
                         value="voeg toe aan winkelwagen" />
 
@@ -146,18 +146,18 @@ function pre_r($array){
 
         ?>
         <tr>
-            <td><?php echo $product['naam'];?></td>
+            <td><?php echo $product['ProductNaam'];?></td>
             <td><?php echo $product['hoeveelheid'];?></td>
-            <td><?php echo $product['prijs'];?></td>
-            <td><?php echo number_format($product['hoeveelheid'] * $product['prijs'], 2);?></td>
+            <td><?php echo $product['Prijs'];?></td>
+            <td><?php echo number_format($product['hoeveelheid'] * $product['Prijs'], 2);?></td>
             <td>
-                <a href="winkelwagenn.php?action=delete&id=<?php echo $product['id'];?>">
+                <a href="winkelwagenn.php?action=delete&ID=<?php echo $product['ID'];?>">
                     <div class="btn-danger">Verwijderen</div>
                 </a>
             </td>
         </tr>
         <?php
-            $total = $total + ($product['hoeveelheid'] * $product['prijs']);
+            $total = $total + ($product['hoeveelheid'] * $product['Prijs']);
             endforeach;
         ?>
         <tr>
