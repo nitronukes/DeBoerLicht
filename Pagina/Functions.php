@@ -223,7 +223,7 @@ function Lamptonen($conn, $lamp)
 }
 function gridhomepaginatestphptesthome($conn)
 {
-$stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID GROUP BY productfoto.ProductID ORDER BY Korting DESC");
+$stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.Korting > 0 GROUP BY productfoto.ProductID ORDER BY Korting DESC LIMIT 6;");
 
 $stmt->execute();
 $sql = $stmt->get_result();

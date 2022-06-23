@@ -19,32 +19,26 @@ include("Functions.php");
          <ul>
             <img class="logo" src="../Fotos/logo_timothy.png"/>
 
-
-
-
 <?php
-            if(isset($_SESSION) && isset($_SESSION['email']) != ''){
-                echo '
-                <li><a href="loguit.php">loguit</a></li>
-                <li><a href="Lampenoverzicht.php?filter=Geencategorie">lampen</a></li>
-                <li><a href="Bestellingenoverzicht.php">Besteloverzicht</a></li>
-                <li><a href="Productbeheer.php">Productbeheer</a></li>
-                <li><a href="Categoriebeheer.php">Categoriebeheer</a></li>
-                <li><a href="index.php">home</a> </li>
-                ';
+    if(isset($_SESSION) && isset($_SESSION['email']) != ''){
+        echo '
+            <li><a href="loguit.php">loguit</a></li>
+            <li><a href="Lampenoverzicht.php?filter=Geencategorie">lampen</a></li>
+            <li><a href="Bestellingenoverzicht.php">Besteloverzicht</a></li>
+            <li><a href="Productbeheer.php">Productbeheer</a></li>
+            <li><a href="Categoriebeheer.php">Categoriebeheer</a></li>
+            <li><a href="index.php">home</a> </li>
+        ';
 
-            }else{
-                echo '
-                        <li><a class="fa fa-shopping-cart" href="winkelwagenn.php" style="font-size:16px"></a></li>
-                        <li><a href="Inlogpagina.php">login</a></li>
-                        <li><a href="Lampenoverzicht.php?filter=Geencategorie">lampen</a></li>
-                        <li><a href="index.php">home</a> </li>
-                        
-                        ';
-            }
+    }else{
+        echo '
+            <li><a class="fa fa-shopping-cart" href="winkelwagenn.php" style="font-size:16px"></a></li>
+            <li><a href="Inlogpagina.php">login</a></li>
+            <li><a href="Lampenoverzicht.php?filter=Geencategorie">lampen</a></li>
+            <li><a href="index.php">home</a> </li>
+            ';
+    }
 ?>
-
-
         </ul>
     </div>
     </header>
