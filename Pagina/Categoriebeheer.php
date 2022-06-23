@@ -26,7 +26,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Student Details
-                            
+                            <a href="Bestelpagina.php" class="btn btn-primary float-end">Geaccepteerde bestellingen</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -34,30 +34,30 @@
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Categorie</th>
-                                    <th>Actie</th>
+                                    <th>Wijzigen</th>
+                                    <th>Verwijder</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
-                                    $query = "SELECT * FROM categorieen";
-                                    $query_run = mysqli_query($conn, $query);
+                                    $stmt =$conn->prepare( "SELECT * FROM categorieen");
+                                    $stmt->execute();
+    $sql = $stmt->get_result();
+    $sql = $sql->fetch_all();
 
-                                    if(mysqli_num_rows($query_run) > 0)
+                                    if(mysqli_num_rows($sql) > 0)
                                     {
-                                        foreach($query_run as $student)
+                                        foreach($sql as $row)
                                         {
                                             ?>
                                             <tr>
-                                                <td><?= $student['id']; ?></td>
-                                                <td><?= $student['name']; ?></td>
-                                                <td><?= $student['email']; ?></td>
-                                                <td><?= $student['phone']; ?></td>
-                                                <td><?= $student['adress']; ?></td>
+                                                <td><?= $row['id']; ?></td>
+                                                <td><?= $row['name']; ?></td>
+                                                <td><?= $row['email']; ?></td>
                                                 <td>
                                                     
-                                                    <a href="student-edit.php?id=<?= $student['id']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                                    <a href="student-edit.php?id=<?= $student['id']; ?>" class="btn btn-success btn-sm">Accepteren</a>
                                                     <form action="code.php" method="POST" class="d-inline">
                                                         <button type="submit" name="delete_student" value="<?=$student['id'];?>" class="btn btn-danger btn-sm">Verwijder</button>
                                                     </form>
