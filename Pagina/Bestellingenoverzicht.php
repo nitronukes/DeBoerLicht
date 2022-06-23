@@ -26,7 +26,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Student Details
-                            <a href="Bestelpagina.php" class="btn btn-primary float-end">Geaccepteerde bestellingen</a>
+                            
                         </h4>
                     </div>
                     <div class="card-body">

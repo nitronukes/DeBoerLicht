@@ -1,25 +1,87 @@
 <?php
-include('header.php');
+    session_start();
+    require 'Connection.php';
+    include 'header.php';
 ?>
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Bestellingenoverzicht</title>
 </head>
 <body>
-    <div class="Categoriebeheerpagina">
-        <div class="Categoriebeheer">
-            <div></div>
-            <div>Categorieoverzicht</div>
-            <div></div>
-            <div><button>Categorietoevoegen</button></div>
-            <div></div>
-        </div> 
+  
+    <div class="container mt-4">
+
+        <?php include('message.php'); ?>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Student Details
+                            <a href="Bestelpagina.php" class="btn btn-primary float-end">Geaccepteerde bestellingen</a>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Categorie</th>
+                                    <th>Wijzigen</th>
+                                    <th>Verwijder</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                    $stmt =$conn->prepare( "SELECT * FROM categorieen");
+                                    $stmt->execute();
+    $sql = $stmt->get_result();
+    $sql = $sql->fetch_all();
+
+                                    if(mysqli_num_rows($sql) > 0)
+                                    {
+                                        foreach($sql as $row)
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td><?= $row['id']; ?></td>
+                                                <td><?= $row['name']; ?></td>
+                                                <td><?= $row['email']; ?></td>
+                                                <td>
+                                                    
+                                                    <a href="student-edit.php?id=<?= $student['id']; ?>" class="btn btn-success btn-sm">Accepteren</a>
+                                                    <form action="code.php" method="POST" class="d-inline">
+                                                        <button type="submit" name="delete_student" value="<?=$student['id'];?>" class="btn btn-danger btn-sm">Verwijder</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    else
+                                    {
+                                        echo "<h5> No Record Found </h5>";
+                                    }
+                                ?>
+                                
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
