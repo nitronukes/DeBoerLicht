@@ -221,6 +221,34 @@ function Lamptonen($conn, $lamp)
         
     }
 }
+
+function CategorieUpdate($conn)
+{
+
+}
+
+function CategorieTonen($conn)
+{
+    $stmt =$conn->prepare( "SELECT * FROM categorieen");
+                                    $stmt->execute();
+    $sql = $stmt->get_result();
+    $sql = $sql->fetch_all();
+
+                                        foreach($sql as $row)
+                                        {
+                                            echo"
+                                            <tr>
+                                                <td> <Input class='Inputpaginas' value=' $row[1]' name='$row[1]' placeholder='".$row[1]."' onclick='window.location.href='Categoriebeheer.php?updateID=".$row[0]."''></Input></td>
+                                                <td>
+                                                    <button name='' type='submit' class='btn btn-success btn-sm'><strong> Categore wijzigen</strong></button>
+                                                    <form action='' method='POST' class='d-inline'>
+                                                    <button type='submit' name='' value='".$row[0]."' class='btn btn-danger btn-sm' onclick='window.location.href='Categoriebeheer.php?deleteID=$row[0]''>Verwijder</button>                                                    </form>
+                                                </td>
+                                            </tr>
+                                            ";
+                                        }
+}
+
 function gridhomepaginatestphptesthome($conn)
 {
 $stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.Korting > 0 GROUP BY productfoto.ProductID ORDER BY Korting DESC LIMIT 6;");

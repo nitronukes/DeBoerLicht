@@ -24,53 +24,21 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4>Student Details
-                            <a href="Bestelpagina.php" class="btn btn-primary float-end">Geaccepteerde bestellingen</a>
-                        </h4>
-                    </div>
-                    <div class="card-body">
 
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Categorie</th>
-                                    <th>Wijzigen</th>
-                                    <th>Verwijder</th>
+                                    <th>Actie</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
-                                    $stmt =$conn->prepare( "SELECT * FROM categorieen");
-                                    $stmt->execute();
-    $sql = $stmt->get_result();
-    $sql = $sql->fetch_all();
+                                        CategorieUpdate($conn);
+                                        CategorieTonen($conn);
 
-                                    if(mysqli_num_rows($sql) > 0)
-                                    {
-                                        foreach($sql as $row)
-                                        {
-                                            ?>
-                                            <tr>
-                                                <td><?= $row['id']; ?></td>
-                                                <td><?= $row['name']; ?></td>
-                                                <td><?= $row['email']; ?></td>
-                                                <td>
-                                                    
-                                                    <a href="student-edit.php?id=<?= $student['id']; ?>" class="btn btn-success btn-sm">Accepteren</a>
-                                                    <form action="code.php" method="POST" class="d-inline">
-                                                        <button type="submit" name="delete_student" value="<?=$student['id'];?>" class="btn btn-danger btn-sm">Verwijder</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    }
-                                    else
-                                    {
-                                        echo "<h5> No Record Found </h5>";
-                                    }
-                                ?>
+                                        ?>
+                                                        
                                 
                             </tbody>
                         </table>
@@ -79,7 +47,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
