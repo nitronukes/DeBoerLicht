@@ -8,10 +8,10 @@ function Lampenoverzicht($conn, $categorie)
     //$stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID /*INNER JOIN productfoto ON producten.ID = productfoto.ProductID*/ WHERE categorieen.Categorie = ?");
     $stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID INNER JOIN productfoto ON producten.ID = productfoto.ProductID GROUP BY productfoto.ProductID");
 
-     if ($categorie != 'Geencategorie' ) {
+    if ($categorie != 'Geencategorie') {
         $stmt = $conn->prepare("SELECT * FROM categorieen INNER JOIN producten ON categorieen.CategorieID = producten.Categorie_ID INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE categorieen.Categorie = ? GROUP BY productfoto.ProductID");
         $stmt->bind_param('s', $categorie);
-     }
+    }
 
     $stmt->execute();
     $sql = $stmt->get_result();
@@ -20,31 +20,30 @@ function Lampenoverzicht($conn, $categorie)
 
 
     foreach ($sql as $row) {
-         echo "
+        echo "
              <div>
              <form method='post' action='Productpagina.php?lamp=" . $row[2] . "'>
              <img class='Lampenoverzichtfotos' src='$row[11]' alt='$row[4]'>
                 <input type='submit' value='$row[4]' class='Lampenoverzichtbutton'/>
             </form>
             </div>";
-    }  
-} 
+    }
+}
 
-function Filteren($conn, $categorie) 
+function Filteren($conn, $categorie)
 {
     $stmt = $conn->prepare("SELECT Categorie FROM categorieen");
     $stmt->execute();
     $sql = $stmt->get_result();
 
     foreach ($sql as $row) {
-        
+
         if ($categorie == $row['Categorie']) {
-            echo"
+            echo "
                 <option value='Lampenoverzicht.php?filter=" . $row['Categorie'] . "' selected> $row[Categorie] </option>
             ";
-        }
-        else {
-            echo"
+        } else {
+            echo "
             <option value='Lampenoverzicht.php?filter=" . $row['Categorie'] . "'> $row[Categorie] </option>
         ";
         }
@@ -53,18 +52,15 @@ function Filteren($conn, $categorie)
 
 function Inloggen($conn, $email, $wachtwoord)
 {
-    $sql = "SELECT * FROM `users` WHERE `email` = '".$email."' AND `password` = '".$wachtwoord."'";
+    $sql = "SELECT * FROM `users` WHERE `email` = '" . $email . "' AND `password` = '" . $wachtwoord . "'";
     $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            $_SESSION['email'] = $email;
-            header("location:Bestellingenoverzicht.php");
-            exit();
-          }
-    else
-    {
+    if ($result->num_rows > 0) {
+        $_SESSION['email'] = $email;
+        header("location:Bestellingenoverzicht.php");
+        exit();
+    } else {
         echo  "<script>alert('Het e-mail adres of wachtwoord in incorrect')</script>";
-
     }
     $conn->close();
 }
@@ -113,7 +109,7 @@ function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $be
         }
     }
     $categorie = 2;
-    
+
 
     $stmt2 = $conn->prepare("INSERT INTO `producten` (`Categorie_ID`, `ProductNaam`, `Prijs`, `Korting`, `Beschikbaar`, `Tekst`) VALUES (?,?,?,?,?,?)");
     $stmt2->bind_param('isiiis', $categorie, $Productnaam, $Prijs, $korting, $voorraad, $beschrijving);
@@ -142,7 +138,6 @@ function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $be
     }
 
     $conn->close();
-
 }
 
 function CategorieToevoeg($conn)
@@ -152,15 +147,14 @@ function CategorieToevoeg($conn)
     $sql = $stmt->get_result();
 
     foreach ($sql as $row) {
-        echo"
+        echo "
             <option value=' $row[CategorieID]' selected> $row[Categorie] </option>
         ";
-        
     }
 }
 
 function Lamptonen($conn, $lamp)
-{   
+{
     $Currentforeach = 1;
     //$stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.ProductNaam = ?");
     $stmt = $conn->prepare("SELECT * FROM producten WHERE ID = ?");
@@ -173,7 +167,7 @@ function Lamptonen($conn, $lamp)
     $stmt = $conn->prepare("SELECT * FROM productfoto WHERE ProductID = ?");
     $stmt->bind_param('i', $lamp);
     $stmt->execute();
-    
+
     $sql2 = $stmt->get_result();
     $sql2 = $sql2->fetch_all();
     $stmt->close();
@@ -184,7 +178,7 @@ function Lamptonen($conn, $lamp)
 
     foreach ($sql as $row) {
 
-    echo'
+        echo '
         <div class="Productnaam">' . $row[2] . '</div>
         <div class="producttekst">' . $row[6] . '</div>
         <div class="productprijs"> € ' . $row[3] . '</div>
@@ -199,73 +193,73 @@ function Lamptonen($conn, $lamp)
 
         foreach ($sql2 as $row2) {
 
-           echo' 
+            echo ' 
             <div class="mySlides fade">
-            <img src="'.$row2[2].'" style="width: 80%">
+            <img src="' . $row2[2] . '" style="width: 80%">
             </div>
             ';
-          
-            
         }
-        echo'<div class="dotalign">';
-        foreach ($sql2 as $row2){
-            echo'
+        echo '<div class="dotalign">';
+        foreach ($sql2 as $row2) {
+            echo '
             
-            <span class="dot" onclick="currentSlide('.$Currentforeach.')"></span>
+            <span class="dot" onclick="currentSlide(' . $Currentforeach . ')"></span>
             
             ';
             $Currentforeach++;
         }
 
-       echo"</div> </div>";
-        
+        echo "</div> </div>";
     }
 }
 
 function CategorieUpdate($conn)
 {
-
 }
 
 function CategorieTonen($conn)
 {
-    $stmt =$conn->prepare( "SELECT * FROM categorieen");
-                                    $stmt->execute();
+    $stmt = $conn->prepare("SELECT * FROM categorieen");
+    $stmt->execute();
     $sql = $stmt->get_result();
     $sql = $sql->fetch_all();
 
-                                        foreach($sql as $row)
-                                        {
-                                            echo"
+    foreach ($sql as $row) {
+        echo "
                                             <tr>
-                                                <td> <Input class='Inputpaginas' value=' $row[1]' name='$row[1]' placeholder='".$row[1]."' onclick='window.location.href='Categoriebeheer.php?updateID=".$row[0]."''></Input></td>
+                                                <td> <Input class='Inputpaginas' value=' $row[1]' name='$row[1]' placeholder='" . $row[1] . "'></Input></td>
                                                 <td>
-                                                    <button name='' type='submit' class='btn btn-success btn-sm'><strong> Categore wijzigen</strong></button>
-                                                    <form action='' method='POST' class='d-inline'>
-                                                    <button type='submit' name='' value='".$row[0]."' class='btn btn-danger btn-sm' onclick='window.location.href='Categoriebeheer.php?deleteID=$row[0]''>Verwijder</button>                                                    </form>
+                                                        <button name='' type='submit' class='btn btn-success btn-sm'><strong> Categore wijzigen</strong></button>
+                                                    <form action='Categoriebeheer.php?deleteID=$row[0]' method='POST' class='d-inline'>
+                                                        <button type='submit' name='' value='" . $row[0] . "' class='btn btn-danger btn-sm' onclick='window.location.href=''>Verwijder</button>                                                    
+                                                    </form>
                                                 </td>
                                             </tr>
                                             ";
-                                        }
+    }
+}
+
+function CategorieVerwijderen($conn, $ID)
+{
+    
 }
 
 function gridhomepaginatestphptesthome($conn)
 {
-$stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.Korting > 0 GROUP BY productfoto.ProductID ORDER BY Korting DESC LIMIT 6;");
+    $stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.Korting > 0 GROUP BY productfoto.ProductID ORDER BY Korting DESC LIMIT 6;");
 
-$stmt->execute();
-$sql = $stmt->get_result();
-$sql = $sql->fetch_all();
+    $stmt->execute();
+    $sql = $stmt->get_result();
+    $sql = $sql->fetch_all();
 
 
 
-foreach ($sql as $row) {
-     echo "<div>
+    foreach ($sql as $row) {
+        echo "<div>
      <form method='post' action='Productpagina.php?lamp=" . $row[0] . "'>
      <img class='Lampenoverzichtfotos' src='$row[9]''>
         <input type='submit' value='$row[4] euro korting' class='indexknop'/>
     </form>
     </div>";
-} 
+    }
 }
-
