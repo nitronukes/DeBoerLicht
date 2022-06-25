@@ -241,7 +241,28 @@ function CategorieTonen($conn)
 
 function CategorieVerwijderen($conn, $ID)
 {
-    
+
+    $stmt1 = $conn->prepare("SELECT ID FROM producten WHERE Categorie_ID = ?");
+    $stmt1->bind_param('s', $ID);
+    $stmt1->execute();
+    $stmt1->close();
+
+    if (isset($stmt)) {
+        $stmt2 = $conn->prepare("DELETE FROM productfoto WHERE ProductID = ?");
+        $stmt2->bind_param('s', $stmt1);
+        $stmt2->execute();
+        $stmt2->close();
+
+        $stmt3 = $conn->prepare("DELETE FROM producten WHERE Categorie_ID = ?");
+        $stmt3->bind_param('s', $ID);
+        $stmt3->execute();
+        $stmt3->close();
+    }
+
+    $stmt4 = $conn->prepare("DELETE FROM categorieen WHERE CategorieID = ?");
+    $stmt4->bind_param('s', $ID);
+    $stmt4->execute();
+    $stmt4->close();
 }
 
 function gridhomepaginatestphptesthome($conn)
