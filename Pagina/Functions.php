@@ -213,8 +213,11 @@ function Lamptonen($conn, $lamp)
     }
 }
 
-function CategorieUpdate($conn)
+function CategorieUpdate($conn, $categorie, $ID)
 {
+    $stmt = $conn->prepare("UPDATE `categorieen` SET `Categorie` = ? WHERE CategorieID = ?");
+    $stmt->bind_param('si', $categorie, $ID);
+    $stmt->execute();
 }
 
 function CategorieTonen($conn)
@@ -227,9 +230,11 @@ function CategorieTonen($conn)
     foreach ($sql as $row) {
         echo "
                                             <tr>
-                                                <td> <Input class='Inputpaginas' value=' $row[1]' name='$row[1]' placeholder='" . $row[1] . "'></Input></td>
+                                                <form action='#' method='POST' class='d-inline'>    
+                                                <td> <Input class='Inputpaginas' value='$row[1]' name='Categorie' placeholder='" . $row[1] . "'></Input></td>
                                                 <td>
-                                                        <button name='' type='submit' class='btn btn-success btn-sm'><strong> Categore wijzigen</strong></button>
+                                                        <button name='CategorieID' type='submit' value='" . $row[0] . "' class='btn btn-success btn-sm'><strong> Categore wijzigen</strong></button>
+                                                    </form>
                                                     <form action='Categoriebeheer.php?deleteID=$row[0]' method='POST' class='d-inline'>
                                                         <button type='submit' name='' value='" . $row[0] . "' class='btn btn-danger btn-sm' onclick='window.location.href=''>Verwijder</button>                                                    
                                                     </form>
@@ -264,6 +269,7 @@ function CategorieVerwijderen($conn, $ID)
     $stmt4->execute();
     $stmt4->close();
 }
+
 
 function gridhomepaginatestphptesthome($conn)
 {

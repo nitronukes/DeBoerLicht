@@ -40,7 +40,10 @@ $DeleteID = $_GET['deleteID'];
                             if ($DeleteID > -1) {
                                 CategorieVerwijderen($conn, $DeleteID);
                             }
-                            CategorieUpdate($conn);
+
+                            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                            CategorieUpdate($conn, $_POST['Categorie'], $_POST['CategorieID']);
+                            }
                             CategorieTonen($conn);
 
                             ?>
