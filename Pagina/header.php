@@ -26,7 +26,7 @@ include("Functions.php");
             <li><a href="Lampenoverzicht.php?filter=Geencategorie">lampen</a></li>
             <li><a href="Bestellingenoverzicht.php">Besteloverzicht</a></li>
             <li><a href="Productbeheer.php">Productbeheer</a></li>
-            <li><a href="Categoriebeheer.php">Categoriebeheer</a></li>
+            <li><a href="Categoriebeheer.php?deleteID=-1">Categoriebeheer</a></li>
             <li><a href="index.php">home</a> </li>
         ';
 
