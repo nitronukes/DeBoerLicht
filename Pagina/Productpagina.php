@@ -12,17 +12,33 @@ $lamp = $_GET['lamp'];
 </head>
 <body>
     <div class="productoverzichtpagina">
+        <div class="productwinkelmandtoevoeg">
+
+
+
+
+            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
+                   value="voeg toe aan winkelwagen" />
+
+        </div>
         <div class="productoverzicht">
             <?php
                 $Lampenfunctie = Lamptonen($conn, $lamp);
             ?>
-            
 
-        </div>
+
+
+
+
+
+
+
+
+
+    </div>
     </div>
 </body>
 </html>
-
 <script>
     let slideIndex = 1;
 showSlides(slideIndex);

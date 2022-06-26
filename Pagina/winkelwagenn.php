@@ -3,7 +3,6 @@
 include 'header.php';
 
 $product_ids = array();
-//session_destroy();
 //kijken of product naar winkelwagen is verstuurd
 if(filter_input(INPUT_POST, 'add_to_cart')){
     if(isset($_SESSION['winkelwagen'])){
@@ -59,7 +58,7 @@ if(filter_input(INPUT_POST, 'add_to_cart')){
 
 
 }
-pre_r($_SESSION);
+//pre_r($_SESSION);
 
 function pre_r($array){
     echo'<pre>';
@@ -95,22 +94,6 @@ function pre_r($array){
 
                  ?>
 
-                <!--kleine productpagina om te testen of we winkelwagen werkt--->
-            <div class="col-sm-4 col-md-3">
-                <form method="post" action="winkelwagenn.php?action=add&ID=<?php echo $product['ID']; ?>">
-                <div class="products">
-                    <img src="../Fotos/Lamp5.png" class="img-responsive" alt="kaas"/>
-                    <h4 class="text-info"><?php echo $product['ProductNaam']; ?></h4>
-                    <h4>$ <?php echo $product['Prijs'];?></h4>
-                    <input type="text" name="hoeveelheid" class="form-control" value="1"/>
-                    <input type="hidden" name="ProductNaam" value="<?php echo $product['ProductNaam']; ?>"/>
-                    <input type="hidden" name="Prijs" value="<?php echo $product['Prijs']; ?>"/>
-                    <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
-                        value="voeg toe aan winkelwagen" />
-
-                </div>
-                </form>
-            </div>
 
                 <?php
                 endwhile;
