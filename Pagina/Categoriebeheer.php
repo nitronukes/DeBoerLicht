@@ -37,12 +37,14 @@ $DeleteID = $_GET['deleteID'];
                         </thead>
                         <tbody>
                             <?php
+
                             if ($DeleteID > -1) {
                                 CategorieVerwijderen($conn, $DeleteID);
                             }
 
                             if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                            CategorieUpdate($conn, $_POST['Categorie'], $_POST['CategorieID']);
+                                //CategorieUpdate($conn, $_POST['Categorie'], $_POST['CategorieID']);
+                                CategorieToevoegen($conn);
                             }
                             CategorieTonen($conn);
 
