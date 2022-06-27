@@ -1,70 +1,69 @@
 <?php
-include("Functions.php");
-include("Connection.php");
-
-if (!isset($_SESSION)) {
-    session_start();
-}
-
+session_start();
+require 'Connection.php';
+include 'header.php';
+$DeleteID = $_GET['deleteID'];
 ?>
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/Styles.css">
-    <title>LichtenToevoegen</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Bestellingenoverzicht</title>
 </head>
+
 <body>
-    <form action="../Handlers/Lamptoevoeg.php" method="post" enctype="multipart/form-data">
-    <div class="Toevoegmodal" id="modal">
-        <div class="Toevoegmodal-header">
-            <div class="Modaltitel">Lamp wijzigen</div>
-            <button class="modalsluiten">&times;</button>
+
+    <div class="container mt-4">
+
+        <?php include('message.php'); ?>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                <div class="card-header">
+                        <h4>Product informatie
+                            <a href="Toevoeglamp.php" class="btn btn-primary float-end">Product toevoegen</a>
+                        </h4>
+                    </div>
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Categorie</th>
+                                <th>Actie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($DeleteID > -1) {
+                                CategorieVerwijderen($conn, $DeleteID);
+                            }
+
+                            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                            CategorieUpdate($conn, $_POST['Categorie'], $_POST['CategorieID']);
+                            }
+                            CategorieTonen($conn);
+
+                            ?>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
-        <div class="Toevoegmodal-body">
-            <div class="Toevoegmodallinks"></div>
-            <div class="Toevoegmodalrechts"></div>
-            <div><input type="text" name="ProductNaam" class="ProductnaamToevoeg" placeholder="Productnaam" required> </div>
-            <div><input type="number" name="Prijs" class="PrijsToevoeg" placeholder="Prijs" min="1" required> </div>
-            <div><input type="number" name="KortingToevoeg" class="KortingToevoeg" placeholder="Korting" min="0" max="100" required> </div>
-            <div><select class="CategorieToevoeg" name="categorie" id="categorie" required>
-            <?php
-                
-                CategorieToevoegpagina($conn);
-                ?>
-                 </select> </div>
-            <div><input type="text" name="Beschrijving" class="BeschrijvingToevoeg" placeholder="Beschrijving" required> </div>
-            <div><input type="number" name="Voorraad" class="VoorraadToevoeg" placeholder="Voorraad" min="0" required> </div>
-            <div><input type="file" and accept="image/*" name="file[]" class="BestandToevoeg" placeholder="Foto Toevoegen" id="fileToUpload" required multiple> </div>
-            <div><button type="submit" name="submit" class="knoptoevoegmodal">Product toevoegen</button> </div>
         </div>
     </div>
-</form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
-<?php
-
-// if(isset($_POST['submit']))
-// {
-//     $ProductNaam = $_POST['ProductNaam'];
-//     $Prijs = $_POST['Prijs'];
-//     $Korting = $_POST['KortingToevoeg'];
-//     $CategorieID = $_POST['categorie'];
-//     $Tekst = $_POST['Beschrijving'];
-//     $Beschikbaar = $_POST['Voorraad'];
-//     $Foto = $_POST['foto'];
-
-//     $sql = "INSERT INTO producten (ProductNaam,Prijs,Kortingtoevoeg,categorie,Beschrijving,Voorraad,Foto)
-//      VALUES ('$ProductNaam', '$Prijs', '$Korting', '$CategorieID', '$Tekst', '$Beschikbaar', '$Foto')";
-//      if (mysqli_query($conn, $sql)){
-//          echo"jemoeder";
-//      } else {
-//          echo "Fout: " . $sql . "
-//          " . mysqli_error($conn);
-//      }
-//      mysqli_close($conn);
-// }
-?>

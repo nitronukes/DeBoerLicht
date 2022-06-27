@@ -21,10 +21,10 @@
    <div class="InlogGrid">
      <div class="InlogBlokLinks"></div>
      <div class="InlogBlokRechts"></div> 
-        <h1>Inloggen</h1>
-          <div class=""><input class="InlogInputDiv" type="text" name="Email" class="text" autocomplete="off" required placeholder="E-mail">
+        <h1 class="inlogtekst">Inloggen</h1>
+          <div class="y"><input class="InlogInputDiv" type="text" name="Email" class="text" autocomplete="off" required placeholder="E-mail">
           <input class="InlogInputDiv" type="password" name="Wachtwoord" class="text" required placeholder="Wachtwoord"></div>
-          <div class=""><input class="InlogButton" type="submit" name="submit" id="sub"> </div>
+          <div class="x"><input class="InlogButton" type="submit" name="submit" id="sub"> </div>
           
     </div>
       </form>

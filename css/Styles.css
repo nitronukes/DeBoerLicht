@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #e4e4e4;
   }
   .Boem{
     color: aqua;
@@ -31,7 +32,6 @@
     ". . ."
     ". . .";
     height: 100vh;
-    background-color: #e1e1d0;
   }
   
   .InlogPaginaGrid form{
@@ -80,10 +80,13 @@
         text-align: center;
         width: 100%;
         border-radius: 50px;
-        background-color: white;
+        background-color: #ffffff;
     }
     .InlogGrid div button{
       height: 100%;      
+    }
+    .InlogGrid div{
+      border-radius: 50px;
     }
 
     .InlogBlokLinks {
@@ -91,15 +94,25 @@
         grid-column-end: 1;
         grid-row-start: 1;
         grid-row-end: 6;
+        background-color: #ffffff;
       }
       .InlogBlokRechts {
         grid-column-start: 3;
         grid-column-end: 3;
         grid-row-start: 1;
         grid-row-end: 6;
+        background-color: #ffffff;
       }
 
-    
+    .x{
+      background-color: #ffffff;
+    }
+    .y{
+      background-color: #ffffff;
+    }
+    .inlogtekst{
+      background-color: #ffffff;
+    }
       .InlogButton{
         background-color: #ffbf81;  
         text-decoration: none;
@@ -302,7 +315,8 @@ align-items: center;
       .logo{
         width: 100px;
         height: 100px;
-      top:100px;
+        top:100px;
+        background-color: #ffffff;
 
       }
 
@@ -377,27 +391,35 @@ align-items: center;
 .Lampenoverzichtfotos{
   width: 100%;
   height: 100%;
+  border-radius: 30px;
 }
-
+.lampoverzichtachtergrond{
+  background-color: #ffffff;
+}
 .homebodylichaam{
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 1fr;
-  grid-template-rows: 1fr 2fr 2fr 1fr;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows:  1fr 2fr 2fr 1fr;
   gap: 5% 5%;
   grid-auto-flow: row;
   padding: 10px;
-  height: 100vh;
+  height: 50vh;
   text-align: center;
-  width: 100%;
+  width: 180vh;
   background-color: #e4e4e4;
+  padding-left: 200px;
 }
-.homepaginaLinks{
-  grid-area: 1/ 1 / 5 / 1;
+.homebodylichaam img{
+border-radius: 50px;
+}
+
+/* .homepaginaLinks{
+  grid-area: 1/ 5 / 5 / 5s;
 }
 
 .homepaginaRechts {
 grid-area: 1/ 5 / 5 / 5;
-}
+} */
 /*adminoverzicht*/
 *{
   box-sizing: border-box;
@@ -574,26 +596,34 @@ color: #ff5f43;
 
 .producttekst {
   grid-area: 4 / 4 / 4 / 6;
+  background-color: #ffffff;
 }
 
 .productprijs {
   grid-area: 3 / 4 / 3 / 4;
+  background-color: #ffffff;
 }
 
 .productvoorraad {
   grid-area: 3 / 5 / 3 / 5;
   background-color: rgb(0, 179, 39);
-  border-radius: 10px;
+  border-radius: 20px;
   height: 50%;
   text-align: center;
   color: white;
+  font-size: large;
+  padding-bottom: 30px;
+  padding-top: 6px;
+  justify-content: center;
 }
 
 .productAantal {
   grid-area: 5 / 4 / 5 / 4;
+  background-color: #ffffff;
 }
 .productwinkelmandtoevoeg{
   grid-area: 5 / 5 / 5 / 5;
+  background-color: #ffffff;
 }
 
 * {box-sizing:border-box}
@@ -622,7 +652,7 @@ color: #ff5f43;
   width: auto;
   margin-top: -22px;
   padding: 16px;
-  color: black;
+  color: #FFBF81 ;
   font-weight: bold;
   font-size: 18px;
   border-radius: 0 3px 3px 0;
@@ -637,7 +667,8 @@ color: #ff5f43;
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+  color: #df8b37;
+  transition: .2s;
 }
 
 /* Caption text */
@@ -741,14 +772,40 @@ color: #ff5f43;
   background-color: #FFBF81;
   color: #ffffff;
   cursor: pointer;
+  border: none;
+  border-radius: 15px;
 }
 
 .indexknop:hover{
   background-color: #df8b37;
   transition: .3s;
 }
-@media only screen and (min-width: 800px) {
-  .homebodylichaam {
-    grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
-  }
+
+.h2overzicht{
+  background-color: #ffffff;
+  color: #000000;
+}
+.productlampoverzicht{
+  background-color: #ffffff;
+}
+.Lampenoverzichtbutton{
+  padding: 10px 70px;
+  background-color: #FFBF81;
+  color: #ffffff;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+}
+.Lampenoverzichtbutton:hover{
+  background-color: #df8b37;
+  transition: .3s;
+}
+
+.headerknop{
+  background-color: #ffffff;
+}
+.headerknop:hover{
+  color: #ffffff;
+  background-color: #000000;
+  transition: .3s;
 }

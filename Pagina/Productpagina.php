@@ -8,17 +8,30 @@ $lamp = $_GET['lamp'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/Styles.css">
+    <title>Productpagina</title>
 </head>
 <body>
     <div class="productoverzichtpagina">
+
+        <input type="submit"  onclick="localStorage.setItem()" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
+               value="voeg toe aan winkelwagen"
+
+            <?php
+            $aantal =1;
+            if ($lamp !='') {
+                $_SESSION['cart'][] = array('id' => $lamp, 'aantal' => $aantal);
+            }
+
+
+
+
+                   ?>/>
         <div class="productwinkelmandtoevoeg">
 
 
 
 
-            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
-                   value="voeg toe aan winkelwagen" />
 
         </div>
         <div class="productoverzicht">

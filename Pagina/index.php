@@ -15,7 +15,5 @@ include "header.php";
     <?php 
             gridhomepaginatestphptesthome($conn);
         ?>
-        <div class="homepaginaLinks"></div>
-        <div class="homepaginaRechts"></div>
 </body>
 </html>
