@@ -264,7 +264,6 @@ function CategorieVerwijderen($conn, $ID)
             $stmt2 = $conn->prepare("DELETE FROM productfoto WHERE ProductID = $product[0]");
             $stmt2->execute();
         }
-        echo 'fotos verwijderd';
         
         $stmt3 = $conn->prepare("DELETE FROM producten WHERE Categorie_ID = ?");
         $stmt3->bind_param('s', $ID);
@@ -294,6 +293,11 @@ function CategorieToevoegen($conn)
         ";
 }
 
+function Categorietoevoegklik($conn, $categorie){
+    $stmt2 = $conn->prepare("INSERT INTO `categorieen` (`Categorie`) VALUES (?)");
+    $stmt2->bind_param('s', $categorie);
+    $stmt2->execute();
+}
 
 function gridhomepaginatestphptesthome($conn)
 {
