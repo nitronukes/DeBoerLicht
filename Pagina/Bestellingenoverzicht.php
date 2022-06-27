@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Student Details
+                        <h4>Bestellingen
                             
                         </h4>
                     </div>

@@ -1,6 +1,5 @@
 <?php
-include("Functions.php");
-include("Connection.php");
+include 'header.php';
 
 if (!isset($_SESSION)) {
     session_start();
