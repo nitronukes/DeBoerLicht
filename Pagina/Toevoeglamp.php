@@ -1,5 +1,6 @@
 <?php
-include 'header.php';
+include 'Functions.php';
+include 'Connection.php';
 
 if (!isset($_SESSION)) {
     session_start();
@@ -17,12 +18,9 @@ if (!isset($_SESSION)) {
     <title>LichtenToevoegen</title>
 </head>
 <body>
+    <a class="verlaattoevoeglamp" href="productbeheer.php   ">&times</a>
     <form action="../Handlers/Lamptoevoeg.php" method="post" enctype="multipart/form-data">
     <div class="Toevoegmodal" id="modal">
-        <div class="Toevoegmodal-header">
-            <div class="Modaltitel">Lamp toevoegen</div>
-            <button class="modalsluiten">&times;</button>
-            </div>
         <div class="Toevoegmodal-body">
             <div class="Toevoegmodallinks"></div>
             <div class="Toevoegmodalrechts"></div>

@@ -46,14 +46,17 @@ $product_ids = array();
 //        );
 //    }
 //    }
-//    if(filter_input(INPUT_GET, 'action')== 'delete'){
-//        //loop door al de producten heen todat het gelijk is aan get id variabelen
-//        foreach ($_SESSION['winkelwagen'] as $key => $product){
-//            if($product['ID']== filter_input(INPUT_GET, 'ID')){
-//               //verwijder product uit winkelwagen
-//                unset($_SESSION['winkelwagen'][$key]);
-//            }
-//        }
+
+    if(filter_input(INPUT_GET, 'action')== 'delete') {
+        //loop door al de producten heen todat het gelijk is aan get id variabelen
+        foreach ($_SESSION['cart'] as $key => $product) {
+            if ($product['id'] == filter_input(INPUT_GET, 'id')) {
+                //verwijder product uit winkelwagen
+                unset($_SESSION['cart'][$key]);
+            }
+        }
+    }
+
 //        //reset session array keys zodat ze gelijk zijn aan $product_ids numeric array
 //        $_SESSION['winkelwagen'] = array_values($_SESSION['winkelwagen']);
 //
@@ -81,28 +84,7 @@ function pre_r($array){
     <body>
 
     <div class="container">
-<!--        --><?php
-//
-//
-//        $query = "SELECT * FROM producten order by ID ASC;";
-//        $result = mysqli_query($connect, $query);
-//
-//
-//        if($result):
-//            if(mysqli_num_rows($result)>0):
-//                while($product= mysqli_fetch_assoc($result)):
-//                    //als je de data base wil na kijken gebruik de command hier onder
-//
-//                 ?>
-<!---->
-<!---->
-<!--                --><?php
-//                endwhile;
-//            endif;
-//           endif;
-//
-//
-//?>
+
 
     </div>
     </body>
@@ -127,9 +109,8 @@ function pre_r($array){
         $total =0;
 
         foreach ($_SESSION['cart'] as $product):
-           // var_dump($product);
-            // query op basis van id
-            // id is $product['id']
+
+
             $connect = mysqli_connect('localhost', 'root', '', 'deboerlicht');
             $sql = "select * from producten where ID = " . $product['id'];
             $result = mysqli_query($connect, $sql);
@@ -145,7 +126,7 @@ function pre_r($array){
             <td><?php echo"€", "", $row['Prijs'];?></td>
             <td><?php echo number_format($product['aantal'] * $row['Prijs'], 2);?></td>
             <td>
-                <a href="winkelwagenn.+&id=<?=$product['id']?> ">
+                <a href="winkelwagenn.php?action=delete&id=<?=$product['id']?> ">
                     <div class="btn-danger">Verwijderen</div>
                 </a>
             </td>
@@ -172,6 +153,11 @@ function pre_r($array){
         </tr>
         <?php
          endif;
+        ?>
+
+
+        <?php
+        $sql = "INSERT INTO "
         ?>
     </table>
 </div>

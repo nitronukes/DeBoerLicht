@@ -146,7 +146,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 200ms ease-in-out;
-  border: 2px solid black;
   z-index: 10;
   width: 500px;
   max-width: 80%;
@@ -174,19 +173,44 @@ align-items: center;
 }
 .Toevoegmodal-body{
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 10fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 10px 0px;
   grid-auto-flow: row;
   padding: 10px;
-  padding-left: 50px;
+  padding-left: 60px;
+  border: 2px solid black;
+  border-radius: 50px;
+  background-color: #ffffff;
+}
+.Toevoegmodal-body div input{
+  background-color: #ffffff;
 }
 
+.Toevoegmodal-body div{
+  background-color: #ffffff;
+}
+.Toevoegmodal-body div select{
+  background-color: #ffffff;
+}
+.verlaattoevoeglamp{
+  cursor: pointer;
+  font-size: xx-large;
+  padding-left: 10px;
+  text-decoration: none;
+  color: #000000;
+}
+.verlaattoevoeglamp:hover{
+  color: #ffffff;
+  transition: .3s;
+}
 .Toevoegmodallinks{
         grid-column-start: 1;
         grid-column-end: 1;
         grid-row-start: 1;
         grid-row-end: 10;
+        /*padding-left: 100px;*/
+        opacity: 0;
 }
 
 .Toevoegmodalrechts {
@@ -194,6 +218,7 @@ align-items: center;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 10;
+        opacity: 0;
 }
 .ProductnaamToevoeg{
   padding: 10px 5px;
@@ -539,15 +564,7 @@ color: #ff5f43;
   color: rgb(255, 102, 0);
   margin: 0% 30%;
 }
-.Winkelmandje {
-  display: grid;
-  grid-template-columns: 1fr 20fr 1fr;
-  grid-template-rows: 1fr 8fr 1fr;
-  grid-auto-columns: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  height: 80vh;
-}
+
 .winkelwagen{
   height:80px;
   width: 80px;
@@ -579,7 +596,9 @@ color: #ff5f43;
   background-color: white;
   border-radius: 10px;
 }
-
+.lichaambesteloverzicht{
+  background-color: #e4e4e4;
+}
 .Productnaam{
   grid-area: 2 / 2 / 2 / 2;
   text-align: center;
@@ -808,4 +827,18 @@ color: #ff5f43;
   color: #ffffff;
   background-color: #000000;
   transition: .3s;
+}
+.voegtoeaanww{
+  background-color: #FFBF81 ;
+  text-decoration: none;
+  border: none;
+  width: 120px;
+  height: 70%;
+  border-radius: 20px;
+  hover
+}
+voegtoeaanww:hover{
+  background-color: #df8b37;
+  transition: .3s;
+
 }
