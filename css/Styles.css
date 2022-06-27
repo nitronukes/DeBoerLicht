@@ -564,15 +564,7 @@ color: #ff5f43;
   color: rgb(255, 102, 0);
   margin: 0% 30%;
 }
-.Winkelmandje {
-  display: grid;
-  grid-template-columns: 1fr 20fr 1fr;
-  grid-template-rows: 1fr 8fr 1fr;
-  grid-auto-columns: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  height: 80vh;
-}
+
 .winkelwagen{
   height:80px;
   width: 80px;
@@ -835,4 +827,12 @@ color: #ff5f43;
   color: #ffffff;
   background-color: #000000;
   transition: .3s;
+}
+.voegtoeaanww{
+  background-color: ##FFBF81 ;
+  text-decoration: none;
+  border: none;
+  width: 70%;
+  height: 70%;
+  border-radius: 20px;
 }
