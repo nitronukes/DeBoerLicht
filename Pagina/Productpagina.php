@@ -13,13 +13,25 @@ $lamp = $_GET['lamp'];
 </head>
 <body>
     <div class="productoverzichtpagina">
+
+        <input type="submit"  onclick="localStorage.setItem()" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
+               value="voeg toe aan winkelwagen"
+
+            <?php
+            $aantal =1;
+            if ($lamp !='') {
+                $_SESSION['cart'][] = array('id' => $lamp, 'aantal' => $aantal);
+            }
+
+
+
+
+                   ?>/>
         <div class="productwinkelmandtoevoeg">
 
 
 
 
-            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
-                   value="voeg toe aan winkelwagen" />
 
         </div>
         <div class="productoverzicht">
