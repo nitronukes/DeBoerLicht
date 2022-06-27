@@ -12,6 +12,8 @@ $categorie = $_GET['filter'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Styles.css">
     <title>Lampenoverzicht</title>
+<link rel="stylesheet" href="../css/Styles.css">
+
 </head>
 
 <body>

@@ -109,16 +109,15 @@ function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $be
         }
     }
 
-$categorie = 5;
     $stmt2 = $conn->prepare("INSERT INTO `producten` (`Categorie_ID`, `ProductNaam`, `Prijs`, `Korting`, `Beschikbaar`, `Tekst`) VALUES (?,?,?,?,?,?)");
     $stmt2->bind_param('isiiis', $categorie, $Productnaam, $Prijs, $korting, $voorraad, $beschrijving);
     $stmt2->execute();
 
-    // if (isset($stmt2)){
-    //     echo"Statement werkt";
-    //     echo $categorie . "pizza";
-    //     echo $stmt2;
-    // }
+    if (isset($stmt2)){
+        // echo $stmt2;
+        //printf($stmt2);
+        //var_dump($stmt2);
+    }
     $lastInsertId = $conn->insert_id;
 
     $stmt2->close();
@@ -146,7 +145,7 @@ $categorie = 5;
 
 function CategorieToevoegpagina($conn)
 {
-    $stmt = $conn->prepare("SELECT Categorie FROM categorieen");
+    $stmt = $conn->prepare("SELECT * FROM categorieen");
     $stmt->execute();
     $sql = $stmt->get_result();
 
@@ -234,7 +233,7 @@ function CategorieTonen($conn)
     foreach ($sql as $row) {
         echo "
             <tr>
-                <form action='#' method='POST' class='d-inline'>    
+                <form action='Categoriebeheer.php?edit=' method='POST' class='d-inline'>    
                     <td> 
                         <Input class='Inputpaginas' value='$row[1]' name='Categorie' placeholder='" . $row[1] . "'></Input>
                     </td>
@@ -252,21 +251,21 @@ function CategorieTonen($conn)
 
 function CategorieVerwijderen($conn, $ID)
 {
-    echo $ID;
-    $stmt1 = $conn->prepare("SELECT ID FROM producten WHERE Categorie_ID = ?");
-    $stmt1->bind_param('s', $ID);
-    $stmt1->execute();
-    $stmt1->close();
+    //echo $ID;
+    $stmt = $conn->prepare("SELECT ID FROM producten WHERE Categorie_ID = $ID");
+    $stmt->execute();
+    $sql = $stmt->get_result();
+    $products = $sql->fetch_all();
 
-    if (isset($stmt)) {
-        foreach ($stmt1 as $row) {
-
-            $stmt2 = $conn->prepare("DELETE FROM productfoto WHERE ProductID = ?");
-            $stmt2->bind_param('s', $stmt1);
+    if (isset($products)) {
+        //var_dump($products);
+        foreach ($products as $product) {
+            var_dump($product);
+            $stmt2 = $conn->prepare("DELETE FROM productfoto WHERE ProductID = $product[0]");
             $stmt2->execute();
-            $stmt2->close();
         }
-
+        echo 'fotos verwijderd';
+        
         $stmt3 = $conn->prepare("DELETE FROM producten WHERE Categorie_ID = ?");
         $stmt3->bind_param('s', $ID);
         $stmt3->execute();
