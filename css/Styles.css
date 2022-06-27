@@ -32,7 +32,6 @@
     ". . ."
     ". . .";
     height: 100vh;
-    background-color: #e1e1d0;
   }
   
   .InlogPaginaGrid form{
@@ -81,10 +80,13 @@
         text-align: center;
         width: 100%;
         border-radius: 50px;
-        background-color: white;
+        background-color: #ffffff;
     }
     .InlogGrid div button{
       height: 100%;      
+    }
+    .InlogGrid div{
+      border-radius: 50px;
     }
 
     .InlogBlokLinks {
@@ -92,15 +94,25 @@
         grid-column-end: 1;
         grid-row-start: 1;
         grid-row-end: 6;
+        background-color: #ffffff;
       }
       .InlogBlokRechts {
         grid-column-start: 3;
         grid-column-end: 3;
         grid-row-start: 1;
         grid-row-end: 6;
+        background-color: #ffffff;
       }
 
-    
+    .x{
+      background-color: #ffffff;
+    }
+    .y{
+      background-color: #ffffff;
+    }
+    .inlogtekst{
+      background-color: #ffffff;
+    }
       .InlogButton{
         background-color: #ffbf81;  
         text-decoration: none;

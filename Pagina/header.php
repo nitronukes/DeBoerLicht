@@ -22,12 +22,12 @@ include("Functions.php");
 <?php
     if(isset($_SESSION) && isset($_SESSION['email']) != ''){
         echo '
-            <li><a class="headerknop" href="loguit.php">loguit</a></li>
-            <li><a class="headerknop" href="Lampenoverzicht.php?filter=Geencategorie">lampen</a></li>
+            <li><a class="headerknop" href="loguit.php">Loguit</a></li>
+            <li><a class="headerknop" href="Lampenoverzicht.php?filter=Geencategorie">Lampen</a></li>
             <li><a class="headerknop" href="Bestellingenoverzicht.php">Besteloverzicht</a></li>
             <li><a class="headerknop" href="Productbeheer.php?deleteID=-1">Productbeheer</a></li>
             <li><a class="headerknop" href="Categoriebeheer.php?deleteID=-1">Categoriebeheer</a></li>
-            <li><a class="headerknop" href="index.php">home</a> </li>
+            <li><a class="headerknop" href="index.php">Home</a> </li>
         ';
 
     }else{
