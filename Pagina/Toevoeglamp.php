@@ -1,6 +1,5 @@
 <?php
-include("Functions.php");
-include("Connection.php");
+include 'header.php';
 
 if (!isset($_SESSION)) {
     session_start();
@@ -33,7 +32,7 @@ if (!isset($_SESSION)) {
             <div><select class="CategorieToevoeg" name="categorie" id="categorie" required>
             <?php
                 
-                CategorieToevoeg($conn);
+                CategorieToevoegpagina($conn);
                 ?>
                  </select> </div>
             <div><input type="text" name="Beschrijving" class="BeschrijvingToevoeg" placeholder="Beschrijving" required> </div>
