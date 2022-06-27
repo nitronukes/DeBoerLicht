@@ -62,7 +62,7 @@ $product_ids = array();
 //
 //
 //}
-pre_r($_SESSION);
+//pre_r($_SESSION);
 
 function pre_r($array){
     echo'<pre>';
