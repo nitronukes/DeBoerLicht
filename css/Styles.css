@@ -379,8 +379,11 @@ align-items: center;
 .Lampenoverzichtfotos{
   width: 100%;
   height: 100%;
+  border-radius: 30px;
 }
-
+.lampoverzichtachtergrond{
+  background-color: #ffffff;
+}
 .homebodylichaam{
   display: grid;
   grid-template-columns: 2fr 2fr;

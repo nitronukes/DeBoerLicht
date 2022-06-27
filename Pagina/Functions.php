@@ -21,7 +21,7 @@ function Lampenoverzicht($conn, $categorie)
 
     foreach ($sql as $row) {
         echo "
-             <div>
+             <div class='lampoverzichtachtergrond'>
              <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=" . $row[2] . "'>
              <img class='Lampenoverzichtfotos' src='$row[11]' alt='$row[4]'>
                 <input type='submit' value='$row[4]' class='Lampenoverzichtbutton'/>
