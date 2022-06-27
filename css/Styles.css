@@ -829,10 +829,16 @@ color: #ff5f43;
   transition: .3s;
 }
 .voegtoeaanww{
-  background-color: ##FFBF81 ;
+  background-color: #FFBF81 ;
   text-decoration: none;
   border: none;
-  width: 70%;
+  width: 120px;
   height: 70%;
   border-radius: 20px;
+  hover
+}
+voegtoeaanww:hover{
+  background-color: #df8b37;
+  transition: .3s;
+
 }

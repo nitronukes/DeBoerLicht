@@ -13,8 +13,8 @@ $lamp = $_GET['lamp'];
 </head>
 <body>
     <div class="productoverzichtpagina">
-        <input class="voegtoeaanww" type="submit" name="add_to_cart"
-               value="voeg toe aan winkelwagen"></input>
+        <button class="voegtoeaanww" type="submit" name="add_to_cart" value="voeg toe aan winkelwagen">voeg toe aan winkelwagen</button>
+
 
             <?php
             $aantal =1;
@@ -25,7 +25,7 @@ $lamp = $_GET['lamp'];
 
 
 
-                   ?>/>
+                   ?>
         <div class="productwinkelmandtoevoeg">
 
 

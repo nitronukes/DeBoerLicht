@@ -154,6 +154,11 @@ function pre_r($array){
         <?php
          endif;
         ?>
+
+
+        <?php
+        $sql = "INSERT INTO "
+        ?>
     </table>
 </div>
 
