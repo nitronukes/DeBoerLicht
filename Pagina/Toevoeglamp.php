@@ -20,10 +20,6 @@ if (!isset($_SESSION)) {
 <body>
     <form action="../Handlers/Lamptoevoeg.php" method="post" enctype="multipart/form-data">
     <div class="Toevoegmodal" id="modal">
-        <div class="Toevoegmodal-header">
-            <div class="Modaltitel">Lamp toevoegen</div>
-            <button class="modalsluiten">&times;</button>
-            </div>
         <div class="Toevoegmodal-body">
             <div class="Toevoegmodallinks"></div>
             <div class="Toevoegmodalrechts"></div>
