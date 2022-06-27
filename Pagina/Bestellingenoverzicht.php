@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Student Details
+                        <h4>Bestellingen
                             
                         </h4>
                     </div>
@@ -60,7 +60,6 @@
                                                 <td><?= $student['adress']; ?></td>
                                                 <td>
                                                     
-                                                    <a href="student-edit.php?id=<?= $student['id']; ?>" class="btn btn-success btn-sm">Accepteren</a>
                                                     <form action="code.php" method="POST" class="d-inline">
                                                         <button type="submit" name="delete_student" value="<?=$student['id'];?>" class="btn btn-danger btn-sm">Verwijder</button>
                                                     </form>
