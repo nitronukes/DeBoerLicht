@@ -108,13 +108,17 @@ function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $be
             }
         }
     }
-    $categorie = 2;
 
-
+$categorie = 5;
     $stmt2 = $conn->prepare("INSERT INTO `producten` (`Categorie_ID`, `ProductNaam`, `Prijs`, `Korting`, `Beschikbaar`, `Tekst`) VALUES (?,?,?,?,?,?)");
     $stmt2->bind_param('isiiis', $categorie, $Productnaam, $Prijs, $korting, $voorraad, $beschrijving);
     $stmt2->execute();
 
+    // if (isset($stmt2)){
+    //     echo"Statement werkt";
+    //     echo $categorie . "pizza";
+    //     echo $stmt2;
+    // }
     $lastInsertId = $conn->insert_id;
 
     $stmt2->close();
@@ -140,7 +144,7 @@ function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $be
     $conn->close();
 }
 
-function CategorieToevoeg($conn)
+function CategorieToevoegpagina($conn)
 {
     $stmt = $conn->prepare("SELECT Categorie FROM categorieen");
     $stmt->execute();
@@ -148,7 +152,7 @@ function CategorieToevoeg($conn)
 
     foreach ($sql as $row) {
         echo "
-            <option value=' $row[CategorieID]' selected> $row[Categorie] </option>
+            <option name='categorie' value=' $row[CategorieID]' selected> $row[Categorie] </option>
         ";
     }
 }
@@ -229,34 +233,39 @@ function CategorieTonen($conn)
 
     foreach ($sql as $row) {
         echo "
-                                            <tr>
-                                                <form action='#' method='POST' class='d-inline'>    
-                                                <td> <Input class='Inputpaginas' value='$row[1]' name='Categorie' placeholder='" . $row[1] . "'></Input></td>
-                                                <td>
-                                                        <button name='CategorieID' type='submit' value='" . $row[0] . "' class='btn btn-success btn-sm'><strong> Categore wijzigen</strong></button>
-                                                    </form>
-                                                    <form action='Categoriebeheer.php?deleteID=$row[0]' method='POST' class='d-inline'>
-                                                        <button type='submit' name='' value='" . $row[0] . "' class='btn btn-danger btn-sm' onclick='window.location.href=''>Verwijder</button>                                                    
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            ";
+            <tr>
+                <form action='#' method='POST' class='d-inline'>    
+                    <td> 
+                        <Input class='Inputpaginas' value='$row[1]' name='Categorie' placeholder='" . $row[1] . "'></Input>
+                    </td>
+                <td>
+                        <button name='CategorieID' type='submit' value='" . $row[0] . "' class='btn btn-success btn-sm'><strong> Categore wijzigen</strong></button>
+                </form>
+                <form action='Categoriebeheer.php?deleteID=$row[0]' method='POST' class='d-inline'>
+                    <button type='submit' name='' value='" . $row[0] . "' class='btn btn-danger btn-sm' onclick='window.location.href=''>Verwijder</button>                                                    
+                </form>
+                </td>
+            </tr>
+        ";
     }
 }
 
 function CategorieVerwijderen($conn, $ID)
 {
-
+    echo $ID;
     $stmt1 = $conn->prepare("SELECT ID FROM producten WHERE Categorie_ID = ?");
     $stmt1->bind_param('s', $ID);
     $stmt1->execute();
     $stmt1->close();
 
     if (isset($stmt)) {
-        $stmt2 = $conn->prepare("DELETE FROM productfoto WHERE ProductID = ?");
-        $stmt2->bind_param('s', $stmt1);
-        $stmt2->execute();
-        $stmt2->close();
+        foreach ($stmt1 as $row) {
+
+            $stmt2 = $conn->prepare("DELETE FROM productfoto WHERE ProductID = ?");
+            $stmt2->bind_param('s', $stmt1);
+            $stmt2->execute();
+            $stmt2->close();
+        }
 
         $stmt3 = $conn->prepare("DELETE FROM producten WHERE Categorie_ID = ?");
         $stmt3->bind_param('s', $ID);
@@ -268,6 +277,22 @@ function CategorieVerwijderen($conn, $ID)
     $stmt4->bind_param('s', $ID);
     $stmt4->execute();
     $stmt4->close();
+}
+
+function CategorieToevoegen($conn)
+{
+    echo "
+            <tr>
+                <form action='#' method='POST' class='d-inline'>    
+                    <td> 
+                        <Input class='Inputpaginas' value='' name='Categorienaam' placeholder='Categorienaam'></Input>
+                    </td>
+                    <td>
+                        <button name='CategorieID' type='submit' value='Categorienaam' class='btn btn-success btn-sm'><strong> Categore toevoegen</strong></button>
+                    </td>
+                </form>
+            </tr>
+        ";
 }
 
 
