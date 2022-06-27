@@ -46,14 +46,17 @@ $product_ids = array();
 //        );
 //    }
 //    }
-//    if(filter_input(INPUT_GET, 'action')== 'delete'){
-//        //loop door al de producten heen todat het gelijk is aan get id variabelen
-//        foreach ($_SESSION['winkelwagen'] as $key => $product){
-//            if($product['ID']== filter_input(INPUT_GET, 'ID')){
-//               //verwijder product uit winkelwagen
-//                unset($_SESSION['winkelwagen'][$key]);
-//            }
-//        }
+
+    if(filter_input(INPUT_GET, 'action')== 'delete') {
+        //loop door al de producten heen todat het gelijk is aan get id variabelen
+        foreach ($_SESSION['cart'] as $key => $product) {
+            if ($product['id'] == filter_input(INPUT_GET, 'id')) {
+                //verwijder product uit winkelwagen
+                unset($_SESSION['cart'][$key]);
+            }
+        }
+    }
+
 //        //reset session array keys zodat ze gelijk zijn aan $product_ids numeric array
 //        $_SESSION['winkelwagen'] = array_values($_SESSION['winkelwagen']);
 //
@@ -145,7 +148,7 @@ function pre_r($array){
             <td><?php echo"€", "", $row['Prijs'];?></td>
             <td><?php echo number_format($product['aantal'] * $row['Prijs'], 2);?></td>
             <td>
-                <a href="winkelwagenn.+&id=<?=$product['id']?> ">
+                <a href="winkelwagenn.php?action=delete&id=<?=$product['id']?> ">
                     <div class="btn-danger">Verwijderen</div>
                 </a>
             </td>
