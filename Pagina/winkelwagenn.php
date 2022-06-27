@@ -59,7 +59,7 @@ $product_ids = array();
 //
 //
 //}
-pre_r($_SESSION);
+//pre_r($_SESSION);
 
 function pre_r($array){
     echo'<pre>';
@@ -127,7 +127,7 @@ function pre_r($array){
         $total =0;
 
         foreach ($_SESSION['cart'] as $product):
-            var_dump($product);
+           // var_dump($product);
             // query op basis van id
             // id is $product['id']
             $connect = mysqli_connect('localhost', 'root', '', 'deboerlicht');

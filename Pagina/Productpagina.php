@@ -14,7 +14,7 @@ $lamp = $_GET['lamp'];
 <body>
     <div class="productoverzichtpagina">
 
-        <input type="submit"  onclick="localStorage.setItem()" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
+        <input type="submit"  name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
                value="voeg toe aan winkelwagen"
 
             <?php
