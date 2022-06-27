@@ -193,7 +193,17 @@ align-items: center;
 .Toevoegmodal-body div select{
   background-color: #ffffff;
 }
-
+.verlaattoevoeglamp{
+  cursor: pointer;
+  font-size: xx-large;
+  padding-left: 10px;
+  text-decoration: none;
+  color: #000000;
+}
+.verlaattoevoeglamp:hover{
+  color: #ffffff;
+  transition: .3s;
+}
 .Toevoegmodallinks{
         grid-column-start: 1;
         grid-column-end: 1;
@@ -594,7 +604,9 @@ color: #ff5f43;
   background-color: white;
   border-radius: 10px;
 }
-
+.lichaambesteloverzicht{
+  background-color: #e4e4e4;
+}
 .Productnaam{
   grid-area: 2 / 2 / 2 / 2;
   text-align: center;

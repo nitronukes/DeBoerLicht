@@ -15,7 +15,7 @@
 
     <title>Bestellingenoverzicht</title>
 </head>
-<body>
+<body class="lichaambesteloverzicht">
   
     <div class="container mt-4">
 
