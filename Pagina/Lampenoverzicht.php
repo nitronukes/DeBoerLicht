@@ -17,7 +17,7 @@ $categorie = $_GET['filter'];
     <div class="Lampenoverzichtpaginalinks"></div>
     <div class="Lampenoverzichtpaginarechts"></div>
     <div class="Lampenoverzichtfilteren">
-        <h2>Filteren</h2>
+        <h2 class="h2overzicht">Filteren</h2>
         <select onchange="location = this.value; value=' <?php $categorie ?>'">
             <?php
                 if ($categorie == 'Geencategorie') {

@@ -22,7 +22,7 @@ function Lampenoverzicht($conn, $categorie)
     foreach ($sql as $row) {
          echo "
              <div>
-             <form method='post' action='Productpagina.php?lamp=" . $row[2] . "'>
+             <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=" . $row[2] . "'>
              <img class='Lampenoverzichtfotos' src='$row[11]' alt='$row[4]'>
                 <input type='submit' value='$row[4]' class='Lampenoverzichtbutton'/>
             </form>
@@ -188,7 +188,7 @@ function Lamptonen($conn, $lamp)
         <div class="Productnaam">' . $row[2] . '</div>
         <div class="producttekst">' . $row[6] . '</div>
         <div class="productprijs"> € ' . $row[3] . '</div>
-        <div class="productvoorraad">' . $row[5] . ' exemplaren beschikbaar</div>
+        <div class="productvoorraad">' . $row[5] . ' stuks op voorraad</div>
         <div class="productAantal"> 1 </div>
         <div class="productwinkelmandtoevoeg">  </div>
         <div class="ProductSlideShow">
@@ -223,7 +223,7 @@ function Lamptonen($conn, $lamp)
 }
 function gridhomepaginatestphptesthome($conn)
 {
-$stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.Korting > 0 GROUP BY productfoto.ProductID ORDER BY Korting DESC LIMIT 6;");
+$stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.Korting > 0 GROUP BY productfoto.ProductID ORDER BY Korting DESC LIMIT 4;");
 
 $stmt->execute();
 $sql = $stmt->get_result();
@@ -235,7 +235,7 @@ foreach ($sql as $row) {
      echo "<div>
      <form method='post' action='Productpagina.php?lamp=" . $row[0] . "'>
      <img class='Lampenoverzichtfotos' src='$row[9]''>
-        <input type='submit' value='$row[4] euro korting' class='indexknop'/>
+        <input type='submit' value='$row[4]% korting' class='indexknop'/>
     </form>
     </div>";
 } 
