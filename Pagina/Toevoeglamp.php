@@ -1,4 +1,6 @@
 <?php
+include 'Functions.php';
+include 'Connection.php';
 
 if (!isset($_SESSION)) {
     session_start();
