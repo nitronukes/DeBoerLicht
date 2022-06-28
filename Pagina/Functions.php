@@ -194,7 +194,7 @@ function Lamptonen($conn, $lamp)
         <div class="producttekst">' . $row[6] . '</div>
         <div class="productprijs"> € ' . $row[3] . '</div>
         <div class="productvoorraad">' . $row[5] . ' stuks op voorraad</div>
-        <div class="productAantal">  </div>
+        <div class="productAantal">label</div>
         <div class="productwinkelmandtoevoeg"> <button class="voegtoeaanww" type="submit" name="add_to_cart" value="voeg toe aan winkelwagen">voeg toe aan winkelwagen</button> </div>
         <div class="ProductSlideShow">
         <div class="slideshow-container">
@@ -272,7 +272,6 @@ function CategorieVerwijderen($conn, $ID)
             $stmt2 = $conn->prepare("DELETE FROM productfoto WHERE ProductID = $product[0]");
             $stmt2->execute();
         }
-        echo 'fotos verwijderd';
         
         $stmt3 = $conn->prepare("DELETE FROM producten WHERE Categorie_ID = ?");
         $stmt3->bind_param('s', $ID);
@@ -302,6 +301,11 @@ function CategorieToevoegen($conn)
         ";
 }
 
+function Categorietoevoegklik($conn, $categorie){
+    $stmt2 = $conn->prepare("INSERT INTO `categorieen` (`Categorie`) VALUES (?)");
+    $stmt2->bind_param('s', $categorie);
+    $stmt2->execute();
+}
 
 function gridhomepaginatestphptesthome($conn)
 {

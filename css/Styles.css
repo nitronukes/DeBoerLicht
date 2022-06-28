@@ -328,7 +328,6 @@ align-items: center;
       
      .menu li a {
         display: block;
-        color: black ;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
@@ -602,6 +601,8 @@ color: #ff5f43;
 .Productnaam{
   grid-area: 2 / 2 / 2 / 2;
   text-align: center;
+  font-size: x-large;
+  color: #08415C;
 }
 
 .Productfoto{
@@ -616,11 +617,13 @@ color: #ff5f43;
 .producttekst {
   grid-area: 4 / 4 / 4 / 6;
   background-color: #ffffff;
+  font-size: x-large;
 }
 
 .productprijs {
   grid-area: 3 / 4 / 3 / 4;
   background-color: #ffffff;
+  font-size: x-large;
 }
 
 .productvoorraad {
@@ -630,7 +633,7 @@ color: #ff5f43;
   height: 50%;
   text-align: center;
   color: white;
-  font-size: large;
+  font-size: x-large;
   padding-bottom: 30px;
   padding-top: 6px;
   justify-content: center;
@@ -676,6 +679,7 @@ color: #ff5f43;
   font-size: 18px;
   border-radius: 0 3px 3px 0;
   user-select: none;
+  transition: .3s;
 }
 
 /* Position the "next button" to the right */
@@ -716,15 +720,16 @@ color: #ff5f43;
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
   align-self: center;
+  background-color: #ffbf81;
 }
 
 .active, .dot:hover {
-  background-color: #717171;
+  background-color: #df8b37;
+  transition: .3s;
 }
 
 
@@ -802,7 +807,8 @@ color: #ff5f43;
 
 .h2overzicht{
   background-color: #ffffff;
-  color: #000000;
+  color: #08415C;
+  font-size: large;
 }
 .productlampoverzicht{
   background-color: #ffffff;
@@ -822,10 +828,11 @@ color: #ff5f43;
 
 .headerknop{
   background-color: #ffffff;
+  color: #08415C;
+  font-size: 40px;
 }
 .headerknop:hover{
   color: #ffffff;
-  background-color: #000000;
   transition: .3s;
 }
 .voegtoeaanww{
@@ -835,10 +842,21 @@ color: #ff5f43;
   width: 120px;
   height: 70%;
   border-radius: 20px;
-
+  cursor: pointer;
+  transition: .4s;
 }
-voegtoeaanww:hover{
+.voegtoeaanww:hover{
   background-color: #df8b37;
   transition: .3s;
 
+}
+
+.categorieuitzoeken{
+  background-color: #ffbf81;
+  font-size: large;
+  outline: none;
+}
+.categorieuitzoeken:hover{
+  background-color: #df8b37;
+  transition: .3s;
 }
