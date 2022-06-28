@@ -31,7 +31,7 @@ include("Functions.php");
 
     }else{
         echo '
-            <li><a class="headerknop fa fa-shopping-cart" href="winkelwagenn.php" style="font-size:16px"></a></li>
+            <li><a class="headerknop fa fa-shopping-cart" href="winkelwagenn.php" style="font-size:40px"></a></li>
             <li><a class="headerknop" href="Inlogpagina.php">login</a></li>
             <li><a class="headerknop" href="Lampenoverzicht.php?filter=Geencategorie">lampen</a></li>
             <li><a class="headerknop" href="index.php">home</a> </li>

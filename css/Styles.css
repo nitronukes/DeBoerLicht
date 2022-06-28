@@ -829,6 +829,7 @@ color: #ff5f43;
 .headerknop{
   background-color: #ffffff;
   color: #08415C;
+  font-size: 40px;
 }
 .headerknop:hover{
   color: #ffffff;
