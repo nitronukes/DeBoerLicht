@@ -2,7 +2,9 @@
 session_start();
 require 'Connection.php';
 include 'header.php';
-$DeleteID = $_GET['deleteID'];
+if (isset($_GET['deleteID'])) {
+    $DeleteID = $_GET['deleteID'];
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -37,15 +39,20 @@ $DeleteID = $_GET['deleteID'];
                         </thead>
                         <tbody>
                             <?php
+                            if (isset($DeleteID)) {
 
-                            if ($DeleteID > -1) {
-                                CategorieVerwijderen($conn, $DeleteID);
+                                if ($DeleteID > -1) {
+                                    CategorieVerwijderen($conn, $DeleteID);
+                                }
                             }
 
-                            if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                                //CategorieUpdate($conn, $_POST['Categorie'], $_POST['CategorieID']);
-                                CategorieToevoegen($conn);
+                            if ($_SERVER["REQUEST_METHOD"] === "POST" & isset($_POST['Categorie'])) {
+                                CategorieUpdate($conn, $_POST['Categorie'], $_POST['CategorieID']);
                             }
+                            if ($_SERVER["REQUEST_METHOD"] === "POST" & isset($_POST['Categorienaam'])) {
+                                Categorietoevoegklik($conn, $_POST['Categorienaam']);
+                            }
+                            CategorieToevoegen($conn);
                             CategorieTonen($conn);
 
                             ?>
