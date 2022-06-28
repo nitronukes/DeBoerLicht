@@ -193,7 +193,17 @@ align-items: center;
 .Toevoegmodal-body div select{
   background-color: #ffffff;
 }
-
+.verlaattoevoeglamp{
+  cursor: pointer;
+  font-size: xx-large;
+  padding-left: 10px;
+  text-decoration: none;
+  color: #000000;
+}
+.verlaattoevoeglamp:hover{
+  color: #ffffff;
+  transition: .3s;
+}
 .Toevoegmodallinks{
         grid-column-start: 1;
         grid-column-end: 1;
@@ -554,15 +564,7 @@ color: #ff5f43;
   color: rgb(255, 102, 0);
   margin: 0% 30%;
 }
-.Winkelmandje {
-  display: grid;
-  grid-template-columns: 1fr 20fr 1fr;
-  grid-template-rows: 1fr 8fr 1fr;
-  grid-auto-columns: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  height: 80vh;
-}
+
 .winkelwagen{
   height:80px;
   width: 80px;
@@ -594,7 +596,9 @@ color: #ff5f43;
   background-color: white;
   border-radius: 10px;
 }
-
+.lichaambesteloverzicht{
+  background-color: #e4e4e4;
+}
 .Productnaam{
   grid-area: 2 / 2 / 2 / 2;
   text-align: center;
@@ -823,4 +827,18 @@ color: #ff5f43;
   color: #ffffff;
   background-color: #000000;
   transition: .3s;
+}
+.voegtoeaanww{
+  background-color: #FFBF81 ;
+  text-decoration: none;
+  border: none;
+  width: 120px;
+  height: 70%;
+  border-radius: 20px;
+
+}
+voegtoeaanww:hover{
+  background-color: #df8b37;
+  transition: .3s;
+
 }

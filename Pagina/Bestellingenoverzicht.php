@@ -15,7 +15,7 @@
 
     <title>Bestellingenoverzicht</title>
 </head>
-<body>
+<body class="lichaambesteloverzicht">
   
     <div class="container mt-4">
 
@@ -35,7 +35,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Voledige naam</th>
+                                    <th>Volledige naam</th>
                                     <th>Email</th>
                                     <th>Telefoonnummer</th>
                                     <th>Adress</th>
