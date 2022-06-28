@@ -186,7 +186,7 @@ function Lamptonen($conn, $lamp)
         <div class="producttekst">' . $row[6] . '</div>
         <div class="productprijs"> € ' . $row[3] . '</div>
         <div class="productvoorraad">' . $row[5] . ' stuks op voorraad</div>
-        <div class="productAantal"> 1 </div>
+        <div class="productAantal">label</div>
         <div class="productwinkelmandtoevoeg"> <button class="voegtoeaanww" type="submit" name="add_to_cart" value="voeg toe aan winkelwagen">voeg toe aan winkelwagen</button> </div>
         <div class="ProductSlideShow">
         <div class="slideshow-container">

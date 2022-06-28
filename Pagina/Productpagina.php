@@ -13,40 +13,18 @@ $lamp = $_GET['lamp'];
 </head>
 <body>
     <div class="productoverzichtpagina">
-
-
-
             <?php
             $aantal =1;
             if ($lamp !='') {
                 $_SESSION['cart'][] = array('id' => $lamp, 'aantal' => $aantal);
             }
-
-
-
-
                    ?>
         <div class="productwinkelmandtoevoeg">
-
-
-
-
-
         </div>
         <div class="productoverzicht">
             <?php
                 $Lampenfunctie = Lamptonen($conn, $lamp);
             ?>
-
-
-
-
-
-
-
-
-
-
     </div>
     </div>
 </body>
