@@ -28,6 +28,14 @@ function Lampenoverzicht($conn, $categorie)
             </form>
             </div>";
     }
+    echo "
+    <div class='lampoverzichtachtergrond'>
+    <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=>
+    <i class='fa-solid fa-circle-plus'></i>
+    <input type='submit' value='' class='Lampenoverzichtbutton'/>
+   </form>
+   </div>";
+
 }
 
 function Filteren($conn, $categorie)
@@ -186,7 +194,7 @@ function Lamptonen($conn, $lamp)
         <div class="producttekst">' . $row[6] . '</div>
         <div class="productprijs"> € ' . $row[3] . '</div>
         <div class="productvoorraad">' . $row[5] . ' stuks op voorraad</div>
-        <div class="productAantal"> 1 </div>
+        <div class="productAantal">  </div>
         <div class="productwinkelmandtoevoeg"> <button class="voegtoeaanww" type="submit" name="add_to_cart" value="voeg toe aan winkelwagen">voeg toe aan winkelwagen</button> </div>
         <div class="ProductSlideShow">
         <div class="slideshow-container">
