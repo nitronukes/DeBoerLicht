@@ -28,6 +28,14 @@ function Lampenoverzicht($conn, $categorie)
             </form>
             </div>";
     }
+    echo "
+    <div class='lampoverzichtachtergrond'>
+    <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=>
+    <i class='fa-solid fa-circle-plus'></i>
+    <input type='submit' value='' class='Lampenoverzichtbutton'/>
+   </form>
+   </div>";
+
 }
 
 function Filteren($conn, $categorie)
