@@ -68,7 +68,7 @@ function pre_r($array){
     echo'<pre>';
     print_r($array);
     echo'</pre>';
-}
+}?>
 ?>
 <!DOCTYPE html>
 <html>
@@ -147,17 +147,24 @@ function pre_r($array){
                 if (isset($_SESSION['cart'])):
                 if (count($_SESSION['cart']) > 0):
                 ?>
-                <a href="#" class="button">Checkout</a>
+                <a href="Bestelpagina.php" class="button">Checkout</a>
                 <?php endif; endif; ?>
             </td>
         </tr>
         <?php
          endif;
-        ?>
+
+            ?>
 
 
         <?php
-        $sql = "INSERT INTO "
+        if (isset($_SESSION['cart'])!='') {
+            $_SESSION['bestelling'][] = array('id' => $product['id'], 'aantal' => $product['aantal'], 'Prijs' => $row['Prijs']);
+
+        }
+        pre_r($_SESSION);
+
+        $sql = "insert into winkelmandopstelling(ProductID) values ($product[id])";
         ?>
     </table>
 </div>

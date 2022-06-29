@@ -403,6 +403,7 @@ align-items: center;
 }
 .Lampenoverzichtgrid div{
   border-radius: 15px;
+  height: 100%;
 }
 
 .Lampenoverzichtfilteren{
@@ -419,6 +420,7 @@ align-items: center;
 }
 .lampoverzichtachtergrond{
   background-color: #ffffff;
+  height: 100%;
 }
 .homebodylichaam{
   display: grid;
@@ -821,6 +823,7 @@ color: #ff5f43;
   cursor: pointer;
   border: none;
   border-radius: 20px;
+  width: 100%;
 }
 .Lampenoverzichtbutton:hover{
   background-color: #df8b37;
