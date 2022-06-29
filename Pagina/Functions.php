@@ -24,15 +24,16 @@ function Lampenoverzicht($conn, $categorie)
              <div class='lampoverzichtachtergrond'>
              <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=" . $row[2] . "'>
              <img class='Lampenoverzichtfotos' src='$row[11]' alt='$row[4]'>
-                <input type='submit' value='$row[4]' class='Lampenoverzichtbutton'/>
+                <input type='submit' value=' row[4]' class='Lampenoverzichtbutton'/>
+                <input 
             </form>
             </div>";
     }
     echo "
     <div class='lampoverzichtachtergrond'>
     <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=>
-    <i class='fa-solid fa-circle-plus'></i>
     <input type='submit' value='' class='Lampenoverzichtbutton'/>
+    <i class='fa-solid fa-circle-plus'></i>
    </form>
    </div>";
 
