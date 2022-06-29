@@ -8,33 +8,6 @@ function pre_r($array){
     echo'</pre>';
 }
 
-if (isset($_POST['action'])) {
-    echo "A";
-    if ($_POST['action'] == 'remove') {
-        echo "B";
-        $removalpid = $_POST['productid'];
-
-        foreach ($_SESSION['cart'] as $productid => $productinfo) {
-            echo "C";
-            if ($productid == $removalpid) {
-                echo "D";
-                if ($productinfo['amount'] > 1) {
-                    echo "E";
-                    $_SESSION['cart'][$productid]['amount']--;
-                } else {
-                    echo "F";
-                    unset($_SESSION['cart'][$productid]);
-                }
-            }
-        }
-
-        //header("Location: winkelwagenn.php");
-
-    }
-}
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -96,12 +69,11 @@ if (isset($_POST['action'])) {
             <td>
             <a href='winkelwagenn.php?action=delete&id=<?=$productid?> '>
             
-            <form action='removeproduct.php' method='post'>
+            <form method='POST' action='removeproduct.php'>
                 <div class='btn-danger'>
                     <btn type='submit'>Verwijderen</btn>
                 </div>
                 <input hidden type='text' name='productid' value='$productid'/>$productid
-                <input hidden type='text' name='action' value='remove'/>remove
             </form>
             
             </a>
