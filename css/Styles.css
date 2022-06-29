@@ -824,6 +824,7 @@ color: #ff5f43;
   border: none;
   border-radius: 20px;
   width: 100%;
+  margin-top: 5px;
 }
 .Lampenoverzichtbutton:hover{
   background-color: #df8b37;
