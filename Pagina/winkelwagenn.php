@@ -2,73 +2,40 @@
 
 include 'header.php';
 
-//session_destroy();
-$product_ids = array();
-////kijken of product naar winkelwagen is verstuurd
-//if(filter_input(INPUT_POST, 'add_to_cart')){
-//    if(isset($_SESSION['winkelwagen'])){
-//
-//        //bijhouden hoeveel producten in de winkelwagen zitten
-//            $count = count($_SESSION['winkelwagen']);
-//
-//        //maak een sequantial array om array keys aan products ids vast te maken
-//            $product_ids = array_column($_SESSION['winkelwagen'], 'ID');
-//
-//        if(!in_array(filter_input(INPUT_GET,'ID' ), $product_ids)){
-//            $_SESSION['winkelwagen'][$count] = array
-//            (
-//                'ID' => filter_input(INPUT_GET, 'ID'),
-//                'ProductNaam' => filter_input(INPUT_POST,'ProductNaam'),
-//                'Prijs' => filter_input(INPUT_POST, 'Prijs'),
-//                'hoeveelheid' => filter_input(INPUT_POST, 'hoeveelheid'),
-//
-//        );
-//
-//        }
-//        else{
-//            //array key gelijk maken aan id van het product dat word toegevoegd aan de winkelwagen
-//            for($i = 0; $i < count($product_ids); $i++){
-//                if($product_ids[$i] == filter_input(INPUT_GET, 'ID')){
-//                    //toevoegen hoeveelheid aan bestaand item in de array
-//                    $_SESSION['winkelwagen'][$i]['hoeveelheid'] += filter_input(INPUT_POST, '');
-//                }
-//            }
-//        }
-//    }
-//    else{// als winkelwagen session niet bestaal maak een product array met key 0
-//        //array maken met toegevoegde data, start bij key 0 en vul het net variabelen
-//        $_SESSION['winkelwagen'][0] = array
-//        (
-//              'ID'=> filter_input(INPUT_GET, 'ID'),
-//              'ProductNaa'=> filter_input(INPUT_POST,'PrductNaam'),
-//              'Prijs'=> filter_input(INPUT_POST, 'Prijs'),
-//              'hoeveelheid'=> filter_input(INPUT_POST, 'hoeveelheid')
-//        );
-//    }
-//    }
-
-    if(filter_input(INPUT_GET, 'action')== 'delete') {
-        //loop door al de producten heen todat het gelijk is aan get id variabelen
-        foreach ($_SESSION['cart'] as $key => $product) {
-            if ($product['id'] == filter_input(INPUT_GET, 'id')) {
-                //verwijder product uit winkelwagen
-                unset($_SESSION['cart'][$key]);
-            }
-        }
-    }
-
-//        //reset session array keys zodat ze gelijk zijn aan $product_ids numeric array
-//        $_SESSION['winkelwagen'] = array_values($_SESSION['winkelwagen']);
-//
-//
-//}
-//pre_r($_SESSION);
-
 function pre_r($array){
     echo'<pre>';
     print_r($array);
     echo'</pre>';
-}?>
+}
+
+if (isset($_POST['action'])) {
+    echo "A";
+    if ($_POST['action'] == 'remove') {
+        echo "B";
+        $removalpid = $_POST['productid'];
+
+        foreach ($_SESSION['cart'] as $productid => $productinfo) {
+            echo "C";
+            if ($productid == $removalpid) {
+                echo "D";
+                if ($productinfo['amount'] > 1) {
+                    echo "E";
+                    $_SESSION['cart'][$productid]['amount']--;
+                } else {
+                    echo "F";
+                    unset($_SESSION['cart'][$productid]);
+                }
+            }
+        }
+
+        //header("Location: winkelwagenn.php");
+
+    }
+}
+
+
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -106,7 +73,9 @@ function pre_r($array){
 
         $total = 0;
 
-        foreach ($_SESSION['cart'] as $productid => $productinfo):
+        pre_r($_SESSION['cart']);
+
+        foreach ($_SESSION['cart'] as $productid => $productinfo) {
             $connect = mysqli_connect('localhost', 'root', '', 'deboerlicht');
             $sql = "SELECT * FROM producten WHERE ID = " . $productid;
             $result = mysqli_query($connect, $sql);
@@ -126,7 +95,15 @@ function pre_r($array){
             <td>$totaal</td>
             <td>
             <a href='winkelwagenn.php?action=delete&id=<?=$productid?> '>
-            <div class='btn-danger'>Verwijderen</div>
+            
+            <form action='removeproduct.php' method='post'>
+                <div class='btn-danger'>
+                    <btn type='submit'>Verwijderen</btn>
+                </div>
+                <input hidden type='text' name='productid' value='$productid'/>$productid
+                <input hidden type='text' name='action' value='remove'/>remove
+            </form>
+            
             </a>
             </td>
             </tr>
@@ -134,7 +111,7 @@ function pre_r($array){
 
 
             $total = $total + ($aantal * $prijs);
-            endforeach;
+            }
         ?>
         <tr>
             <td colspan="3" align="right">Totaal</td>
