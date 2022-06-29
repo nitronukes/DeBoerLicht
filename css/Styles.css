@@ -399,10 +399,11 @@ align-items: center;
   background-color: white;
   margin: 0 2% 0 2%;
   border-radius: 15px;
-
+  z-index: 2;
 }
 .Lampenoverzichtgrid div{
   border-radius: 15px;
+  height: 100%;
 }
 
 .Lampenoverzichtfilteren{
@@ -419,6 +420,7 @@ align-items: center;
 }
 .lampoverzichtachtergrond{
   background-color: #ffffff;
+  height: 100%;
 }
 .homebodylichaam{
   display: grid;
@@ -812,6 +814,7 @@ color: #ff5f43;
 }
 .productlampoverzicht{
   background-color: #ffffff;
+  color: #000000;
 }
 .Lampenoverzichtbutton{
   padding: 10px 70px;
@@ -820,6 +823,8 @@ color: #ff5f43;
   cursor: pointer;
   border: none;
   border-radius: 20px;
+  width: 100%;
+  margin-top: 5px;
 }
 .Lampenoverzichtbutton:hover{
   background-color: #df8b37;
@@ -859,4 +864,7 @@ color: #ff5f43;
 .categorieuitzoeken:hover{
   background-color: #df8b37;
   transition: .3s;
+}
+.plustoevoegknop{
+  padding: 100px;
 }
