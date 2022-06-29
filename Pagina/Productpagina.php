@@ -1,5 +1,10 @@
 <?php
 include "header.php";
+
+if (!isset($_GET["lamp"])) {
+    header("Location: index.php");
+}
+
 $lamp = $_GET['lamp'];
 ?>
 <!DOCTYPE html>
@@ -14,10 +19,6 @@ $lamp = $_GET['lamp'];
 <body>
     <div class="productoverzichtpagina">
             <?php
-            $aantal =1;
-            if ($lamp !='') {
-                $_SESSION['cart'][] = array('id' => $lamp, 'aantal' => $aantal);
-            }
                    ?>
         <div class="productwinkelmandtoevoeg">
         </div>

@@ -69,7 +69,7 @@ function pre_r($array){
     print_r($array);
     echo'</pre>';
 }?>
-?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -103,36 +103,37 @@ function pre_r($array){
             <th width="5%">Actie </th>
         </tr>
         <?php
-        if(!empty($_SESSION['cart'])):
 
+        $total = 0;
 
-        $total =0;
-
-        foreach ($_SESSION['cart'] as $product):
-
-
+        foreach ($_SESSION['cart'] as $productid => $productinfo):
             $connect = mysqli_connect('localhost', 'root', '', 'deboerlicht');
-            $sql = "select * from producten where ID = " . $product['id'];
+            $sql = "SELECT * FROM producten WHERE ID = " . $productid;
             $result = mysqli_query($connect, $sql);
             $row =mysqli_fetch_assoc($result);
 
+            $productnaam = $row['ProductNaam'];
+            $prijs = $row['Prijs'];
+            $aantal = $productinfo['amount'];
+            $totaal = $prijs * $aantal;
 
 
-
-        ?>
-        <tr>
-            <td><?php echo $row['ProductNaam'];?></td>
-            <td><?php echo $product['aantal'];?></td>
-            <td><?php echo"€", "", $row['Prijs'];?></td>
-            <td><?php echo number_format($product['aantal'] * $row['Prijs'], 2);?></td>
+            echo "
+            <tr>
+            <td>$productnaam</td>
+            <td>$aantal</td>
+            <td>$prijs</td>
+            <td>$totaal</td>
             <td>
-                <a href="winkelwagenn.php?action=delete&id=<?=$product['id']?> ">
-                    <div class="btn-danger">Verwijderen</div>
-                </a>
+            <a href='winkelwagenn.php?action=delete&id=<?=$productid?> '>
+            <div class='btn-danger'>Verwijderen</div>
+            </a>
             </td>
-        </tr>
-        <?php
-            $total = $total + ($product['aantal'] * $row['Prijs']);
+            </tr>
+            ";
+
+
+            $total = $total + ($aantal * $prijs);
             endforeach;
         ?>
         <tr>
@@ -151,20 +152,15 @@ function pre_r($array){
                 <?php endif; endif; ?>
             </td>
         </tr>
-        <?php
-         endif;
-
-            ?>
 
 
         <?php
-        if (isset($_SESSION['cart'])!='') {
-            $_SESSION['bestelling'][] = array('id' => $product['id'], 'aantal' => $product['aantal'], 'Prijs' => $row['Prijs']);
+        //if (isset($_SESSION['cart'])!='') {
+        //    $_SESSION['bestelling'][] = array('id' => $product['id'], 'aantal' => $product['aantal'], 'Prijs' => $row['Prijs']);
+        //}
+        //pre_r($_SESSION);
 
-        }
-        pre_r($_SESSION);
-
-        $sql = "insert into winkelmandopstelling(ProductID) values ($product[id])";
+        //$sql = "insert into winkelmandopstelling(ProductID) values ($product[id])";
         ?>
     </table>
 </div>
