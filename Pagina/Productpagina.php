@@ -19,18 +19,6 @@ $lamp = $_GET['lamp'];
 <body>
     <div class="productoverzichtpagina">
             <?php
-                    function addToCart($productid, $amounttoadd)
-                    {
-                        if (isset($_SESSION['cart'][$productid])) {
-                            $_SESSION['cart'][$productid] == array(
-                                    "amount" => $_SESSION['cart'][$productid]["amount"] + $amounttoadd,
-                            );
-                        } else {
-                            $_SESSION['cart'][$productid] == array(
-                                "amount" => 1,
-                            );
-                        }
-                    }
                    ?>
         <div class="productwinkelmandtoevoeg">
         </div>

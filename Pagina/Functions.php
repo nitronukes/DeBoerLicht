@@ -188,19 +188,27 @@ function Lamptonen($conn, $lamp)
 
 
     foreach ($sql as $row) {
+        $productid = $row[0];
+        $amounttoadd = 1;
 
-        echo '
-        <div class="Productnaam">' . $row[2] . '</div>
-        <div class="producttekst">' . $row[6] . '</div>
-        <div class="productprijs"> € ' . $row[3] . '</div>
-        <div class="productvoorraad">' . $row[5] . ' stuks op voorraad</div>
-        <div class="productAantal">label</div>
-        <div class="productwinkelmandtoevoeg"> <button class="voegtoeaanww" type="submit" name="add_to_cart" value="voeg toe aan winkelwagen">voeg toe aan winkelwagen</button> </div>
-        <div class="ProductSlideShow">
-        <div class="slideshow-container">
+        echo "
+        <div class='Productnaam'>' . $row[2] . '</div>
+        <div class='producttekst'>' . $row[6] . '</div>
+        <div class='productprijs'> € ' . $row[3] . '</div>
+        <div class='productvoorraad'>' . $row[5] . ' stuks op voorraad</div>
+        <div class='productAantal'>label</div>
         
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>';
+        <form method='POST' action='winkelwagenToevoegen.php'>
+            <div class='productwinkelmandtoevoeg'> <button class='voegtoeaanww' type='submit' name='add_to_cart' value='voeg toe aan winkelwagen'>voeg toe aan winkelwagen</button> </div>
+            <input type='text' hidden name='productid' value='$productid' />$productid
+            <input type='text' hidden name='amounttoadd' value='$amounttoadd' />$amounttoadd
+        </form>
+        
+        <div class='ProductSlideShow'>
+        <div class='slideshow-container'>
+        
+        <a class='prev' onclick='plusSlides(-1)'>&#10094;</a>
+        <a class='next' onclick='plusSlides(1)'>&#10095;</a>";
 
         foreach ($sql2 as $row2) {
 
@@ -249,7 +257,7 @@ function CategorieTonen($conn)
                         <button name='CategorieID' type='submit' value='" . $row[0] . "' class='btn btn-success btn-sm'><strong> Categore wijzigen</strong></button>
                 </form>
                 <form action='Categoriebeheer.php?deleteID=$row[0]' method='POST' class='d-inline'>
-                    <button type='submit' name='' value='" . $row[0] . "' class='btn btn-danger btn-sm' onclick='window.location.href=''>Verwijder</button>                                                    
+                    <button type='submit' name='' value='" . $row[0] . "' class='btn btn-danger btn-sm' onclick='window.location.href=''>Verwijder</button>       
                 </form>
                 </td>
             </tr>
