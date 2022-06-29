@@ -18,25 +18,37 @@ function Lampenoverzicht($conn, $categorie)
     $sql = $sql->fetch_all();
 
 
-
-    foreach ($sql as $row) {
-        echo "
-             <div class='lampoverzichtachtergrond'>
-             <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=" . $row[2] . "'>
-             <img class='Lampenoverzichtfotos' src='$row[11]' alt='$row[4]'>
-                <input type='submit' value=' row[4]' class='Lampenoverzichtbutton'/>
-                <input 
+    if (isset($_SESSION) && isset($_SESSION['email']) != '') {
+        foreach ($sql as $row) {
+            echo "
+            <div class='lampoverzichtachtergrond'>
+            <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=" . $row[2] . "'>
+            <img class='Lampenoverzichtfotos' src='$row[11]' alt='" . $row[4] . "'>
+                <input type='submit' value=' $row[4] Wijzigen' name='Lampwijzigen'class='Lampenoverzichtbutton'>
             </form>
-            </div>";
-    }
-    echo "
-    <div class='lampoverzichtachtergrond'>
-    <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=>
-    <input type='submit' value='' class='Lampenoverzichtbutton'/>
+            <form class='productlampoverzicht' method='post' action='Productpagina.php?deleteID=". $row[2] ."'>
+                <input type='submit' value=' $row[4] Verwijderen'  name='Lampverwijderen'class='Lampenoverzichtbutton'>
+            </form>
+                </div>";
+        }
+        echo "
+        <div class='lampoverzichtachtergrond'>
+    <form class='productlampoverzicht' method='post' action='Productpagina.php>
+    <input type='submit' value='' class='Lampenoverzichtbutton'>
     <i class='fa-solid fa-circle-plus'></i>
    </form>
    </div>";
-
+    } else {
+        foreach ($sql as $row) {
+            echo "
+            <div class='lampoverzichtachtergrond'>
+            <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=" . $row[2] . "'>
+            <img class='Lampenoverzichtfotos' src='$row[11]' alt='" . $row[4] . "'>
+                <input type='submit' value=' $row[4]' class='Lampenoverzichtbutton'/>
+            </form>
+            </div>";
+        }
+    }
 }
 
 function Filteren($conn, $categorie)
@@ -122,7 +134,7 @@ function Producttoevoegen($conn, $Productnaam, $Prijs, $korting, $categorie, $be
     $stmt2->bind_param('isiiis', $categorie, $Productnaam, $Prijs, $korting, $voorraad, $beschrijving);
     $stmt2->execute();
 
-    if (isset($stmt2)){
+    if (isset($stmt2)) {
         // echo $stmt2;
         //printf($stmt2);
         //var_dump($stmt2);
@@ -273,7 +285,7 @@ function CategorieVerwijderen($conn, $ID)
             $stmt2 = $conn->prepare("DELETE FROM productfoto WHERE ProductID = $product[0]");
             $stmt2->execute();
         }
-        
+
         $stmt3 = $conn->prepare("DELETE FROM producten WHERE Categorie_ID = ?");
         $stmt3->bind_param('s', $ID);
         $stmt3->execute();
@@ -302,7 +314,8 @@ function CategorieToevoegen($conn)
         ";
 }
 
-function Categorietoevoegklik($conn, $categorie){
+function Categorietoevoegklik($conn, $categorie)
+{
     $stmt2 = $conn->prepare("INSERT INTO `categorieen` (`Categorie`) VALUES (?)");
     $stmt2->bind_param('s', $categorie);
     $stmt2->execute();
@@ -310,7 +323,7 @@ function Categorietoevoegklik($conn, $categorie){
 
 function gridhomepaginatestphptesthome($conn)
 {
-$stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.Korting > 0 GROUP BY productfoto.ProductID ORDER BY Korting DESC LIMIT 4;");
+    $stmt = $conn->prepare("SELECT * FROM producten INNER JOIN productfoto ON producten.ID = productfoto.ProductID WHERE producten.Korting > 0 GROUP BY productfoto.ProductID ORDER BY Korting DESC LIMIT 4;");
 
     $stmt->execute();
     $sql = $stmt->get_result();
