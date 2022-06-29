@@ -830,6 +830,13 @@ color: #ff5f43;
   background-color: #df8b37;
   transition: .3s;
 }
+.fa-circle-plus{
+  font-size: 200px;  
+  color: black; 
+  background-color: white;  
+  text-decoration: none;
+  margin-top: 120px;
+}
 
 .headerknop{
   background-color: #ffffff;
