@@ -31,8 +31,6 @@ function Lampenoverzicht($conn, $categorie)
     echo "
     <div class='lampoverzichtachtergrond'>
     <form class='productlampoverzicht' method='post' action='Productpagina.php?lamp=>
-    <i class='fa-solid fa-circle-plus'></i>
-    <input type='submit' value='' class='Lampenoverzichtbutton'/>
    </form>
    </div>";
 
