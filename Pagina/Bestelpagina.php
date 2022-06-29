@@ -50,8 +50,13 @@ session_start();
                             <div class="mb-3">
                                 <button type="submit" name="save_student" class="btn btn-primary">Voeg bestelling toe</button>
                             </div>
+                            <?php
+                            if (isset($_SESSION['cart'])!='')
+                            {$_SESSION['bestelling'][] = array('');}
 
-                        </form>
+
+                            ?>
+                            </form>
                     </div>
                 </div>
             </div>
