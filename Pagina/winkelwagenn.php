@@ -2,6 +2,14 @@
 
 include 'header.php';
 
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+
 function pre_r($array){
     echo'<pre>';
     print_r($array);
@@ -67,7 +75,7 @@ function pre_r($array){
             <td>$prijs</td>
             <td>$totaal</td>
             <td>
-            <a href='winkelwagenn.php?action=delete&id=<?=$productid?> '>
+            <a href='winkelwagenn.php?action=delete&id=$productid '>
             
             <form method='POST' action='removeproduct.php'>
                 <div class='btn-danger'>
