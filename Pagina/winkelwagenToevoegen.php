@@ -20,5 +20,5 @@
             );
     }
 
-    header("Location: winkelwagenn.php");
+    header("Location: Lampenoverzicht.php?filter=Geencategorie");
 ?>
