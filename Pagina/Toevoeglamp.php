@@ -6,8 +6,7 @@ if(isset($_GET['lamp'])){
     $id = $_GET['lamp'];
 }
 
-echo $id;
-
+ 
 if (!isset($_SESSION)) {
     session_start();
 }
