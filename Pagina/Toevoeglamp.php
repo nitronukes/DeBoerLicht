@@ -2,6 +2,12 @@
 include 'Functions.php';
 include 'Connection.php';
 
+if(isset($_GET['lamp'])){
+    $id = $_GET['lamp'];
+}
+
+echo $id;
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -18,7 +24,7 @@ if (!isset($_SESSION)) {
     <title>LichtenToevoegen</title>
 </head>
 <body>
-    <a class="verlaattoevoeglamp" href="Lampenoverzicht.php   ">&times</a>
+    <a class="verlaattoevoeglamp" href="Lampenoverzicht.php?filter=Geencategorie   ">&times</a>
     <form action="../Handlers/Lamptoevoeg.php" method="post" enctype="multipart/form-data">
     <div class="Toevoegmodal" id="modal">
         <div class="Toevoegmodal-body">
