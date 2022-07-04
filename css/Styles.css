@@ -863,3 +863,12 @@ color: #ff5f43;
   background-color: #df8b37;
   transition: .3s;
 }
+.toevoegenknop {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  font-size: 30px;
+  margin: 50px;
+  border-radius: 10px;
+  color: #ff5f43;
+}
