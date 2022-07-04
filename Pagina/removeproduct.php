@@ -1,6 +1,4 @@
 <?php
-if (isset($_POST['action'])) {
-    echo "A";
     if ($_POST['action'] == 'remove') {
         echo "B";
         $removalpid = $_POST['productid'];
@@ -22,5 +20,6 @@ if (isset($_POST['action'])) {
         //header("Location: winkelwagenn.php");
 
     }
-}
 ?>
+
+Hello World!
