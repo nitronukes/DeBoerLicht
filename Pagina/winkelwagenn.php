@@ -54,33 +54,41 @@ function pre_r($array){
 
         $total = 0;
 
-        pre_r($_SESSION['cart']);
-
         foreach ($_SESSION['cart'] as $productid => $productinfo) {
             $connect = mysqli_connect('localhost', 'root', '', 'deboerlicht');
             $sql = "SELECT * FROM producten WHERE ID = " . $productid;
             $result = mysqli_query($connect, $sql);
             $row =mysqli_fetch_assoc($result);
 
+            // this function takes the price and adds a euro sign and a decimal comma
+            $formatprijs = number_format($row['Prijs'], 2);
+            $formataantal = $productinfo['amount'] . 'x';
+
             $productnaam = $row['ProductNaam'];
             $prijs = $row['Prijs'];
             $aantal = $productinfo['amount'];
+
             $totaal = $prijs * $aantal;
+            $prijstotaal = number_format($prijs * $aantal, 2);
 
 
             echo "
             <tr>
             <td>$productnaam</td>
-            <td>$aantal</td>
-            <td>$prijs</td>
-            <td>$totaal</td>
+            <td>$formataantal</td>
+            <td>€$formatprijs</td>
+            <td>€$prijstotaal</td>
             <td>
+<<<<<<< HEAD
             <a href='winkelwagenn.php?action=delete&id=$productid '>
             
+=======
+>>>>>>> d22f9071bdf8f6707bfd43dfedebeb6af68c7072
             <form method='POST' action='removeproduct.php'>
                 <div class='btn-danger'>
-                    <btn type='submit'>Verwijderen</btn>
+                    <input class='winkelwagenknop' type='submit' value='Verwijderen'>
                 </div>
+                
                 <input hidden type='text' name='productid' value='$productid'/>$productid
             </form>
             
@@ -105,7 +113,6 @@ function pre_r($array){
                 if (isset($_SESSION['cart'])):
                 if (count($_SESSION['cart']) > 0):
                 ?>
-                <a href="Bestelpagina.php" class="button">Checkout</a>
                 <?php endif; endif; ?>
             </td>
         </tr>
@@ -139,3 +146,71 @@ function pre_r($array){
 
 
 
+<?php
+//session_start();
+?>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Bestelformulier</title>
+</head>
+<body>
+  
+    <div class="container mt-5">
+
+        <?php include('message.php'); ?>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Bestelformulier
+                            <a href="winkelwagenn.php" class="btn btn-danger float-end">Terug</a>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="code.php" method="POST">
+
+                            <div class="mb-3">
+                                <label>Volledige naam</label>
+                                <input type="text" name="name" class="form-control" required placeholder="voer je naam in">
+                            </div>
+                            <div class="mb-3">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control" required placeholder="Vul je email in">
+                            </div>
+                            <div class="mb-3">
+                                <label>Telefoonnummer</label>
+                                <input type="text" name="phone" class="form-control" required placeholder="Vul je telefoonnummer in">
+                            </div>
+                            <div class="mb-3">
+                                <label>Adress</label>
+                                <input type="text" name="adress" class="form-control" required placeholder="Vul je adress in">
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" name="save_student" class="btn btn-primary">Voeg bestelling toe</button>
+                            </div>
+                            <?php
+                            if (isset($_SESSION['cart'])!='')
+                            {$_SESSION['bestelling'][] = array('');}
+
+
+                            ?>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
