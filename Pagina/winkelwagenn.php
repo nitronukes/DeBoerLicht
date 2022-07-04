@@ -160,7 +160,22 @@ function pre_r($array){
         //}
         //pre_r($_SESSION);
 
+
         //$sql = "insert into winkelmandopstelling(ProductID) values ($product[id])";
+        // 1. Loop door alle productIds heen die in de huidige session zitten.
+
+
+           // $id= $sessionid;
+
+            // 2. maak een sql die geldig is de huidige bestellingId, productId en aantal.
+            //$sql = "insert into winkelmandopstelling(BestelId, ProductID, Aantal) values ($bestelId, $product[id], $aantal)";
+
+            // 3. voer de bovenstaande sql uit op de database.
+
+
+
+
+
         ?>
     </table>
 </div>

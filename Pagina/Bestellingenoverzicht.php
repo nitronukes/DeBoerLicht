@@ -59,7 +59,10 @@
                                                 <td><?= $student['phone']; ?></td>
                                                 <td><?= $student['adress']; ?></td>
                                                 <td>
-                                                    
+                                                    <button onclick="
+                                                            alert(<?php $_SESSION['bestelling']; ?>)
+                                                            " class="btn btn-danger btn-sm">Weergeven</button>
+
                                                     <form action="code.php" method="POST" class="d-inline">
                                                         <button type="submit" name="delete_student" value="<?=$student['id'];?>" class="btn btn-danger btn-sm">Verwijder</button>
                                                     </form>
