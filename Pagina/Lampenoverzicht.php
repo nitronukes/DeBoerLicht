@@ -11,9 +11,9 @@ $categorie = $_GET['filter'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Styles.css">
+    <script src="https://kit.fontawesome.com/b5d173f5c2.js" crossorigin="anonymous"></script>
     <title>Lampenoverzicht</title>
-<link rel="stylesheet" href="../css/Styles.css">
-
+    <link rel="stylesheet" href="../css/Styles.css">
 </head>
 
 <body>

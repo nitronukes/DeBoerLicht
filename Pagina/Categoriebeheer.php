@@ -2,6 +2,11 @@
 session_start();
 require 'Connection.php';
 include 'header.php';
+
+if (!isset($_SESSION["email"])) {
+    header("Location: Inlogpagina.php");
+}
+
 if (isset($_GET['deleteID'])) {
     $DeleteID = $_GET['deleteID'];
 }

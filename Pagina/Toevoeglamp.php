@@ -18,7 +18,7 @@ if (!isset($_SESSION)) {
     <title>LichtenToevoegen</title>
 </head>
 <body>
-    <a class="verlaattoevoeglamp" href="productbeheer.php   ">&times</a>
+    <a class="verlaattoevoeglamp" href="Lampenoverzicht.php   ">&times</a>
     <form action="../Handlers/Lamptoevoeg.php" method="post" enctype="multipart/form-data">
     <div class="Toevoegmodal" id="modal">
         <div class="Toevoegmodal-body">

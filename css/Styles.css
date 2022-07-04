@@ -399,7 +399,7 @@ align-items: center;
   background-color: white;
   margin: 0 2% 0 2%;
   border-radius: 15px;
-
+  z-index: 2;
 }
 .Lampenoverzichtgrid div{
   border-radius: 15px;
@@ -814,6 +814,7 @@ color: #ff5f43;
 }
 .productlampoverzicht{
   background-color: #ffffff;
+  color: #000000;
 }
 .Lampenoverzichtbutton{
   padding: 10px 70px;
@@ -823,10 +824,18 @@ color: #ff5f43;
   border: none;
   border-radius: 20px;
   width: 100%;
+  margin-top: 5px;
 }
 .Lampenoverzichtbutton:hover{
   background-color: #df8b37;
   transition: .3s;
+}
+.fa-circle-plus{
+  font-size: 200px;  
+  color: black; 
+  background-color: white;  
+  text-decoration: none;
+  margin-top: 120px;
 }
 
 .headerknop{
@@ -863,12 +872,10 @@ color: #ff5f43;
   background-color: #df8b37;
   transition: .3s;
 }
-.toevoegenknop {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  font-size: 30px;
-  margin: 50px;
-  border-radius: 10px;
-  color: #ff5f43;
+.plustoevoegknop{
+  padding: 100px;
+}
+
+.removebtn {
+  background-color: red;
 }
