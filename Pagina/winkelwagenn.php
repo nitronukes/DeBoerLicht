@@ -77,7 +77,7 @@ function pre_r($array){
             <td>
             <form method='POST' action='removeproduct.php'>
                 <div class='btn-danger'>
-                    <input type='submit'>
+                    <input class='winkelwagenknop' type='submit'>
                 </div> <br>
                 
                 <input hidden type='text' name='productid' value='$productid'/>$productid
