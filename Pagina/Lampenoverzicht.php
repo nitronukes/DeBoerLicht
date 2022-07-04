@@ -1,6 +1,9 @@
 <?php
 require_once('header.php');
 $categorie = $_GET['filter'];
+if (isset($_GET['deleteID'])){
+    $productID = $_GET['deleteID'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -41,6 +44,9 @@ $categorie = $_GET['filter'];
         </div>
         <div class="Lampenoverzichtgrid">
             <?php
+            if (isset($productID)) {
+                DeleteProduct($conn, $productID);
+            }
             Lampenoverzicht($conn, $categorie);
             ?>
         </div>

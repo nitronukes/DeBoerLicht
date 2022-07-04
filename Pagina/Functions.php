@@ -26,7 +26,7 @@ function Lampenoverzicht($conn, $categorie)
             <img class='Lampenoverzichtfotos' src='$row[11]' alt='" . $row[4] . "'>
                 <input type='submit' value=' $row[4] Wijzigen' name='Lampwijzigen'class='Lampenoverzichtbutton'>
             </form>
-            <form class='productlampoverzicht' method='post' action='Productpagina.php?deleteID=". $row[2] ."'>
+            <form class='productlampoverzicht' method='post' action='Lampenoverzicht.php?deleteID=". $row[2] ."&filter=Geencategorie'>
                 <input type='submit' value=' $row[4] Verwijderen'  name='Lampverwijderen'class='Lampenoverzichtbutton'>
             </form>
                 </div>";
@@ -304,6 +304,19 @@ function CategorieVerwijderen($conn, $ID)
     $stmt4->bind_param('s', $ID);
     $stmt4->execute();
     $stmt4->close();
+}
+
+function DeleteProduct($conn, $ID)
+{
+    $stmt1 = $conn->prepare("DELETE FROM productfoto WHERE ProductID = ?");
+    $stmt1->bind_param('s', $ID);
+    $stmt1->execute();
+    $stmt1->close();
+
+$stmt2 = $conn->prepare("DELETE FROM producten WHERE ID = ?");
+$stmt2->bind_param('s', $ID);
+$stmt2->execute();
+$stmt2->close();
 }
 
 function CategorieToevoegen($conn)
