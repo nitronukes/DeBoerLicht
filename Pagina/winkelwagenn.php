@@ -60,24 +60,18 @@ function pre_r($array){
             $result = mysqli_query($connect, $sql);
             $row =mysqli_fetch_assoc($result);
 
-            // this function takes the price and adds a euro sign and a decimal comma
-            $formatprijs = number_format($row['Prijs'], 2);
-            $formataantal = $productinfo['amount'] . 'x';
-
             $productnaam = $row['ProductNaam'];
             $prijs = $row['Prijs'];
             $aantal = $productinfo['amount'];
-
             $totaal = $prijs * $aantal;
-            $prijstotaal = number_format($prijs * $aantal, 2);
 
 
             echo "
             <tr>
             <td>$productnaam</td>
-            <td>$formataantal</td>
-            <td>€$formatprijs</td>
-            <td>€$prijstotaal</td>
+            <td>$aantal</td>
+            <td>$prijs</td>
+            <td>$totaal</td>
             <td>
 <<<<<<< HEAD
             <a href='winkelwagenn.php?action=delete&id=$productid '>
@@ -86,8 +80,8 @@ function pre_r($array){
 >>>>>>> d22f9071bdf8f6707bfd43dfedebeb6af68c7072
             <form method='POST' action='removeproduct.php'>
                 <div class='btn-danger'>
-                    <input class='winkelwagenknop' type='submit' value='Verwijderen'>
-                </div>
+                    <input class='winkelwagenknop' type='submit'>
+                </div> <br>
                 
                 <input hidden type='text' name='productid' value='$productid'/>$productid
             </form>
@@ -113,6 +107,7 @@ function pre_r($array){
                 if (isset($_SESSION['cart'])):
                 if (count($_SESSION['cart']) > 0):
                 ?>
+                <a href="Bestelpagina.php" class="button">Checkout</a>
                 <?php endif; endif; ?>
             </td>
         </tr>
