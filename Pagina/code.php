@@ -64,7 +64,7 @@ if(isset($_POST['save_student']))
     if($query_run)
     {
         $_SESSION['message'] = "Bestelling aangemaakt";
-        header("Location: Bestelpagina.php");
+        header("Location: index.php");
         exit(0);
     }
     else

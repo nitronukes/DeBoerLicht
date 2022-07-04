@@ -73,11 +73,10 @@ function pre_r($array){
             <td>$prijs</td>
             <td>$totaal</td>
             <td>
-<<<<<<< HEAD
+
             <a href='winkelwagenn.php?action=delete&id=$productid '>
             
-=======
->>>>>>> d22f9071bdf8f6707bfd43dfedebeb6af68c7072
+
             <form method='POST' action='removeproduct.php'>
                 <div class='btn-danger'>
                     <input class='winkelwagenknop' type='submit'>
@@ -113,37 +112,13 @@ function pre_r($array){
         </tr>
 
 
-        <?php
-        //if (isset($_SESSION['cart'])!='') {
-        //    $_SESSION['bestelling'][] = array('id' => $product['id'], 'aantal' => $product['aantal'], 'Prijs' => $row['Prijs']);
-        //}
-        //pre_r($_SESSION);
 
-
-        //$sql = "insert into winkelmandopstelling(ProductID) values ($product[id])";
-        // 1. Loop door alle productIds heen die in de huidige session zitten.
-
-
-           // $id= $sessionid;
-
-            // 2. maak een sql die geldig is de huidige bestellingId, productId en aantal.
-            //$sql = "insert into winkelmandopstelling(BestelId, ProductID, Aantal) values ($bestelId, $product[id], $aantal)";
-
-            // 3. voer de bovenstaande sql uit op de database.
-
-
-
-
-
-        ?>
     </table>
 </div>
 
 
 
-<?php
-//session_start();
-?>
+
 
 <!doctype html>
 <html lang="en">
