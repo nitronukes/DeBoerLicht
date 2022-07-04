@@ -54,8 +54,6 @@ function pre_r($array){
 
         $total = 0;
 
-        pre_r($_SESSION['cart']);
-
         foreach ($_SESSION['cart'] as $productid => $productinfo) {
             $connect = mysqli_connect('localhost', 'root', '', 'deboerlicht');
             $sql = "SELECT * FROM producten WHERE ID = " . $productid;
