@@ -2,73 +2,21 @@
 
 include 'header.php';
 
-//session_destroy();
-$product_ids = array();
-////kijken of product naar winkelwagen is verstuurd
-//if(filter_input(INPUT_POST, 'add_to_cart')){
-//    if(isset($_SESSION['winkelwagen'])){
-//
-//        //bijhouden hoeveel producten in de winkelwagen zitten
-//            $count = count($_SESSION['winkelwagen']);
-//
-//        //maak een sequantial array om array keys aan products ids vast te maken
-//            $product_ids = array_column($_SESSION['winkelwagen'], 'ID');
-//
-//        if(!in_array(filter_input(INPUT_GET,'ID' ), $product_ids)){
-//            $_SESSION['winkelwagen'][$count] = array
-//            (
-//                'ID' => filter_input(INPUT_GET, 'ID'),
-//                'ProductNaam' => filter_input(INPUT_POST,'ProductNaam'),
-//                'Prijs' => filter_input(INPUT_POST, 'Prijs'),
-//                'hoeveelheid' => filter_input(INPUT_POST, 'hoeveelheid'),
-//
-//        );
-//
-//        }
-//        else{
-//            //array key gelijk maken aan id van het product dat word toegevoegd aan de winkelwagen
-//            for($i = 0; $i < count($product_ids); $i++){
-//                if($product_ids[$i] == filter_input(INPUT_GET, 'ID')){
-//                    //toevoegen hoeveelheid aan bestaand item in de array
-//                    $_SESSION['winkelwagen'][$i]['hoeveelheid'] += filter_input(INPUT_POST, '');
-//                }
-//            }
-//        }
-//    }
-//    else{// als winkelwagen session niet bestaal maak een product array met key 0
-//        //array maken met toegevoegde data, start bij key 0 en vul het net variabelen
-//        $_SESSION['winkelwagen'][0] = array
-//        (
-//              'ID'=> filter_input(INPUT_GET, 'ID'),
-//              'ProductNaa'=> filter_input(INPUT_POST,'PrductNaam'),
-//              'Prijs'=> filter_input(INPUT_POST, 'Prijs'),
-//              'hoeveelheid'=> filter_input(INPUT_POST, 'hoeveelheid')
-//        );
-//    }
-//    }
+if (!isset($_SESSION)) {
+    session_start();
+}
 
-    if(filter_input(INPUT_GET, 'action')== 'delete') {
-        //loop door al de producten heen todat het gelijk is aan get id variabelen
-        foreach ($_SESSION['cart'] as $key => $product) {
-            if ($product['id'] == filter_input(INPUT_GET, 'id')) {
-                //verwijder product uit winkelwagen
-                unset($_SESSION['cart'][$key]);
-            }
-        }
-    }
-
-//        //reset session array keys zodat ze gelijk zijn aan $product_ids numeric array
-//        $_SESSION['winkelwagen'] = array_values($_SESSION['winkelwagen']);
-//
-//
-//}
-//pre_r($_SESSION);
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
 
 function pre_r($array){
     echo'<pre>';
     print_r($array);
     echo'</pre>';
-}?>
+}
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -106,7 +54,9 @@ function pre_r($array){
 
         $total = 0;
 
-        foreach ($_SESSION['cart'] as $productid => $productinfo):
+        pre_r($_SESSION['cart']);
+
+        foreach ($_SESSION['cart'] as $productid => $productinfo) {
             $connect = mysqli_connect('localhost', 'root', '', 'deboerlicht');
             $sql = "SELECT * FROM producten WHERE ID = " . $productid;
             $result = mysqli_query($connect, $sql);
@@ -125,8 +75,14 @@ function pre_r($array){
             <td>$prijs</td>
             <td>$totaal</td>
             <td>
-            <a href='winkelwagenn.php?action=delete&id=<?=$productid?> '>
-            <div class='btn-danger'>Verwijderen</div>
+            <form method='POST' action='removeproduct.php'>
+                <div class='btn-danger'>
+                    <input type='submit'>
+                </div> <br>
+                
+                <input hidden type='text' name='productid' value='$productid'/>$productid
+            </form>
+            
             </a>
             </td>
             </tr>
@@ -134,7 +90,7 @@ function pre_r($array){
 
 
             $total = $total + ($aantal * $prijs);
-            endforeach;
+            }
         ?>
         <tr>
             <td colspan="3" align="right">Totaal</td>
@@ -167,3 +123,71 @@ function pre_r($array){
 
 
 
+<?php
+//session_start();
+?>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Bestelformulier</title>
+</head>
+<body>
+  
+    <div class="container mt-5">
+
+        <?php include('message.php'); ?>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Bestelformulier
+                            <a href="winkelwagenn.php" class="btn btn-danger float-end">Terug</a>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="code.php" method="POST">
+
+                            <div class="mb-3">
+                                <label>Volledige naam</label>
+                                <input type="text" name="name" class="form-control" required placeholder="voer je naam in">
+                            </div>
+                            <div class="mb-3">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control" required placeholder="Vul je email in">
+                            </div>
+                            <div class="mb-3">
+                                <label>Telefoonnummer</label>
+                                <input type="text" name="phone" class="form-control" required placeholder="Vul je telefoonnummer in">
+                            </div>
+                            <div class="mb-3">
+                                <label>Adress</label>
+                                <input type="text" name="adress" class="form-control" required placeholder="Vul je adress in">
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" name="save_student" class="btn btn-primary">Voeg bestelling toe</button>
+                            </div>
+                            <?php
+                            if (isset($_SESSION['cart'])!='')
+                            {$_SESSION['bestelling'][] = array('');}
+
+
+                            ?>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
